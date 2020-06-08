@@ -14,6 +14,8 @@ gem "puma", "~> 4.3.3"
 gem "uglifier", "~> 4.1"
 
 gem "faker", "~> 1.9"
+gem "figaro", "~> 1.2"
+gem "whenever", require: false
 
 group :development, :test do
   gem "byebug", "~> 11.0", platform: :mri
@@ -27,13 +29,16 @@ group :development do
   gem "spring", "~> 2.0"
   gem "spring-watcher-listen", "~> 2.0"
   gem "web-console", "~> 3.5"
+
+  gem 'capistrano'
+  gem 'capistrano-rbenv'
+  gem 'capistrano-bundler'
+  gem 'capistrano-passenger', '>= 0.1.1'
+  gem 'capistrano-rails'
 end
 
-gem "figaro", "~> 1.2"
-
-gem "passenger", "~> 6.0", :group => :production
-
-gem "delayed_job_active_record", "~> 4.1", :group => :production
-
-gem "daemons", "~> 1.3", :group => :production
-gem "whenever", require: false
+group :production do
+  gem "passenger", "~> 6.0"
+  gem "delayed_job_active_record", "~> 4.1"
+  gem "daemons", "~> 1.3"
+end
