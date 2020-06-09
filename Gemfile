@@ -16,6 +16,7 @@ gem "uglifier", "~> 4.1"
 gem "faker", "~> 1.9"
 gem "figaro", "~> 1.2"
 gem "whenever", require: false
+gem "delayed_job_web"
 
 group :development, :test do
   gem "byebug", "~> 11.0", platform: :mri
