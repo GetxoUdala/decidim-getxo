@@ -61,7 +61,7 @@ namespace :getxo do
       puts "Sending a test email to #{args.email}"
 
       if ENV["SMTP_SETTINGS"].present?
-        settings = ENV["SMTP_SETTINGS"].gsub(/[{}:]/,'').split(', ').map{|h| h1,h2 = h.split('=>'); {h1 => h2}}.reduce(:merge)
+        settings = YAML.load(ENV["SMTP_SETTINGS"])
         ActionMailer::Base.smtp_settings = settings
         puts "Using custom settings!"
       end
