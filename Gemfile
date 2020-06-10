@@ -17,6 +17,7 @@ gem "faker", "~> 1.9"
 gem "figaro", "~> 1.2"
 gem "whenever", require: false
 gem "delayed_job_web"
+gem 'ruby-ntlm'
 
 group :development, :test do
   gem "byebug", "~> 11.0", platform: :mri

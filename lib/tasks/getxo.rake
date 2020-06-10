@@ -61,7 +61,7 @@ namespace :getxo do
       puts "Sending a test email to #{args.email}"
 
       if ENV["SMTP_SETTINGS"].present?
-        settings = YAML.load(ENV["SMTP_SETTINGS"])
+        settings = eval ENV["SMTP_SETTINGS"]
         ActionMailer::Base.smtp_settings = settings
         puts "Using custom settings!"
       end
@@ -85,7 +85,7 @@ bin/rails 'getxo:mail_test[email@example.org]'
 
 Override default configuration with the ENV var SMTP_SETTINGS:
 
-export SMTP_SETTINGS={address: 'stmp.example.org', port: 25, enable_starttls_auto: true}
+export SMTP_SETTINGS='{address: \"stmp.example.org\", port: 25, enable_starttls_auto: true}'
 "
   end
 end
