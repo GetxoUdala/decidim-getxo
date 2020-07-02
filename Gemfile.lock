@@ -711,6 +711,8 @@ GEM
     selenium-webdriver (3.142.7)
       childprocess (>= 0.5, < 4.0)
       rubyzip (>= 1.2.2)
+    sentry-raven (3.0.0)
+      faraday (>= 1.0)
     seven_zip_ruby (1.2.5)
     simplecov (0.18.5)
       docile (~> 1.1)
@@ -819,6 +821,7 @@ DEPENDENCIES
   passenger (~> 6.0)
   puma (~> 4.3.3)
   ruby-ntlm
+  sentry-raven
   spring (~> 2.0)
   spring-watcher-listen (~> 2.0)
   uglifier (~> 4.1)

@@ -18,7 +18,8 @@ gem "faker", "~> 1.9"
 gem "figaro", "~> 1.2"
 gem "whenever", require: false
 gem "delayed_job_web"
-gem 'ruby-ntlm'
+gem "ruby-ntlm"
+gem "sentry-raven"
 
 group :development, :test do
   gem "byebug", "~> 11.0", platform: :mri
@@ -33,11 +34,11 @@ group :development do
   gem "spring-watcher-listen", "~> 2.0"
   gem "web-console", "~> 3.5"
 
-  gem 'capistrano'
-  gem 'capistrano-rbenv'
-  gem 'capistrano-bundler'
-  gem 'capistrano-passenger', '>= 0.1.1'
-  gem 'capistrano-rails'
+  gem "capistrano"
+  gem "capistrano-rbenv"
+  gem "capistrano-bundler"
+  gem "capistrano-passenger", ">= 0.1.1"
+  gem "capistrano-rails"
 end
 
 group :production do
