@@ -4,11 +4,12 @@ source "https://rubygems.org"
 
 ruby RUBY_VERSION
 
-gem "decidim", "0.21.0"
-# gem "decidim-consultations", "0.21.0"
-# gem "decidim-initiatives", "0.21.0"
+DECIDIM_VERSION={ :git => "https://github.com/decidim/decidim", :branch => "0.21-stable"}
+gem "decidim", DECIDIM_VERSION
+# gem "decidim-consultations", DECIDIM_VERSION
+# gem "decidim-initiatives", DECIDIM_VERSION
 
-gem "bootsnap", "~> 1.3"
+gem "bootsnap", "~> 1.4"
 
 gem "puma", "~> 4.3.3"
 gem "uglifier", "~> 4.1"
@@ -22,7 +23,7 @@ gem 'ruby-ntlm'
 group :development, :test do
   gem "byebug", "~> 11.0", platform: :mri
 
-  gem "decidim-dev", "0.21.0"
+  gem "decidim-dev", DECIDIM_VERSION
 end
 
 group :development do
