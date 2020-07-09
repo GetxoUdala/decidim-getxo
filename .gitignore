@@ -40,3 +40,9 @@ public/uploads
 /config/deploy.rb
 /config/deploy/*
 /Capfile
+
+# Ignore .rspec-failures
+.rspec-failures
+
+# Ignore .rbenv-vars
+.rbenv-vars

@@ -20,6 +20,7 @@ gem "whenever", require: false
 gem "delayed_job_web"
 gem "ruby-ntlm"
 gem "sentry-raven"
+gem "rspec"
 
 group :development, :test do
   gem "byebug", "~> 11.0", platform: :mri
