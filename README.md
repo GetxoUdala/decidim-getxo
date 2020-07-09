@@ -4,6 +4,8 @@ Free Open-Source participatory democracy, citizen participation and open governm
 
 This is the open-source repository for decidim-test, based on [Decidim](https://github.com/decidim/decidim).
 
+![Build](https://github.com/Platoniq/decidim-getxo/workflows/Build/badge.svg?branch=master)
+
 ## Setting up the application
 
 You will need to do some steps before having the app working properly once you've deployed it:
@@ -20,5 +22,3 @@ user.save!
 6. Fill the rest of the form and submit it.
 
 You're good to go!
-
-![Build](https://github.com/Platoniq/decidim-getxo/workflows/Build/badge.svg?branch=master)
