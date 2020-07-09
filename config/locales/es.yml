@@ -4,6 +4,7 @@ es:
       census_authorization_handler:
         name: Censo municipal
         explanation: Verifica tu cuenta con el censo municipal
+        invalid_document: Documento no válido
   census_authorization:
     form:
       date_select:
