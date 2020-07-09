@@ -8,11 +8,14 @@ DECIDIM_VERSION={ :git => "https://github.com/decidim/decidim", :branch => "0.21
 gem "decidim", DECIDIM_VERSION
 # gem "decidim-consultations", DECIDIM_VERSION
 # gem "decidim-initiatives", DECIDIM_VERSION
+gem "decidim-verifications"
 
 gem "bootsnap", "~> 1.4"
 
 gem "puma", "~> 4.3.3"
 gem "uglifier", "~> 4.1"
+
+gem "virtus-multiparams"
 
 gem "faker", "~> 1.9"
 gem "figaro", "~> 1.2"

@@ -1,0 +1,12 @@
+es:
+  decidim:
+    authorization_handlers:
+      census_authorization_handler:
+        name: Censo municipal
+        explanation: Verifica tu cuenta con el censo municipal
+  census_authorization:
+    form:
+      date_select:
+        day: Dia
+        month: Mes
+        year: Año
