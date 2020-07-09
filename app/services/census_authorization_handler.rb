@@ -52,7 +52,7 @@ class CensusAuthorizationHandler < Decidim::AuthorizationHandler
   def document_number_valid
     return nil if response.blank?
 
-    errors.add(:document_number, I18n.t("census_authorization_handler.invalid_document")) unless response.xpath("//existe").text == "SI"
+    errors.add(:document_number, I18n.t("census_authorization_handler.invalid_document", scope: "decidim.authorization_handlers")) unless response.xpath("//existe").text == "SI"
   end
 
   def response
