@@ -40,11 +40,13 @@ class CensusAuthorizationHandler < Decidim::AuthorizationHandler
   end
 
   def sanitized_document_number
-    (/\d+/.match document_number)&[0]
+    match = (/\d+/.match document_number)
+    match[0] if match
   end
 
   def sanitized_document_letter
-    (/[a-zA-Z]\z/.match document_number)&[0]&.upcase
+    match = (/[a-zA-Z]\z/.match document_number)
+    match[0].upcase if match
   end
   
   def document_number_valid
