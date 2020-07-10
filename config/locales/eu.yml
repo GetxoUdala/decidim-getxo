@@ -5,7 +5,7 @@ eu:
         name: Udal errolda
         explanation: Egiaztatu zure kontua udal erroldarekin
         invalid_document: Dokumentu baliogabea
-  census_authorization: Dokumentu zenbakia
+  census_authorization:
     form:
       date_select:
         day: Eguna
