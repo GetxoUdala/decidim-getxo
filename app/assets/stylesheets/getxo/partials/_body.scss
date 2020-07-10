@@ -1,0 +1,46 @@
+
+@import "variables";
+
+@font-face {font-family: "Akzidenz Grotesk Regular";
+  src: url("/assets/AkzidenzGroteskRegular.eot"); /* IE9*/
+  src: url("/assets/AkzidenzGroteskRegular.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
+  url("/assets/AkzidenzGroteskRegular.woff2") format("woff2"), /* chrome firefox */
+  url("/assets/AkzidenzGroteskRegular.woff") format("woff"), /* chrome firefox */
+  url("/assets/AkzidenzGroteskRegular.ttf") format("truetype"), /* chrome firefox opera Safari, Android, iOS 4.2+*/
+  url("/assets/AkzidenzGroteskRegular.svg#Akzidenz Grotesk Regular") format("svg"); /* iOS 4.1- */
+}
+
+@font-face {
+  font-family: 'Akzidenz Grotesk MD';
+  src: url('/assets/AkzidenzGroteskMd.woff2') format('woff2'),
+      url('/assets/AkzidenzGroteskMd.woff') format('woff'),
+      url('/assets/AkzidenzGroteskMd.ttf') format('truetype'),
+      url('/assets/AkzidenzGroteskMd.svg#AkzidenzGroteskMd') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  font-family: 'Akzidenz Grotesk Regular', sans-serif;
+}
+
+
+h1,
+.h1,
+h2,
+.h2,
+h3,
+.h3,
+h4,
+.h4,
+h5,
+.h5,
+h6,
+.h6{
+  font-family: 'Akzidenz Grotesk MD', sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  color: inherit;
+  // text-rendering: optimizeLegibility;
+  // letter-spacing: -.5px;
+}
