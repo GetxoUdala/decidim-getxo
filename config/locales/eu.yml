@@ -1,0 +1,13 @@
+eu:
+  decidim:
+    authorization_handlers:
+      census_authorization_handler:
+        name: Udal errolda
+        explanation: Egiaztatu zure kontua udal erroldarekin
+        invalid_document: Dokumentu baliogabea
+  census_authorization: Dokumentu zenbakia
+    form:
+      date_select:
+        day: Eguna
+        month: Hilabetea
+        year: Urtea
