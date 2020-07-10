@@ -1,0 +1,43 @@
+
+@font-face {
+  font-family: "Akzidenz Grotesk Regular";
+  src: 
+    font-url("getxo/AkzidenzGroteskRegular.woff2") format("woff2"),
+    font-url("getxo/AkzidenzGroteskRegular.woff") format("woff"),
+    font-url("getxo/AkzidenzGroteskRegular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: 'Akzidenz Grotesk MD';
+  src: 
+    font-url('getxo/AkzidenzGroteskMd.woff2') format('woff2'),
+    font-url('getxo/AkzidenzGroteskMd.woff') format('woff'),
+    font-url('getxo/AkzidenzGroteskMd.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  font-family: 'Akzidenz Grotesk Regular', sans-serif;
+}
+
+
+h1,
+.h1,
+h2,
+.h2,
+h3,
+.h3,
+h4,
+.h4,
+h5,
+.h5,
+h6,
+.h6{
+  font-family: 'Akzidenz Grotesk MD', sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  color: inherit;
+  // text-rendering: optimizeLegibility;
+  // letter-spacing: -.5px;
+}
