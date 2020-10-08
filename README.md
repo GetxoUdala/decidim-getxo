@@ -1,8 +1,8 @@
-# decidim-test
+# decidim-getxo
 
 Free Open-Source participatory democracy, citizen participation and open government for cities and organizations
 
-This is the open-source repository for decidim-test, based on [Decidim](https://github.com/decidim/decidim).
+This is the open-source repository for decidim-getxo, based on [Decidim](https://github.com/decidim/decidim).
 
 ![Build](https://github.com/Platoniq/decidim-getxo/workflows/Build/badge.svg?branch=master)
 
