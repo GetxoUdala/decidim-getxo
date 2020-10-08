@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # Checks the authorization against the census for Getxo.
 require "digest/md5"
 
@@ -48,7 +49,7 @@ class CensusAuthorizationHandler < Decidim::AuthorizationHandler
     match = (/[a-zA-Z]\z/.match document_number)
     match[0].upcase if match
   end
-  
+
   def document_number_valid
     return nil if response.blank?
 
@@ -63,25 +64,24 @@ class CensusAuthorizationHandler < Decidim::AuthorizationHandler
 
     response ||= Faraday.post Rails.application.secrets.census_url do |request|
       request.headers["Content-Type"] = "text/xml;charset=UTF-8'"
-      request.headers["SOAPAction"] = %w{"http://webtests02.getxo.org/Validar"}
+      request.headers["SOAPAction"] = %w(http://webtests02.getxo.org/Validar)
       request.body = request_body
     end
 
     @response ||= Nokogiri::XML(response.body).remove_namespaces!
   end
 
-
   def request_body
-    @request_body ||= <<EOS
-<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
-  <soap:Body>
-    <Validar xmlns="http://webtests02.getxo.org/">
-      <strDNI>#{sanitized_document_number}</strDNI>
-      <strLetra>#{sanitized_document_letter}</strLetra>
-      <strNacimiento>#{sanitized_date_of_birth}</strNacimiento>
-    </Validar>
-  </soap:Body>
-</soap:Envelope>
-EOS
+    @request_body ||= <<~XML
+      <soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+        <soap:Body>
+          <Validar xmlns="http://webtests02.getxo.org/">
+            <strDNI>#{sanitized_document_number}</strDNI>
+            <strLetra>#{sanitized_document_letter}</strLetra>
+            <strNacimiento>#{sanitized_date_of_birth}</strNacimiento>
+          </Validar>
+        </soap:Body>
+      </soap:Envelope>
+    XML
   end
 end
