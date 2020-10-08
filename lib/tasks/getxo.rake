@@ -59,7 +59,9 @@ namespace :getxo do
 
     puts "Sending a test email to #{args.email}"
 
-      if ENV["SMTP_SETTINGS"].present?
+    if ENV["SMTP_SETTINGS"].present?
+      settings_string = ENV["SMTP_SETTINGS"].gsub(/(\w+)\s*:/, '"\1":').gsub("\\", "").gsub("'", "")
+      settings = JSON.parse(settings_string).to_h
       ActionMailer::Base.smtp_settings = settings
       puts "Using custom settings!"
     end
