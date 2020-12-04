@@ -10,6 +10,7 @@ class AddAuthorToMeetings < ActiveRecord::Migration[5.2]
   def change
     add_column :decidim_meetings_meetings, :decidim_author_type, :string
     add_column :decidim_meetings_meetings, :decidim_user_group_id, :integer
+    remove_index :decidim_meetings_meetings, :organizer
 
     Meeting.reset_column_information
     Meeting.find_each do |meeting|
