@@ -9,6 +9,7 @@ gem "decidim", DECIDIM_VERSION
 # gem "decidim-consultations", DECIDIM_VERSION
 # gem "decidim-initiatives", DECIDIM_VERSION
 gem "decidim-verifications", DECIDIM_VERSION
+gem "decidim-decidim_awesome", "~> 0.6.1"
 
 gem "bootsnap", "~> 1.4"
 
