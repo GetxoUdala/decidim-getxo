@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/decidim/decidim
-  revision: 3d2bc849885b10761c4195b10e77ceeeb8729f74
+  revision: f16a0f6cc1599fedfefc339f1fd8be2111089252
   branch: release/0.23-stable
   specs:
     decidim (0.23.1)
@@ -282,7 +282,7 @@ GEM
     browser (2.7.1)
     builder (3.2.4)
     byebug (11.1.3)
-    capistrano (3.14.1)
+    capistrano (3.15.0)
       airbrussh (>= 1.0.0)
       i18n
       rake (>= 10.0.0)
@@ -321,7 +321,7 @@ GEM
       actionpack (>= 3.0)
       cells (>= 4.1.6, < 5.0.0)
     charlock_holmes (0.7.7)
-    chef-utils (16.7.61)
+    chef-utils (16.9.20)
     childprocess (3.0.0)
     chronic (0.10.2)
     coercible (1.0.0)
@@ -334,7 +334,8 @@ GEM
       execjs
     coffee-script-source (1.12.2)
     concurrent-ruby (1.1.7)
-    crack (0.4.4)
+    crack (0.4.5)
+      rexml
     crass (1.0.6)
     css_parser (1.7.1)
       addressable
@@ -352,10 +353,10 @@ GEM
     declarative-builder (0.1.0)
       declarative-option (< 0.2.0)
     declarative-option (0.1.0)
-    delayed_job (4.1.8)
-      activesupport (>= 3.0, < 6.1)
-    delayed_job_active_record (4.1.4)
-      activerecord (>= 3.0, < 6.1)
+    delayed_job (4.1.9)
+      activesupport (>= 3.0, < 6.2)
+    delayed_job_active_record (4.1.5)
+      activerecord (>= 3.0, < 6.2)
       delayed_job (>= 3.0, < 5)
     delayed_job_web (1.4.3)
       activerecord (> 3.0.0)
@@ -377,22 +378,23 @@ GEM
       devise (>= 4.0.0)
     diff-lcs (1.4.4)
     diffy (3.4.0)
-    doc2text (0.4.2)
-      nokogiri (~> 1.10.0)
-      rubyzip (~> 2.0.0)
-    docile (1.3.2)
+    doc2text (0.4.3)
+      nokogiri (~> 1.11.1)
+      rubyzip (~> 2.3.0)
+    docile (1.3.5)
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
     doorkeeper (5.4.0)
       railties (>= 5)
     doorkeeper-i18n (4.0.1)
     equalizer (0.0.11)
-    erb_lint (0.0.30)
+    erb_lint (0.0.37)
       activesupport
       better_html (~> 1.0.7)
       html_tokenizer
+      parser (>= 2.7.1.4)
       rainbow
-      rubocop (~> 0.51)
+      rubocop
       smart_properties
     erbse (0.1.4)
       temple
@@ -407,10 +409,12 @@ GEM
       railties (>= 3.0.0)
     faker (1.9.6)
       i18n (>= 0.7)
-    faraday (1.1.0)
+    faraday (1.3.0)
+      faraday-net_http (~> 1.0)
       multipart-post (>= 1.2, < 3)
       ruby2_keywords
-    ffi (1.13.1)
+    faraday-net_http (1.0.1)
+    ffi (1.14.2)
     figaro (1.2.0)
       thor (>= 0.14.0, < 2)
     file_validators (2.3.0)
@@ -432,7 +436,7 @@ GEM
     graphiql-rails (1.4.11)
       railties
       sprockets-rails
-    graphql (1.11.6)
+    graphql (1.11.7)
     hashdiff (1.0.1)
     hashie (4.1.0)
     highline (2.0.3)
@@ -444,9 +448,9 @@ GEM
     httparty (0.18.1)
       mime-types (~> 3.0)
       multi_xml (>= 0.5.2)
-    i18n (1.8.5)
+    i18n (1.8.7)
       concurrent-ruby (~> 1.0)
-    i18n-tasks (0.9.31)
+    i18n-tasks (0.9.33)
       activesupport (>= 4.0.2)
       ast (>= 2.1.0)
       erubi
@@ -494,7 +498,7 @@ GEM
       actionmailer (>= 3.2)
       letter_opener (~> 1.0)
       railties (>= 3.2)
-    listen (3.3.3)
+    listen (3.4.1)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
     loofah (2.3.1)
@@ -517,8 +521,8 @@ GEM
     mimemagic (0.3.5)
     mini_magick (4.11.0)
     mini_mime (1.0.2)
-    mini_portile2 (2.4.0)
-    minitest (5.14.2)
+    mini_portile2 (2.5.0)
+    minitest (5.14.3)
     mixlib-cli (2.1.8)
     mixlib-config (3.0.9)
       tomlrb
@@ -537,8 +541,9 @@ GEM
     netrc (0.11.0)
     nio4r (2.5.4)
     nobspw (0.6.2)
-    nokogiri (1.10.10)
-      mini_portile2 (~> 2.4.0)
+    nokogiri (1.11.1)
+      mini_portile2 (~> 2.5.0)
+      racc (~> 1.4)
     oauth (0.5.4)
     oauth2 (1.4.4)
       faraday (>= 0.8, < 2.0)
@@ -551,16 +556,17 @@ GEM
       rack (>= 1.6.2, < 3)
     omniauth-facebook (5.0.0)
       omniauth-oauth2 (~> 1.2)
-    omniauth-google-oauth2 (0.8.0)
+    omniauth-google-oauth2 (0.8.1)
       jwt (>= 2.0)
+      oauth2 (~> 1.1)
       omniauth (>= 1.1.1)
       omniauth-oauth2 (>= 1.6)
     omniauth-oauth (1.1.0)
       oauth
       omniauth (~> 1.0)
-    omniauth-oauth2 (1.7.0)
+    omniauth-oauth2 (1.7.1)
       oauth2 (~> 1.4)
-      omniauth (~> 1.9)
+      omniauth (>= 1.9, < 3)
     omniauth-rails_csrf_protection (0.1.2)
       actionpack (>= 4.2)
       omniauth (>= 1.3.1)
@@ -572,7 +578,7 @@ GEM
       activerecord (>= 4.2)
       request_store (~> 1.1)
     parallel (1.20.1)
-    parser (2.7.2.0)
+    parser (3.0.0.0)
       ast (~> 2.4.1)
     passenger (6.0.7)
       rack
@@ -591,6 +597,7 @@ GEM
     public_suffix (4.0.6)
     puma (4.3.7)
       nio4r (~> 2.0)
+    racc (1.5.2)
     rack (2.2.3)
     rack-attack (6.3.1)
       rack (>= 1.0, < 3)
@@ -632,7 +639,7 @@ GEM
       rake (>= 0.8.7)
       thor (>= 0.19.0, < 2.0)
     rainbow (3.0.0)
-    rake (13.0.1)
+    rake (13.0.3)
     ransack (2.1.1)
       actionpack (>= 5.0)
       activerecord (>= 5.0)
@@ -647,7 +654,7 @@ GEM
       activesupport (>= 4.1.0)
       virtus (~> 1.0.5)
       wisper (>= 1.6.1)
-    redcarpet (3.5.0)
+    redcarpet (3.5.1)
     redis (4.2.5)
     regexp_parser (1.8.2)
     request_store (1.5.0)
@@ -706,9 +713,9 @@ GEM
       rubocop (>= 0.68.1)
     ruby-ntlm (0.0.4)
     ruby-ole (1.2.12.2)
-    ruby-progressbar (1.10.1)
-    ruby2_keywords (0.0.2)
-    rubyzip (2.0.0)
+    ruby-progressbar (1.11.0)
+    ruby2_keywords (0.0.3)
+    rubyzip (2.3.0)
     sass (3.7.4)
       sass-listen (~> 4.0.0)
     sass-listen (4.0.0)
@@ -726,7 +733,11 @@ GEM
     selenium-webdriver (3.142.7)
       childprocess (>= 0.5, < 4.0)
       rubyzip (>= 1.2.2)
-    sentry-raven (3.1.1)
+    sentry-rails (4.1.4)
+      rails (>= 5.0)
+      sentry-ruby (~> 4.1.2)
+    sentry-ruby (4.1.4)
+      concurrent-ruby (~> 1.0, >= 1.0.2)
       faraday (>= 1.0)
     seven_zip_ruby (1.3.0)
     simplecov (0.19.1)
@@ -760,7 +771,7 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
-    sshkit (1.21.1)
+    sshkit (1.21.2)
       net-scp (>= 1.1.2)
       net-ssh (>= 2.8.0)
     system_test_html_screenshots (0.1.2)
@@ -771,11 +782,11 @@ GEM
     thor (1.0.1)
     thread_safe (0.3.6)
     tilt (2.0.10)
-    tomlrb (2.0.0)
+    tomlrb (2.0.1)
     truncato (0.7.11)
       htmlentities (~> 4.3.1)
       nokogiri (>= 1.7.0, <= 2.0)
-    tzinfo (1.2.8)
+    tzinfo (1.2.9)
       thread_safe (~> 0.1)
     uber (0.1.0)
     uglifier (4.2.0)
@@ -801,7 +812,7 @@ GEM
       activemodel (>= 5.0)
       bindex (>= 0.4.0)
       railties (>= 5.0)
-    webmock (3.10.0)
+    webmock (3.11.1)
       addressable (>= 2.3.6)
       crack (>= 0.3.2)
       hashdiff (>= 0.4.0, < 2.0.0)
@@ -815,6 +826,8 @@ GEM
     wisper (2.0.1)
     wisper-rspec (1.1.0)
     wkhtmltopdf-binary (0.12.6.5)
+    xliffle (0.2.2)
+      builder (~> 3.2)
     xpath (3.2.0)
       nokogiri (~> 1.8)
 
@@ -844,13 +857,15 @@ DEPENDENCIES
   puma (~> 4.3.3)
   rspec
   ruby-ntlm
-  sentry-raven
+  sentry-rails
+  sentry-ruby
   spring (~> 2.0)
   spring-watcher-listen (~> 2.0)
   uglifier (~> 4.1)
   virtus-multiparams
   web-console (~> 3.5)
   whenever
+  xliffle
 
 RUBY VERSION
    ruby 2.6.6p146

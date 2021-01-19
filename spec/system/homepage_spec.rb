@@ -7,10 +7,18 @@ describe "Visit the home page", type: :system, perform_enqueued: true do
 
   before do
     switch_to_host(organization.host)
+    visit decidim.root_path
   end
 
   it "renders the home page" do
-    visit decidim.root_path
     expect(page).to have_content("Home")
+  end
+
+  it "changes the locale to the chosen one" do
+    within_language_menu do
+      click_link "Euskera"
+    end
+
+    expect(page).to have_content("Hasiera")
   end
 end

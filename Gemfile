@@ -20,10 +20,11 @@ gem "virtus-multiparams"
 
 gem "delayed_job_web"
 gem "faker", "~> 1.9"
-gem "figaro", "~> 1.2"
 gem "rspec"
 gem "ruby-ntlm"
-gem "sentry-raven"
+gem "sentry-rails"
+gem "sentry-ruby"
+
 gem "whenever", require: false
 
 group :development, :test do
@@ -38,6 +39,7 @@ group :development do
   gem "spring", "~> 2.0"
   gem "spring-watcher-listen", "~> 2.0"
   gem "web-console", "~> 3.5"
+  gem "xliffle"
 
   gem "capistrano"
   gem "capistrano-bundler"
@@ -49,5 +51,6 @@ end
 group :production do
   gem "daemons", "~> 1.3"
   gem "delayed_job_active_record", "~> 4.1"
+  gem "figaro", "~> 1.2"
   gem "passenger", "~> 6.0"
 end

@@ -46,3 +46,4 @@ public/uploads
 
 # Ignore .rbenv-vars
 .rbenv-vars
+spec/decidim_dummy_app
