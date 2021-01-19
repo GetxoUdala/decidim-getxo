@@ -53,6 +53,29 @@ namespace :getxo do
     end
   end
 
+  # rubocop:disable Lint/HandleExceptions
+  desc "export to xliff"
+  task xliff: :environment do
+    I18n.backend.send(:init_translations)
+    trans = I18n.backend.send(:translations)[:eu]
+    s = Squasher.new
+    s.squash trans, "en"
+    xliff = Xliffle.new
+    file = xliff.file("decidim.xliff", "en", "eu")
+
+    s.results.each do |line|
+      key = line[0].gsub(/^en\./, "")
+      next unless line[1]
+
+      begin
+        file.string(key, I18n.t(key, locale: :en), line[1])
+      rescue StandardError
+      end
+    end
+    puts xliff.to_xliff
+  end
+  # rubocop:enable Lint/HandleExceptions
+
   desc "Test email server"
   task :mail_test, [:email] => :environment do |_task, args|
     raise ArgumentError if args.email.blank?
@@ -85,5 +108,30 @@ Override default configuration with the ENV var SMTP_SETTINGS:
 
 export SMTP_SETTINGS='{address: \"stmp.example.org\", port: 25, enable_starttls_auto: true}'
 "
+  end
+end
+
+class Squasher
+  attr_accessor :results
+
+  def initialize
+    @results = []
+  end
+
+  def squash(hash, previous_key = "")
+    hash.each do |key, value|
+      this_key = "#{previous_key}.#{key}"
+      if value.is_a? Hash
+        squash(value, this_key)
+      elsif value.is_a? Array
+        result = [this_key.to_s, value.inspect.to_s]
+        # puts result
+        @results << result
+      else
+        result = [this_key.to_s, value.to_s]
+        # puts result
+        @results << result
+      end
+    end
   end
 end
