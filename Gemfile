@@ -42,11 +42,12 @@ group :development do
   gem "web-console", "~> 3.5"
   gem "xliffle"
 
-  gem "capistrano"
-  gem "capistrano-bundler"
-  gem "capistrano-passenger", ">= 0.1.1"
-  gem "capistrano-rails"
-  gem "capistrano-rbenv"
+  gem "capistrano", "~> 3.15"
+  gem "capistrano-bundler", "~> 2.0", require: false
+  gem "capistrano-passenger", "~> 0.2.0", require: false
+  gem "capistrano-rails", "~> 1.6", require: false
+  gem "capistrano-rails-console", require: false
+  gem "capistrano-rbenv", "~> 2.2", require: false
 end
 
 group :production do
