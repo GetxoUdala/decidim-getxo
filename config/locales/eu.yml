@@ -1784,10 +1784,10 @@ eu:
     devise:
       omniauth_registrations:
         new:
-          nickname_help: Zure ezizena  %{organization}en
+          nickname_help: Zure ezizena  %{organization}n
       registrations:
         new:
-          nickname_help: Zure ezizena  %{organization}en
+          nickname_help: Zure ezizena  %{organization}n
           password_help: 'Gutxienez %{minimun_characters} karaktere, ezin da oso arrunta
             izan (123456 adibidez) eta zure ezizenaren eta zure korreo elektronikoaren
             desberdina izan behar da.'
