@@ -1146,7 +1146,7 @@ eu:
           message_2: Zerbitzuak irudia ebakitzen du
       file_validation:
         allowed_file_extensions: 'Baimendutako artxibo-formatuak: %{extensions}'
-        max_file_size: 'Artxiboaren gehieneko tamaina: %{megabyte} MB'
+        max_file_size: 'Artxiboaren gehieneko tamaina: %{megabytes} MB'
       files:
         extension_whitelist: 'Onartutako artxibo-formatuak:'
       images:
@@ -1784,10 +1784,10 @@ eu:
     devise:
       omniauth_registrations:
         new:
-          nickname_help: Zure ezizena  %{organization}en
+          nickname_help: Zure ezizena  %{organization}n
       registrations:
         new:
-          nickname_help: Zure ezizena  %{organization}en
+          nickname_help: Zure ezizena  %{organization}n
           password_help: 'Gutxienez %{minimun_characters} karaktere, ezin da oso arrunta
             izan (123456 adibidez) eta zure ezizenaren eta zure korreo elektronikoaren
             desberdina izan behar da.'
