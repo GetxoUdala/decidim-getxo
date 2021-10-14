@@ -1907,6 +1907,7 @@ eu:
         name: Udal errolda
         explanation: Egiaztatu zure kontua udal erroldarekin
         invalid_document: Dokumentu baliogabea
+        connection_error: La conexión con el censo ha fallado (%{error})
       dummy_authorization_handler:
         fields:
           allowed_postal_codes: Baimendutako posta-kodeak (komaz bereizita)
