@@ -71,8 +71,8 @@ class CensusAuthorizationHandler < Decidim::AuthorizationHandler
         request.body = request_body
       end
     rescue Faraday::Error => e
-      errors.add(:base, I18n.t("census_authorization_handler.connection_error", error: e.message, scope: "decidim.authorization_handlers"))
-
+      errors.add(:base, I18n.t("census_authorization_handler.connection_error", scope: "decidim.authorization_handlers"))
+      Rails.logger.error "CENSUS CONNECTION ERROR: #{e.message}"
       return nil
     end
     @response ||= Nokogiri::XML(response.body).remove_namespaces!
