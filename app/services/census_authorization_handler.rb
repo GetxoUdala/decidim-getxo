@@ -13,7 +13,7 @@ class CensusAuthorizationHandler < Decidim::AuthorizationHandler
   attribute :date_of_birth, Date
 
   validates :date_of_birth, presence: true
-  validates :document_number, format: { with: /\A[a-zA-Z]?\d{7,8}[a-zA-Z]\z/ }, presence: true
+  validates :document_number, format: { with: /(^[a-zA-Z]*)(\d+)([a-zA-Z]*$)/ }, presence: true
 
   validate :document_number_valid
 
@@ -40,14 +40,16 @@ class CensusAuthorizationHandler < Decidim::AuthorizationHandler
     @sanitized_date_of_birth ||= date_of_birth&.strftime("%Y%m%d")
   end
 
+  def extract_parts
+    @extract_parts ||= /(^[a-zA-Z]*)(\d+)([a-zA-Z]*$)/.match document_number
+  end
+
   def sanitized_document_number
-    match = (/\d+/.match document_number)
-    match[0] if match
+    "#{extract_parts[1].upcase}#{extract_parts[2]}" if extract_parts
   end
 
   def sanitized_document_letter
-    match = (/[a-zA-Z]\z/.match document_number)
-    match[0].upcase if match
+    extract_parts[3].upcase if extract_parts
   end
 
   def document_number_valid
@@ -62,12 +64,17 @@ class CensusAuthorizationHandler < Decidim::AuthorizationHandler
 
     return @response if defined?(@response)
 
-    response ||= Faraday.post Rails.application.secrets.census_url do |request|
-      request.headers["Content-Type"] = "text/xml;charset=UTF-8'"
-      request.headers["SOAPAction"] = %w(http://webtests02.getxo.org/Validar)
-      request.body = request_body
-    end
+    begin
+      response ||= Faraday.post Rails.application.secrets.census_url do |request|
+        request.headers["Content-Type"] = "text/xml;charset=UTF-8'"
+        request.headers["SOAPAction"] = %w(http://webtests02.getxo.org/Validar)
+        request.body = request_body
+      end
+    rescue Faraday::Error => e
+      errors.add(:base, I18n.t("census_authorization_handler.connection_error", error: e.message, scope: "decidim.authorization_handlers"))
 
+      return nil
+    end
     @response ||= Nokogiri::XML(response.body).remove_namespaces!
   end
 
