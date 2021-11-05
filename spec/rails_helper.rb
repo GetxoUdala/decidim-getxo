@@ -67,4 +67,18 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
+
+
+  # Make :en locale available in tests.
+  config.before do
+    available_locales = Decidim.available_locales + [:en]
+    default_locale = :en
+
+    I18n.available_locales = available_locales
+    I18n.default_locale = default_locale
+    I18n.locale = default_locale
+
+    Decidim.available_locales = available_locales
+    Decidim.default_locale = default_locale
+  end
 end
