@@ -2,6 +2,29 @@
 
 # lib/tasks/rebuild_metrics.rake
 namespace :getxo do
+  desc "Returns votation actions for a DNI"
+  task :dni_budget, [:dni,:budget] => :environment do |_task, args|
+    raise ArgumentError if args.dni.blank?
+    raise ArgumentError if args.budget.blank?
+    budget = Decidim::Budgets::Budget.find(args.budget)
+    if File.file?(args.dni)
+      dnis = File.readlines(args.dni, chomp: true)
+    else
+      dnis = [args.dni]
+    end
+
+    dnis.each do |dni|
+      form = CensusAuthorizationHandler.from_params(document_number: dni)
+      auth = Decidim::Authorization.find_by(unique_id: form.unique_id)
+      unless auth
+        puts "DNI #{dni} is not authorized. No user found"
+      else
+        ok = Decidim::Budgets::Order.exists?(budget: budget, user: auth.user)
+        puts "DNI #{dni} BUDGET #{args.budget} VOTED #{ok}"
+      end
+    end
+  end
+
   desc "Ensures locales in organizations are in sync with Decidim configuration"
   task rebuild_locales: :environment do
     Decidim::Organization.all.each do |organization|
