@@ -3,24 +3,25 @@
 # lib/tasks/rebuild_metrics.rake
 namespace :getxo do
   desc "Returns votation actions for a DNI"
-  task :dni_budget, [:dni,:budget] => :environment do |_task, args|
+  task :dni_budget, [:dni, :budget] => :environment do |_task, args|
     raise ArgumentError if args.dni.blank?
     raise ArgumentError if args.budget.blank?
+
     budget = Decidim::Budgets::Budget.find(args.budget)
-    if File.file?(args.dni)
-      dnis = File.readlines(args.dni, chomp: true)
-    else
-      dnis = [args.dni]
-    end
+    dnis = if File.file?(args.dni)
+             File.readlines(args.dni, chomp: true)
+           else
+             [args.dni]
+           end
 
     dnis.each do |dni|
       form = CensusAuthorizationHandler.from_params(document_number: dni)
       auth = Decidim::Authorization.find_by(unique_id: form.unique_id)
-      unless auth
-        puts "DNI #{dni} is not authorized. No user found"
-      else
+      if auth
         ok = Decidim::Budgets::Order.exists?(budget: budget, user: auth.user)
         puts "DNI #{dni} BUDGET #{args.budget} VOTED #{ok}"
+      else
+        puts "DNI #{dni} is not authorized. No user found"
       end
     end
   end
@@ -76,7 +77,6 @@ namespace :getxo do
     end
   end
 
-  # rubocop:disable Lint/HandleExceptions
   desc "export to xliff"
   task xliff: :environment do
     I18n.backend.send(:init_translations)
@@ -90,15 +90,10 @@ namespace :getxo do
       key = line[0].gsub(/^en\./, "")
       next unless line[1]
 
-      begin
-        file.string(key, I18n.t(key, locale: :en), line[1])
-      rescue StandardError
-      end
+      file.string(key, I18n.t(key, locale: :en), line[1])
     end
     puts xliff.to_xliff
   end
-  # rubocop:enable Lint/HandleExceptions
-
   desc "Test email server"
   task :mail_test, [:email] => :environment do |_task, args|
     raise ArgumentError if args.email.blank?
@@ -144,9 +139,10 @@ class Squasher
   def squash(hash, previous_key = "")
     hash.each do |key, value|
       this_key = "#{previous_key}.#{key}"
-      if value.is_a? Hash
+      case value
+      when Hash
         squash(value, this_key)
-      elsif value.is_a? Array
+      when Array
         result = [this_key.to_s, value.inspect.to_s]
         # puts result
         @results << result

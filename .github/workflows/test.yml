@@ -3,7 +3,7 @@ name: Test
 on:
   push:
     branches:
-      - master
+      - main
   pull_request:
 
 env:
@@ -12,7 +12,7 @@ env:
     
 jobs:
   test:
-    name: Test
+    name: RSpec
     runs-on: ubuntu-latest
     services:
       postgres:
@@ -20,6 +20,7 @@ jobs:
         ports:
           - 5432:5432
         env:
+          RAILS_ENV: test
           DATABASE_USERNAME: postgres
           DATABASE_PASSWORD: postgres
           POSTGRES_HOST_AUTH_METHOD: trust
@@ -37,8 +38,7 @@ jobs:
 
       - name: Setup & create Database
         run: |
-          bundle exec rake decidim:generate_external_test_app
-          bundle exec rails db:create db:schema:load
+          bundle exec rails test_app
         env:
           RAILS_ENV: test
           DATABASE_USERNAME: postgres
@@ -55,3 +55,4 @@ jobs:
           RAILS_ENV: test
           DATABASE_USERNAME: postgres
           DATABASE_PASSWORD: postgres
+          CAS_BASE_URL: ${{ secrets.CAS_BASE_URL }}
