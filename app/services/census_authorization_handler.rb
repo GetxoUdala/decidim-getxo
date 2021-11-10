@@ -8,7 +8,6 @@ require "digest/md5"
 class CensusAuthorizationHandler < Decidim::AuthorizationHandler
   include ActionView::Helpers::SanitizeHelper
   include Virtus::Multiparams
-  include GetxoWebservice
 
   attribute :document_number, String
   attribute :date_of_birth, Date

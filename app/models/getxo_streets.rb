@@ -2,7 +2,9 @@
 
 class GetxoStreets < ApplicationRecord
 	def self.import_streets
-		service = GetxoStreets.new("ListadoCalles")
+		service = GetxoWebservice.new("ListadoCalles")
 		service.response
+
+		service.response.search("calles").children.map(&:text)
 	end
 end
