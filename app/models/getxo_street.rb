@@ -9,7 +9,7 @@ class GetxoStreet < ApplicationRecord
     import_streets.each do |street|
       s = GetxoStreet.find_or_initialize_by(name: street, organization: organization)
       # rubocop:disable Rails/SkipsModelValidations
-      s.touch
+      s.touch if s.persisted?
       # rubocop:enable Rails/SkipsModelValidations
       s.save!
     end
