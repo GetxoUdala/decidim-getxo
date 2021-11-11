@@ -2,7 +2,7 @@
 
 module Decidim
   module Admin
-    # The controller to handle user groups creation
+    # The controller to handle getxo webservice sync
     class GetxoController < Decidim::Admin::ApplicationController
       include Paginable
       layout "decidim/admin/getxo"
@@ -19,7 +19,14 @@ module Decidim
         render :index
       end
 
-      def streets; end
+      def streets
+        respond_to do |format|
+          format.html
+          format.json do
+            render json: json_streets
+          end
+        end
+      end
 
       def sync
         GetxoStreet.import_streets!(current_organization)
@@ -30,6 +37,21 @@ module Decidim
 
       def service(action: "TestDBConnection")
         @service ||= GetxoWebservice.new(action)
+      end
+
+      def json_streets
+        query = streets_list
+        query = if params[:ids]
+                  query.where(id: params[:ids])
+                else
+                  query.where("name ILIKE ?", "%#{params[:q]}%")
+                end
+        query.map do |item|
+          {
+            id: item.id,
+            text: item.name
+          }
+        end
       end
 
       def streets_list
