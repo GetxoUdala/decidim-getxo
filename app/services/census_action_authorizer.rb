@@ -6,10 +6,10 @@ class CensusActionAuthorizer < Decidim::Verifications::DefaultActionAuthorizer
 
     return [:ok, {}] if streets_empty?
 
-    return [:unauthorized, { fields: { "streets": "..." } }] if authorization_streets.blank?
+    return [:unauthorized, {}] if authorization_streets.blank?
     return [:ok, {}] if belongs_to_street?
 
-    [:unauthorized, {}]
+    return [:unauthorized, { fields: { "streets": authorization.metadata["streets"] } }] if authorization_streets.blank?
   end
 
   private
