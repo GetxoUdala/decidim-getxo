@@ -23,9 +23,10 @@ class CensusAuthorizationHandler < Decidim::AuthorizationHandler
   # You must return a Hash that will be serialized to the authorization when
   # it's created, and available though authorization.metadata
   def metadata
-    super.merge(
-      date_of_birth: date_of_birth&.strftime("%Y-%m-%d")
-    )
+    {
+      date_of_birth: date_of_birth&.strftime("%Y-%m-%d"),
+      streets: [response&.xpath("//calle")&.text&.strip]
+    }
   end
 
   def unique_id
@@ -57,9 +58,11 @@ class CensusAuthorizationHandler < Decidim::AuthorizationHandler
   end
 
   def document_number_valid
-    return nil if response.blank?
+    return if response.blank?
 
-    errors.add(:document_number, I18n.t("census_authorization_handler.invalid_document", scope: "decidim.authorization_handlers")) unless response.xpath("//existe").text == "SI"
+    return if response.xpath("//existe").text == "SI"
+
+    errors.add(:document_number, I18n.t("census_authorization_handler.invalid_document", scope: "decidim.authorization_handlers"))
   end
 
   def response

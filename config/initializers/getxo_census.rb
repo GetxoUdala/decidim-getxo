@@ -12,6 +12,7 @@ end
 # Multiselect for street verificator
 Decidim::Verifications.register_workflow(:census_authorization_handler) do |workflow|
   workflow.form = "CensusAuthorizationHandler"
+  workflow.action_authorizer = "CensusActionAuthorizer"
 
   workflow.options do |options|
     options.attribute :streets, type: :string

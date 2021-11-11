@@ -19,6 +19,6 @@ class GetxoStreet < ApplicationRecord
     service = GetxoWebservice.new("ListadoCalles")
     service.response
 
-    service.response.search("calles").children.map(&:text)
+    service.response.search("calles").children.map { |node| node.text.strip }
   end
 end
