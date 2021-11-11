@@ -9,7 +9,7 @@ class CensusActionAuthorizer < Decidim::Verifications::DefaultActionAuthorizer
     return [:unauthorized, {}] if authorization_streets.blank?
     return [:ok, {}] if belongs_to_street?
 
-    return [:unauthorized, { fields: { "streets": authorization.metadata["streets"] } }] if authorization_streets.blank?
+    return [:unauthorized, { fields: { "streets": authorization_streets.join("; ") } }]
   end
 
   private
