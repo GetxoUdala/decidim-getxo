@@ -24,6 +24,10 @@ class GetxoWebservice
     @response ||= Nokogiri::XML(response.body).remove_namespaces!
   end
 
+  def slim_response
+    response.search("Body").children
+  end
+
   def request_body
     @request_body ||= <<~XML
       <soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">

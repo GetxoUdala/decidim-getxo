@@ -34,6 +34,10 @@ class CensusAuthorizationHandler < Decidim::AuthorizationHandler
     )
   end
 
+  def slim_response
+    response.search("Body").children
+  end
+
   private
 
   def sanitized_date_of_birth

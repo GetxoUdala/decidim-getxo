@@ -1,0 +1,41 @@
+<div class="card">
+  <div class="card-divider">
+    <h2 class="card-title">
+      Calles de Getxo
+
+      <%= link_to "Sincronizar", sync_admin_getxo_index_path, class: "button tiny button--title" %>
+    </h2>
+  </div>
+  <div class="card-section">
+    <h3>Calles disponibles:</h3>
+    <h5>Última sincronización: <strong class="<%= last_sync_class(last_sync) %>"><%= l(last_sync, format: :decidim_short) if last_sync %></strong></h5>
+    <% if streets_list.any? %>
+      <table class="table-list civicrm-groups">
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Nombre calle</th>
+            <th>Creado</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% streets_list.each do |street| %>
+            <tr>
+              <td><%= street.id %></td>
+              <td><%= street.name %></td>
+              <td><%= l street.created_at, format: :decidim_short %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <%= paginate streets_list, theme: "decidim" %>
+    <% else %>
+      <p class="callout warning">
+        El sistema no se ha sincronizado nunca todavía.
+        <%= link_to "Sincronizar ahora", sync_admin_getxo_index_path %>
+      </p>
+    <% end %>
+  </div>
+
+	</div>
+</div>
