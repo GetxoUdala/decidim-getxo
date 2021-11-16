@@ -9,7 +9,14 @@ module Decidim
 
       helper_method :zone_list, :streets, :zone
 
-      def index; end
+      def index
+        respond_to do |format|
+          format.html
+          format.json do
+            render json: json_zones
+          end
+        end
+      end
 
       def new
         @form = form(GetxoZoneForm).instance

@@ -20,7 +20,7 @@ Decidim::Admin::Engine.routes.draw do
       post :check
       get :sync
 
-      resources :zones, as: "admin_getxo_zones"
+      resources :zones, except: :show, as: "admin_getxo_zones"
     end
   end
 end
