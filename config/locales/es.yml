@@ -7,7 +7,7 @@ es:
         invalid_document: Documento no válido
         connection_error: No ha sido posible realizar la verificación
         fields:
-          streets: 'Calles válidas:'
+          street: 'Calles válidas:'
   census_authorization:
     form:
       date_select:

@@ -6,10 +6,10 @@ class CensusActionAuthorizer < Decidim::Verifications::DefaultActionAuthorizer
 
     return [:ok, {}] if streets_empty?
 
-    return [:unauthorized, {}] if authorization_streets.blank?
+    return [:unauthorized, {}] if authorization_street.blank?
     return [:ok, {}] if belongs_to_street?
 
-    [:unauthorized, { fields: { "streets": authorization_streets.join("; ") } }]
+    [:unauthorized, { fields: { "street": authorization_street } }]
   end
 
   private
@@ -18,13 +18,13 @@ class CensusActionAuthorizer < Decidim::Verifications::DefaultActionAuthorizer
     options["streets"].blank?
   end
 
-  def authorization_streets
-    authorization.metadata["streets"] || []
+  def authorization_street
+    authorization.metadata["street"] || ""
   end
 
   def belongs_to_street?
     allowed_streets = GetxoStreet.where(id: options["streets"].split(","))&.pluck(:name)
-    allowed_streets&.detect { |street| authorization_streets.include?(street) }
+    allowed_streets.include?(authorization_street)
   end
 
   def manifest
