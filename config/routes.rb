@@ -19,6 +19,8 @@ Decidim::Admin::Engine.routes.draw do
       get :streets
       post :check
       get :sync
+
+      resources :zones, as: "admin_getxo_zones"
     end
   end
 end

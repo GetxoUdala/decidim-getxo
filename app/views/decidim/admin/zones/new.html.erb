@@ -1,0 +1,17 @@
+<div class="card">
+  <div class="card-divider">
+    <h2 class="card-title">
+      Nueva zona de verificación
+    </h2>    
+  </div>
+
+  <%= decidim_form_for(@form, html: { class: "form" }, url: admin_getxo_zones_path) do |f| %>
+  	<div class="card-section">
+	    <%= render partial: "form", object: f %>
+	    
+	    <div class="button--double form-general-submit">
+	    	<%= f.submit "Guardar" %>
+	    </div>
+  	</div>
+	<% end %>
+</div>

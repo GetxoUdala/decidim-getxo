@@ -1,4 +1,10 @@
 es:
+  activemodel:
+    attributes:
+      getxo_zone:
+        street_id: Calle
+        numbers_constraint: Restricciones
+        numbers_range: Rango de números
   decidim:
     authorization_handlers:
       census_authorization_handler:

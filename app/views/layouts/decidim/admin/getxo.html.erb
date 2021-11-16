@@ -7,6 +7,9 @@
       <li <% if is_active_link?(admin_getxo_index_path, :exclusive) %> class="is-active" <% end %>>
         <%= link_to "Check", admin_getxo_index_path %>
       </li>
+      <li <% if is_active_link?(admin_getxo_zones_path) %> class="is-active" <% end %>>
+        <%= link_to "Zonas", admin_getxo_zones_path %>
+      </li>
       <li <% if is_active_link?(streets_admin_getxo_index_path) %> class="is-active" <% end %>>
         <%= link_to "Calles", streets_admin_getxo_index_path %>
       </li>
