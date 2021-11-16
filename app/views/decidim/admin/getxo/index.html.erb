@@ -1,0 +1,36 @@
+<div class="card">
+  <div class="card-divider">
+    <h2 class="card-title">
+      Conexión con el webservice
+    </h2>
+  </div>
+  <div class="card-section">
+    <h3>TestDBConnection:</h3>
+    <code class="code-block"><%= service.slim_response %></code>
+  </div>
+  <div class="card-section">
+    <h3>Validar:</h3>
+
+    <%= decidim_form_for(@form, html: { class: "form new_event_meeting" }, url: check_admin_getxo_index_path) do |f| %>
+      <div class="card">
+        <div class="card-section">
+          <div class="row column">
+            <%= f.text_field :document_number %>
+            <%= f.date_field :date_of_birth %>
+          </div>
+        </div>
+      </div>
+
+      <div class="button--double form-general-submit">
+        <%= f.submit "Validar DNI" %>
+      </div>
+    <% end %>
+
+    <% if @response %>
+      <br>
+      <div class="row column">
+        <code class="code-block"><%= @response %></code>
+      </div>
+    <% end %>
+  </div>
+</div>

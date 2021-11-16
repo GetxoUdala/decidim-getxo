@@ -23,15 +23,20 @@ class CensusAuthorizationHandler < Decidim::AuthorizationHandler
   # You must return a Hash that will be serialized to the authorization when
   # it's created, and available though authorization.metadata
   def metadata
-    super.merge(
-      date_of_birth: date_of_birth&.strftime("%Y-%m-%d")
-    )
+    {
+      date_of_birth: date_of_birth&.strftime("%Y-%m-%d"),
+      streets: [response&.xpath("//calle")&.text&.strip]
+    }
   end
 
   def unique_id
     Digest::MD5.hexdigest(
       "#{document_number&.upcase}-#{Rails.application.secrets.secret_key_base}"
     )
+  end
+
+  def slim_response
+    response.search("Body").children
   end
 
   private
@@ -53,42 +58,28 @@ class CensusAuthorizationHandler < Decidim::AuthorizationHandler
   end
 
   def document_number_valid
-    return nil if response.blank?
+    return if response.blank?
 
-    errors.add(:document_number, I18n.t("census_authorization_handler.invalid_document", scope: "decidim.authorization_handlers")) unless response.xpath("//existe").text == "SI"
+    return if response.xpath("//existe").text == "SI"
+
+    errors.add(:document_number, I18n.t("census_authorization_handler.invalid_document", scope: "decidim.authorization_handlers"))
   end
 
   def response
     return nil if document_number.blank? ||
                   date_of_birth.blank?
 
-    return @response if defined?(@response)
-
     begin
-      response ||= Faraday.post Rails.application.secrets.census_url do |request|
-        request.headers["Content-Type"] = "text/xml;charset=UTF-8'"
-        request.headers["SOAPAction"] = %w(http://webtests02.getxo.org/Validar)
-        request.body = request_body
-      end
-    rescue Faraday::Error => e
+      service = GetxoWebservice.new("Validar")
+      service.body = <<~XML
+        <strDNI>#{sanitized_document_number}</strDNI>
+        <strLetra>#{sanitized_document_letter}</strLetra>
+        <strNacimiento>#{sanitized_date_of_birth}</strNacimiento>
+      XML
+      service.response
+    rescue StandardError
       errors.add(:base, I18n.t("census_authorization_handler.connection_error", scope: "decidim.authorization_handlers"))
-      Rails.logger.error "CENSUS CONNECTION ERROR: #{e.message}"
-      return nil
+      nil
     end
-    @response ||= Nokogiri::XML(response.body).remove_namespaces!
-  end
-
-  def request_body
-    @request_body ||= <<~XML
-      <soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
-        <soap:Body>
-          <Validar xmlns="http://webtests02.getxo.org/">
-            <strDNI>#{sanitized_document_number}</strDNI>
-            <strLetra>#{sanitized_document_letter}</strLetra>
-            <strNacimiento>#{sanitized_date_of_birth}</strNacimiento>
-          </Validar>
-        </soap:Body>
-      </soap:Envelope>
-    XML
   end
 end

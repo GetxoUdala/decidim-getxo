@@ -1908,6 +1908,8 @@ eu:
         explanation: Egiaztatu zure kontua udal erroldarekin
         invalid_document: Dokumentu baliogabea
         connection_error: Ezin izan da egiaztapena egin
+        fields:
+          streets: Kaleak
       dummy_authorization_handler:
         fields:
           allowed_postal_codes: Baimendutako posta-kodeak (komaz bereizita)

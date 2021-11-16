@@ -12,5 +12,6 @@
 //
 //= require rails-ujs
 //= require activestorage
-//= require_tree .
+//= require cable
 //= require decidim
+//= require_tree ./getxo/partials
