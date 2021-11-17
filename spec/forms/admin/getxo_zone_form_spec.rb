@@ -44,6 +44,18 @@ module Decidim
         it { is_expected.to be_valid }
       end
 
+      context "when range is a single number" do
+        let(:numbers_range) { "1" }
+
+        it { is_expected.to be_valid }
+      end
+
+      context "when range is a short list" do
+        let(:numbers_range) { "1,5" }
+
+        it { is_expected.to be_valid }
+      end
+
       context "when range is a list" do
         let(:numbers_range) { "1,3,5" }
 
@@ -64,6 +76,18 @@ module Decidim
 
       context "when range has more than one hyphen" do
         let(:numbers_range) { "3-5 1-2" }
+
+        it { is_expected.to be_invalid }
+      end
+
+      context "when range has more than one hyphen without spaces" do
+        let(:numbers_range) { "3-5-10" }
+
+        it { is_expected.to be_invalid }
+      end
+
+      context "when range has more than double hyphen" do
+        let(:numbers_range) { "3--6" }
 
         it { is_expected.to be_invalid }
       end

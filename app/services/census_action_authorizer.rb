@@ -7,9 +7,10 @@ class CensusActionAuthorizer < Decidim::Verifications::DefaultActionAuthorizer
     return [:ok, {}] if zones.blank?
     return [:unauthorized, {}] if authorization_street.blank? || authorization_number.blank?
 
+    @fields = { street: authorization_street, street_number: authorization_number }
     return [:ok, {}] if belongs_to_zone?
 
-    [:unauthorized, { fields: { "street": authorization_street, "street_number": authorization_number } }]
+    [:unauthorized, { fields: @fields }]
   end
 
   private
@@ -28,13 +29,18 @@ class CensusActionAuthorizer < Decidim::Verifications::DefaultActionAuthorizer
 
   def belongs_to_zone?
     GetxoZone.where(id: zones.split(",")).find_each do |zone|
-      return true if zone_valid?(zone)
+      if street_valid?(zone)
+        @fields.except!(:street)
+        return true if number_valid?(zone)
+      end
     end
   end
 
-  def zone_valid?(zone)
-    return false unless authorization_street == zone.street&.name
+  def street_valid?(zone)
+    authorization_street == zone.street&.name
+  end
 
+  def number_valid?(zone)
     return false unless case zone.numbers_constraint
                         when "even_numbers"
                           authorization_number.even?

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class GetxoZone < ApplicationRecord
-  RANGE_REGEXP = /\A[([0-9]+)([,\-]{0,1})([0-9]+)]+\z/.freeze
+  RANGE_REGEXP = /(\A\d+(-\d)*\z)|(\A[\d+(,\d)*]+\z)/.freeze
 
   belongs_to :organization,
              foreign_key: "decidim_organization_id",
