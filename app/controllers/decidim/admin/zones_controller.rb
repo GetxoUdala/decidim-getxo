@@ -3,7 +3,7 @@
 module Decidim
   module Admin
     # The controller to handle getxo webservice sync
-    class ZonesController < Decidim::Admin::ApplicationController
+    class ZonesController < GetxoApplicationController
       include Paginable
       layout "decidim/admin/getxo"
 

@@ -11,7 +11,8 @@
   <div class="card-section">
     <ul>
       <li>Puedes usar una o mas zona para crear restricciones en las verificaciones.</li>
-      <li>Cada corresponde debe contener al menos una calle, y puede tener distintas combinaciones de numeros</li>
+      <li>Cada zona debe contener al menos una calle, y puede tener distintas combinaciones de numeros válidos.</li>
+      <li>No pueden existir 2 combinaciones iguales de calle y restricciones.</li>
     </ul>
     <h3>Zonas disponibles:</h3>
     <% if zone_list.any? %>
