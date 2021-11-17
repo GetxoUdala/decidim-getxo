@@ -6,7 +6,7 @@ module Decidim
       mimic :getxo_zone
 
       attribute :street_id, Integer
-      attribute :numbers_constraint, String
+      attribute :numbers_constraint, String, default: "all_numbers"
       attribute :numbers_range, String
 
       validates :street_id, :numbers_constraint, presence: true
