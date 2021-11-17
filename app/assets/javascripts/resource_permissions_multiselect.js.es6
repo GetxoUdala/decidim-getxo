@@ -4,9 +4,9 @@
 $(() => {
   /**
    * Used to override simple inputs in the resource permissions controller
-   * Allows to use more than one street when configuring :census_authorization_handler
+   * Allows to use more than one zone when configuring :census_authorization_handler
    * */
-  const url_streets = "/admin/getxo/streets";
+  const url_zones = "/admin/getxo/zones";
   
   const select2InputTags = (queryStr) => {
     const $input = $(queryStr)
@@ -19,7 +19,7 @@ $(() => {
       })
       ;
       // load text via ajax
-      $.get(url_streets, { ids: values }, (data) => {
+      $.get(url_zones, { ids: values }, (data) => {
         $select.val("");
         $select.contents("option").remove()
         data.forEach((item) => {
@@ -38,10 +38,10 @@ $(() => {
     return $select;
   };
 
-  $("input[name$='[authorization_handlers_options][census_authorization_handler][streets]'").each((idx, input) => {
+  $("input[name$='[authorization_handlers_options][census_authorization_handler][zones]'").each((idx, input) => {
     select2InputTags(input).select2({
       ajax: {
-        url: url_streets,
+        url: url_zones,
         delay: 100,
         dataType: "json",
         processResults: (data) => {

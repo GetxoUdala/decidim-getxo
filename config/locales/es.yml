@@ -1,4 +1,10 @@
 es:
+  activemodel:
+    attributes:
+      getxo_zone:
+        street_id: Calle
+        numbers_constraint: Restricciones
+        numbers_range: Rango de números
   decidim:
     authorization_handlers:
       census_authorization_handler:
@@ -7,7 +13,9 @@ es:
         invalid_document: Documento no válido
         connection_error: No ha sido posible realizar la verificación
         fields:
-          streets: 'Calles válidas:'
+          street: 'Calle:'
+          street_number: 'Número de calle:'
+          zones: 'Zonas válidas:'
   census_authorization:
     form:
       date_select:

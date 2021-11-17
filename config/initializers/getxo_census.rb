@@ -15,11 +15,11 @@ Decidim::Verifications.register_workflow(:census_authorization_handler) do |work
   workflow.action_authorizer = "CensusActionAuthorizer"
 
   workflow.options do |options|
-    options.attribute :streets, type: :string
+    options.attribute :zones, type: :string
   end
 end
 
-# User select2 to enable multiple streets selector in resource permissions
+# User select2 to enable multiple zones selector in resource permissions
 Rails.application.config.to_prepare do
   Decidim::Admin::ResourcePermissionsController.include(Decidim::Admin::NeedsMultiselectSnippets)
 end
