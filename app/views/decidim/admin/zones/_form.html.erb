@@ -1,0 +1,11 @@
+<div class="field">
+  <%= form.collection_select :street_id, streets, :id, :name %>
+</div>
+
+<div class="field">
+  <%= form.select :numbers_constraint, form.object.numbers_constraint_options, help_text: "Estas restricciones se añaden al rango de números (si existe)" %>
+</div>
+
+<div class="field">
+  <%= form.text_field :numbers_range, help_text: "Usa comas para numeros sueltos o un guión para un rango. Dejar vacío para permitir cualquier número. No se pueden mezclar 2 tipos. Ej: 2-31 o 1,3,6" %>
+</div>

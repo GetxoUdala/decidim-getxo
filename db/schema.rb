@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_11_074535) do
+ActiveRecord::Schema.define(version: 2021_11_16_130416) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "ltree"
@@ -1490,6 +1490,17 @@ ActiveRecord::Schema.define(version: 2021_11_11_074535) do
     t.index ["name"], name: "index_getxo_streets_on_name"
   end
 
+  create_table "getxo_zones", force: :cascade do |t|
+    t.integer "decidim_organization_id"
+    t.string "name", null: false
+    t.bigint "street_id"
+    t.integer "numbers_constraint", default: 0, null: false
+    t.string "numbers_range", default: "", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["street_id"], name: "index_getxo_zones_on_street_id"
+  end
+
   create_table "oauth_access_grants", force: :cascade do |t|
     t.integer "resource_owner_id", null: false
     t.bigint "application_id", null: false
@@ -1587,6 +1598,7 @@ ActiveRecord::Schema.define(version: 2021_11_11_074535) do
   add_foreign_key "decidim_verifications_conflicts", "decidim_users", column: "current_user_id"
   add_foreign_key "decidim_verifications_conflicts", "decidim_users", column: "managed_user_id"
   add_foreign_key "decidim_verifications_csv_data", "decidim_organizations"
+  add_foreign_key "getxo_zones", "getxo_streets", column: "street_id"
   add_foreign_key "oauth_access_grants", "decidim_users", column: "resource_owner_id"
   add_foreign_key "oauth_access_grants", "oauth_applications", column: "application_id"
   add_foreign_key "oauth_access_tokens", "decidim_users", column: "resource_owner_id"
