@@ -50,6 +50,12 @@ module Decidim
         it { is_expected.to be_valid }
       end
 
+      context "when range is an inverval" do
+        let(:numbers_range) { "1-35" }
+
+        it { is_expected.to be_valid }
+      end
+
       context "when range is a short list" do
         let(:numbers_range) { "1,5" }
 

@@ -35,7 +35,7 @@ module Decidim
           end
 
           on(:invalid) do |error|
-            flash.now[:alert] = "Ha ocurrido un error al crear la zona: #{error} - La combinación ya existe."
+            flash.now[:alert] = "Ha ocurrido un error al crear la zona: #{error} - Hay un campo inválido o bien la combinación ya existe."
             render :new
           end
         end
@@ -50,7 +50,7 @@ module Decidim
           end
 
           on(:invalid) do |error|
-            flash.now[:alert] = "Ha ocurrido un error al actualizar la zona: #{error} - La combinación ya existe."
+            flash.now[:alert] = "Ha ocurrido un error al actualizar la zona: #{error} - Hay un campo inválido o bien la combinación ya existe."
             render :edit
           end
         end
