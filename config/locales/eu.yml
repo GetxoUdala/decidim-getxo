@@ -2433,3 +2433,6 @@ eu:
         day: Eguna
         month: Hilabetea
         year: Urtea
+  recaptcha:
+    errors:
+      verification_failed: Ezin da egiaztatu reCaptcha-rekin erregistratzea

@@ -12,7 +12,10 @@ checksums = [
       # mailers
       "/app/mailers/decidim/application_mailer.rb" => "fcd6a9ad382ef76f0a7af216b13b96cb",
       # layouts
-      "/app/views/layouts/decidim/mailer.html.erb" => "5bbe335c1dfd02f8448af287328a49dc"
+      "/app/views/layouts/decidim/mailer.html.erb" => "5bbe335c1dfd02f8448af287328a49dc",
+      "/app/views/layouts/decidim/_head.html.erb" => "todo",
+      "/app/views/decidim/devise/sessions/new.html.erb" => "todo",
+      "/app/controllers/decidim/devise/registrations_controller.rb" => "todo"
     }
   }
 ]
