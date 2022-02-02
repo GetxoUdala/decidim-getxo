@@ -1,8 +1,6 @@
 <% add_decidim_page_title(t(".sign_up")) %>
 
-<%= content_for :recaptcha_js do %>
-  <%= include_recaptcha_js %>
-<% end %>
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
 <% content_for :devise_links do %>
   <%= render "decidim/devise/shared/links" %>
