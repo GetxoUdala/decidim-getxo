@@ -88,8 +88,10 @@
         <div class="card">
           <div class="card__content">
             <div class="actions">
+              <div class="mb-s">
+                <%= recaptcha_tag %>
+              </div>
               <%= f.submit t("devise.registrations.new.sign_up"), class: "button expanded" %>
-              <%= recaptcha_tag %>
             </div>
             <%= yield :devise_links %>
           </div>
