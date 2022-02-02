@@ -21,12 +21,11 @@ module Decidim
 
         def verify_recaptcha
           token = params["g-recaptcha-response"]
-          action = "sign_up"
 
-          secret_key = Rails.application.secrets.dig(:recaptcha_secret_key)
+          secret_key = Rails.application.secrets[:recaptcha_secret_key]
 
           uri = URI.parse("https://www.google.com/recaptcha/api/siteverify?secret=#{secret_key}&response=#{token}")
-          
+
           response = Net::HTTP.get_response(uri)
 
           https = Net::HTTP.new(uri.host, uri.port)
