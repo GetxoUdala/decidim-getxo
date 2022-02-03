@@ -1,24 +1,28 @@
+---
 es:
   activemodel:
     attributes:
       getxo_zone:
-        street_id: Calle
         numbers_constraint: Restricciones
         numbers_range: Rango de números
-  decidim:
-    authorization_handlers:
-      census_authorization_handler:
-        name: Censo municipal
-        explanation: Verifica tu cuenta con el censo municipal
-        invalid_document: Documento no válido
-        connection_error: No ha sido posible realizar la verificación
-        fields:
-          street: 'Calle:'
-          street_number: 'Número de calle:'
-          zones: 'Zonas válidas:'
+        street_id: Calle
   census_authorization:
     form:
       date_select:
         day: Dia
         month: Mes
         year: Año
+  decidim:
+    authorization_handlers:
+      census_authorization_handler:
+        connection_error: No ha sido posible realizar la verificación
+        explanation: Verifica tu cuenta con el censo municipal
+        fields:
+          street: 'Calle:'
+          street_number: 'Número de calle:'
+          zones: 'Zonas válidas:'
+        invalid_document: Documento no válido
+        name: Censo municipal
+  recaptcha:
+    errors:
+      verification_failed: No se ha podido verificar el registro con reCaptcha
