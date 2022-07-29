@@ -2,7 +2,7 @@
       budget_order_line_item_path(model.budget, project_id: model),
       method: vote_button_method,
       remote: true,
-      class: "button tiny budget-list__action #{vote_button_class}",
+      class: "button large budget-list__action #{vote_button_class}",
       data: {
         add: !resource_added?,
         disable: true,
@@ -13,9 +13,10 @@
       disabled: vote_button_disabled?,
       title: vote_button_label do %>
   <% if resource_added? %>
+    <% total_items = model.budget.projects.count %>
     <% line_item_positions = Decidim::Budgets::LineItem.where(order: current_order).pluck(:decidim_project_id) %>
-    <%= line_item_positions.find_index(model.id) + 1 %>
+    <%= total_items - line_item_positions.find_index(model.id) %>
   <% else %>
-    <%= icon("x", class: "icon--small", aria_label: vote_button_label, role: "img") %>
+    <%= icon("check", class: "icon--small", aria_label: vote_button_label, role: "img") %>
   <% end %>
 <% end %>
