@@ -6,6 +6,17 @@ This is the open-source repository for decidim-getxo, based on [Decidim](https:/
 
 ![Build](https://github.com/Platoniq/decidim-getxo/workflows/Build/badge.svg?branch=master)
 
+
+## Credits
+
+|   |   |
+|---|---|
+| Developed by | [<img title="Platoniq" src="images/platoniq-logo.svg" height=36>](https://github.com/Platoniq) 
+| Financed by | [<img title="Getxoko Udala" src="images/getxo-logo.png" height=72/>](https://www.getxo.eus) |
+| Powered by | [<img title="Decidim" src="images/decidim-logo.svg" height=36>](https://github.com/decidim/decidim/) |
+|   |   |
+
+
 ## Setting up the application
 
 You will need to do some steps before having the app working properly once you've deployed it:
@@ -24,3 +35,8 @@ user.save!
 6. Fill the rest of the form and submit it.
 
 You're good to go!
+
+
+## License
+
+This engine is distributed under the [GNU AFFERO GENERAL PUBLIC LICENSE v3.0](LICENSE-AGPLv3.txt).

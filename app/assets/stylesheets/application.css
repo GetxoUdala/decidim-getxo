@@ -12,5 +12,6 @@
  *
  *= require decidim
  *= require_tree ./getxo/partials
+ *= require_tree ./platoniq
  *= require_self
  */
