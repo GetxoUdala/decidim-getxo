@@ -26,3 +26,4 @@ es:
   recaptcha:
     errors:
       verification_failed: No se ha podido verificar el registro con reCaptcha
+  

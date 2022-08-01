@@ -11,14 +11,12 @@ morphdom($budgetConfirm[0], '<%= j(render partial: "decidim/budgets/projects/bud
 $("#order-progress").foundation();
 $(".budget-summary__selected").foundation();
 
-<% project.budget.projects.each do |p| %>
+<% project.budget.projects.each_with_index do |p| %>
   var $projectItem = $('#project-<%= p.id %>-item');
   if ($projectItem.length > 0) {
     morphdom($projectItem[0], '<%= j(render partial: "decidim/budgets/projects/project", locals: { project: p }).strip.html_safe %>');
   }
-<% end %>
 
-<% project.budget.projects.each do |p| %>
   var $projectBudgetButton = $('#project-<%= p.id %>-budget-button');
   if ($projectBudgetButton.length > 0) {
     morphdom($projectBudgetButton[0], '<%= j(render partial: "decidim/budgets/projects/project_budget_button", locals: { project: p }).strip.html_safe %>');
