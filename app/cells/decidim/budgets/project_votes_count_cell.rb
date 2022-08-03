@@ -16,25 +16,30 @@ module Decidim
 
       private
 
+      def ranks
+        ActiveRecord::Base.connection.execute <<~SQL.squish
+          select sum(score), decidim_project_id  from (
+            select dbp.title->'es' as  title, dbli.*, RANK() OVER (
+              PARTITION BY dbli.decidim_order_id 
+              ORDER BY dbli.id DESC
+            ) score
+            FROM decidim_budgets_orders dbo
+            JOIN decidim_budgets_line_items dbli ON dbo.id = dbli.decidim_order_id 
+            join decidim_budgets_projects dbp on dbp.id = dbli.decidim_project_id
+            WHERE dbo.decidim_budgets_budget_id  = 3
+          ) ranks
+          group by decidim_project_id
+        SQL
+      end
+
       def count
-        @count ||= model.confirmed_orders_count
-
-=begin
-weights
-  SELECT dbli.*, RANK() OVER(
-    PARTITION BY dbli.decidim_order_id 
-    ORDER BY dbli.id DESC
-  ) RANK FROM decidim_budgets_orders dbo
-  JOIN decidim_budgets_line_items dbli ON dbo.id = dbli.decidim_order_id 
-  WHERE dbo.decidim_budgets_budget_id  = 3
-=end
-
+        @count ||= ranks.find { |r| r["decidim_project_id"] == model.id }["sum"].to_i
       end
 
       def content
         if options[:layout] == :one_line
           safe_join([count, " ", label(t("decidim.budgets.projects.project.votes",
-                                                                count: count))])
+                                         count: count))])
         else
           safe_join([number, label(t("decidim.budgets.projects.project.votes",
                                      count: count))])
