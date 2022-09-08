@@ -16,6 +16,16 @@ checksums = [
       "/app/views/decidim/devise/sessions/new.html.erb" => "1da8569a34bcd014ffb5323c96391837",
       "/app/controllers/decidim/devise/registrations_controller.rb" => "abcc9270c6191f89d7b229e481b51e9a"
     }
+  },
+  {
+    package: "decidim-budgets",
+    files: {
+      "/app/cells/decidim/budgets/project_votes_count_cell.rb" => "73043088f02c4467923b57860e7e1e4c",
+      "/app/cells/decidim/budgets/project_voted_hint_cell.rb" => "afb7b7d549d6ece826749b3d85f13c3e",
+      "/app/models/decidim/budgets/line_item.rb" => "050834fb634eaae9d0f696ac2d55adc4",
+      "/app/models/decidim/budgets/order.rb" => "2e73ee587cd7ec4562ad020342671f39",
+      "/app/models/decidim/budgets/project.rb" => "5e20e93f34bbe586c95b9aa4374b39f4"
+    }
   }
 ]
 
