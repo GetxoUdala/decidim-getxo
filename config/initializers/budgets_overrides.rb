@@ -15,7 +15,7 @@ Rails.application.config.to_prepare do
         ) ranks
         WHERE decidim_project_id = #{id}
       SQL
-      @count ||= ActiveRecord::Base.connection.execute(Arel.sql(query))[0]["sum"].to_i
+      @votes_count ||= ActiveRecord::Base.connection.execute(Arel.sql(query))[0]["sum"].to_i
     end
 
     def confirmed_orders_count
@@ -64,19 +64,19 @@ Rails.application.config.to_prepare do
   Decidim::Budgets::ProjectVotesCountCell.class_eval do
     delegate :current_order, to: :controller
 
-    def count
-      @count ||= if current_order.checked_out_at
-                   model.confirmed_orders_count
-                 else
-                   model.confirmed_orders_count + current_order.count_for(model)
-                 end
+    def votes_count
+      @votes_count ||= if current_order.checked_out?
+                         model.confirmed_orders_count
+                       else
+                         model.confirmed_orders_count + current_order.count_for(model)
+                       end
     end
 
     def content
       if options[:layout] == :one_line
-        safe_join([count, " ", label(t("decidim.budgets.projects.project.votes", count: count))])
+        safe_join([votes_count, " ", label(t("decidim.budgets.projects.project.votes", count: votes_count))])
       else
-        safe_join([number, label(t("decidim.budgets.projects.project.votes", count: count))])
+        safe_join([number, label(t("decidim.budgets.projects.project.votes", count: votes_count))])
       end
     end
 
