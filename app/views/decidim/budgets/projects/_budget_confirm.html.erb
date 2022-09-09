@@ -12,7 +12,7 @@
         <% current_order.sorted_projects.each_with_index do |project, index| %>
           <li class="budget-summary__selected-item">
             <span class="badge success budget-summary_project-score">
-              <%= current_order.sorted_projects.count - index %>
+              <%= current_order.budget.projects.count - index %>
             </span>
             <%= link_to translated_attribute(project.title), resource_locator([budget, project]).path %>
             <strong class="budget-summary__selected-number">
