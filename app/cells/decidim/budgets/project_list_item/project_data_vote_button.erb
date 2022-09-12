@@ -13,9 +13,7 @@
       disabled: vote_button_disabled?,
       title: vote_button_label do %>
   <% if resource_added? %>
-    <% total_items = model.budget.projects.count %>
-    <% line_item_positions = Decidim::Budgets::LineItem.where(order: current_order).pluck(:decidim_project_id) %>
-    <%= total_items - line_item_positions.find_index(model.id) %>
+    <%= current_order.score_for(model) %>
   <% else %>
     <%= icon("check", class: "icon--small", aria_label: vote_button_label, role: "img") %>
   <% end %>
