@@ -32,10 +32,6 @@ Rails.application.config.to_prepare do
       line_items.find_by(project: project)
     end
 
-    def count_for(project)
-      line_item_for(project)&.count || 0
-    end
-
     def score_for(project)
       line_item_for(project)&.score || 0
     end
@@ -49,15 +45,7 @@ Rails.application.config.to_prepare do
     end
 
     def score
-      project_count - position
-    end
-
-    def count
       position + 1
-    end
-
-    def project_count
-      @project_count ||= budget.projects.count
     end
   end
 
@@ -68,7 +56,7 @@ Rails.application.config.to_prepare do
       @votes_count ||= if current_order.checked_out?
                          model.confirmed_orders_count
                        else
-                         model.confirmed_orders_count + current_order.count_for(model)
+                         model.confirmed_orders_count + current_order.score_for(model)
                        end
     end
 

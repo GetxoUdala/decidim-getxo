@@ -7,10 +7,10 @@
       </button>
       <div id="reveal-selected" data-toggler=".hide">
         <ul class="budget-summary__selected-list">
-          <% current_order.sorted_projects.each_with_index do |project, index| %>
+          <% current_order.sorted_projects.each do |project| %>
             <li class="budget-summary__selected-item">
               <span class="badge success budget-summary_project-score">
-                <%= current_order.budget.projects.count - index %>
+                <%= current_order.score_for(project) %>
               </span>
               
               <%= link_to translated_attribute(project.title), resource_locator([budget, project]).path %>
