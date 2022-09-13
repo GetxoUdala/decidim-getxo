@@ -23,7 +23,7 @@ describe "Orders", type: :system do
   let(:budget) { create :budget, component: component, total_budget: 50_000_000 }
 
   context "when the user is logged in" do
-    let!(:projects) { create_list(:project, 2, budget: budget, budget_amount: 25_000_000) }
+    let!(:projects) { create_list(:project, 3, budget: budget, budget_amount: 25_000_000) }
 
     before do
       login_as user, scope: :user
@@ -41,8 +41,8 @@ describe "Orders", type: :system do
 
         within "#budget-confirm" do
           page.find_all(".budget-summary__selected-item").each do |element|
-            if element.text.start_with? "1"
-              expect(element.text).to include("1 #{last_project.title["en"]}")
+            if element.text.start_with? "3"
+              expect(element.text).to include("3 #{last_project.title["en"]}")
             else
               expect(element.text).to include("2 #{first_project.title["en"]}")
             end
@@ -52,7 +52,7 @@ describe "Orders", type: :system do
 
         expect(Decidim::Budgets::Order.find_by(budget: budget, user: user)).to be_checked_out
         expect(Decidim::Budgets::Project.find(first_project.id).confirmed_orders_count).to be 2
-        expect(Decidim::Budgets::Project.find(last_project.id).confirmed_orders_count).to be 1
+        expect(Decidim::Budgets::Project.find(last_project.id).confirmed_orders_count).to be 3
       end
 
       it "sets order of pick" do
@@ -60,8 +60,8 @@ describe "Orders", type: :system do
           page.find(".budget-list__action").click
         end
 
-        expect(page).to have_selector("#project-#{first_project.id}-item .budget-list__action", text: "1")
-        expect(page).to have_selector("#project-#{first_project.id}-item .project-votes", text: "1")
+        expect(page).to have_selector("#project-#{first_project.id}-item .budget-list__action", text: "3")
+        expect(page).to have_selector("#project-#{first_project.id}-item .project-votes", text: "3")
         expect(Decidim::Budgets::LineItem.where(order: Decidim::Budgets::Order.find_by(budget: budget, user: user)).count).to be 1
 
         within "#project-#{last_project.id}-item" do
@@ -78,8 +78,8 @@ describe "Orders", type: :system do
 
         expect(page).to have_selector("#project-#{first_project.id}-item .budget-list__action", text: "")
         expect(page).to have_selector("#project-#{first_project.id}-item .project-votes", text: "0")
-        expect(page).to have_selector("#project-#{last_project.id}-item .budget-list__action", text: "1")
-        expect(page).to have_selector("#project-#{last_project.id}-item .project-votes", text: "1")
+        expect(page).to have_selector("#project-#{last_project.id}-item .budget-list__action", text: "3")
+        expect(page).to have_selector("#project-#{last_project.id}-item .project-votes", text: "3")
         expect(Decidim::Budgets::LineItem.where(order: Decidim::Budgets::Order.find_by(budget: budget, user: user)).count).to be 1
 
         within "#project-#{first_project.id}-item" do
@@ -88,8 +88,8 @@ describe "Orders", type: :system do
 
         expect(page).to have_selector("#project-#{first_project.id}-item .budget-list__action", text: "2")
         expect(page).to have_selector("#project-#{first_project.id}-item .project-votes", text: "2")
-        expect(page).to have_selector("#project-#{last_project.id}-item .budget-list__action", text: "1")
-        expect(page).to have_selector("#project-#{last_project.id}-item .project-votes", text: "1")
+        expect(page).to have_selector("#project-#{last_project.id}-item .budget-list__action", text: "3")
+        expect(page).to have_selector("#project-#{last_project.id}-item .project-votes", text: "3")
         expect(Decidim::Budgets::LineItem.where(order: Decidim::Budgets::Order.find_by(budget: budget, user: user)).count).to be 2
 
         expect(Decidim::Budgets::Order.find_by(budget: budget, user: user)).not_to be_checked_out

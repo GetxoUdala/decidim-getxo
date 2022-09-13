@@ -5,10 +5,10 @@ Rails.application.config.to_prepare do
     def confirmed_votes_count
       query = <<-SQL.squish
         SELECT SUM(score) FROM (
-          SELECT dbli.*, RANK() OVER (
+          SELECT dbli.*, #{budget.projects.count} - (RANK() OVER (
             PARTITION BY dbli.decidim_order_id
             ORDER BY dbli.id ASC
-          ) score
+          ) - 1) score
           FROM decidim_budgets_orders dbo
           JOIN decidim_budgets_line_items dbli ON dbo.id = dbli.decidim_order_id AND dbo.checked_out_at IS NOT NULL
           JOIN decidim_budgets_projects dbp ON dbp.id = dbli.decidim_project_id
@@ -45,7 +45,11 @@ Rails.application.config.to_prepare do
     end
 
     def score
-      position + 1
+      project_count - position
+    end
+
+    def project_count
+      @project_count ||= budget.projects.count
     end
   end
 
