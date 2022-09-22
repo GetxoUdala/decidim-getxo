@@ -28,6 +28,7 @@ checksums = [
       "/app/models/decidim/budgets/project.rb" => "5e20e93f34bbe586c95b9aa4374b39f4",
       "/app/views/decidim/budgets/line_items/update_budget.js.erb" => "9c89b43b4e6548c9697d1942e71af9fb",
       "/app/views/decidim/budgets/projects/_budget_confirm.html.erb" => "8ff47688f3aa43e006f9bb35e4d37586",
+      "/app/views/decidim/budgets/order_summary_mailer/order_summary.html.erb" => "11907aff6594e438e3e179de11694a3e",
       "/app/views/decidim/budgets/projects/_order_selected_projects.html.erb" => "bd005e4d09212cca3cf0a40e2a15298e"
 
     }
