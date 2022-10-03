@@ -41,7 +41,7 @@ Rails.application.config.to_prepare do
     has_one :budget, through: :project, foreign_key: "decidim_budgets_budget_id", class_name: "Decidim::Budgets::Budget"
 
     def position
-      order.line_items.pluck(:id).find_index(id)
+      order.line_items.pluck(:id).sort.find_index(id)
     end
 
     def score
