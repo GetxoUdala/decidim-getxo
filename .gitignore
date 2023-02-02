@@ -46,3 +46,10 @@ public/uploads
 # Ignore .rbenv-vars
 .rbenv-vars
 spec/decidim_dummy_app
+
+/public/packs
+/public/packs-test
+/node_modules
+/yarn-error.log
+yarn-debug.log*
+.yarn-integrity
