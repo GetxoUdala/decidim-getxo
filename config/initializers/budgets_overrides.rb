@@ -15,7 +15,7 @@ Rails.application.config.to_prepare do
         ) ranks
         WHERE decidim_project_id = #{id}
       SQL
-      @votes_count ||= ActiveRecord::Base.connection.execute(Arel.sql(query))[0]["sum"].to_i
+      @confirmed_votes_count ||= ActiveRecord::Base.connection.execute(Arel.sql(query))[0]["sum"].to_i
     end
 
     def confirmed_orders_count

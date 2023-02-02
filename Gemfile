@@ -32,10 +32,10 @@ end
 group :development do
   gem "letter_opener_web", "~> 2.0"
   gem "listen", "~> 3.1"
+  gem "rubocop-faker"
   gem "spring", "~> 2.1"
   gem "spring-watcher-listen", "~> 2.0"
   gem "web-console", "~> 4.2"
-  gem "rubocop-faker"
   gem "xliffle"
 
   gem "capistrano", "~> 3.15"
@@ -49,6 +49,6 @@ end
 group :production do
   gem "figaro", "~> 1.2"
   gem "passenger", "~> 6.0"
-  gem 'sidekiq', "<7"
-  gem 'sidekiq-cron'
+  gem "sidekiq", "<7"
+  gem "sidekiq-cron"
 end
