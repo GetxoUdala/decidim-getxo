@@ -1,5 +1,4 @@
-// = require select2
-// = require_self
+import "stylesheets/vendor/select2-foundation-theme.scss";
 
 $(() => {
   /**
@@ -38,7 +37,7 @@ $(() => {
     return $select;
   };
 
-  $("input[name$='[authorization_handlers_options][census_authorization_handler][zones]'").each((idx, input) => {
+  $('input[name$="[authorization_handlers_options][census_authorization_handler][zones]"]').each((idx, input) => {
     select2InputTags(input).select2({
       ajax: {
         url: url_zones,
