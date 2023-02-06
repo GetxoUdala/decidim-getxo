@@ -360,6 +360,8 @@ GEM
       decidim-admin (>= 0.25.0, < 0.27)
       decidim-core (>= 0.25.0, < 0.27)
       sassc (~> 2.3)
+    decidim-friendly_signup (0.4.3)
+      decidim-core (~> 0.26.0)
     declarative-builder (0.1.0)
       declarative-option (< 0.2.0)
     declarative-option (0.1.0)
@@ -868,6 +870,7 @@ DEPENDENCIES
   decidim-consultations!
   decidim-decidim_awesome
   decidim-dev!
+  decidim-friendly_signup
   decidim-term_customizer!
   decidim-verifications!
   deface

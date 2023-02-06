@@ -9,6 +9,7 @@ gem "decidim", DECIDIM_VERSION
 gem "decidim-consultations", DECIDIM_VERSION
 # gem "decidim-initiatives", DECIDIM_VERSION
 gem "decidim-decidim_awesome"
+gem "decidim-friendly_signup"
 gem "decidim-term_customizer", git: "https://github.com/openpoke/decidim-module-term_customizer"
 gem "decidim-verifications", DECIDIM_VERSION
 
