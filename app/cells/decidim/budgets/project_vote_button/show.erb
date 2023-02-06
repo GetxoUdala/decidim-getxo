@@ -3,6 +3,7 @@
       method: vote_button_method,
       remote: true,
       class: "button large budget-list__action #{vote_button_class} getxo-budget-vote-button",
+      id: "project-vote-button-#{model.id}",
       data: {
         add: !resource_added?,
         disable: true,

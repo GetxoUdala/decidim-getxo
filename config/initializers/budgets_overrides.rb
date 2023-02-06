@@ -82,7 +82,7 @@ Rails.application.config.to_prepare do
 
     def hint
       contents = []
-      contents << icon("check", role: "img")
+      contents << icon("check", role: "img", "aria-hidden": true)
       contents << " "
       contents << t("decidim.budgets.projects.project.you_voted")
       contents << " "
