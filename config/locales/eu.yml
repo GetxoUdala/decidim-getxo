@@ -31,3 +31,8 @@ eu:
       verification_failed: Ezin da egiaztatu reCaptcha-rekin erregistratzea
   getxo:
     connection_error: Lotura-errorea udal erroldarekin
+  layouts:
+    decidim:
+      decidim_awesome:
+        awesome_config:
+          hashtags: Hashtags
