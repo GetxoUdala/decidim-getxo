@@ -31,8 +31,15 @@ eu:
       verification_failed: Ezin da egiaztatu reCaptcha-rekin erregistratzea
   getxo:
     connection_error: Lotura-errorea udal erroldarekin
+  
+
+  decidim:
+    accessibility:
+      front_page_link: Link
   layouts:
     decidim:
       decidim_awesome:
         awesome_config:
           hashtags: Hashtags
+          items: Items
+          select_deselect_all: Deselect all

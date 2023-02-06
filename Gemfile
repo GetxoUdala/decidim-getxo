@@ -12,8 +12,8 @@ gem "decidim-decidim_awesome"
 gem "decidim-term_customizer", git: "https://github.com/openpoke/decidim-module-term_customizer"
 gem "decidim-verifications", DECIDIM_VERSION
 
-gem "deface"
 gem "bootsnap", "~> 1.7"
+gem "deface"
 
 gem "puma", ">= 5.3.1"
 
