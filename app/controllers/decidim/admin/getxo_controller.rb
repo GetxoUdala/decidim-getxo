@@ -9,6 +9,11 @@ module Decidim
 
       helper_method :streets_list, :last_sync, :last_sync_class, :service
 
+      rescue_from Faraday::Error do |error|
+        flash[:alert] = t("getxo.connection_error", error: error.message)
+        redirect_to streets_admin_getxo_index_path
+      end
+
       def index
         @form = form(CensusAuthorizationHandler).instance
       end

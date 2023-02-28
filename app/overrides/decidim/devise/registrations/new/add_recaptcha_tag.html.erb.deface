@@ -1,0 +1,5 @@
+<!-- insert_after ".actions" -->
+
+<div class="mb-s">
+	<%= recaptcha_tag %>
+</div>

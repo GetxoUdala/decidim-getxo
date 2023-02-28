@@ -15,7 +15,9 @@ module Decidim
 
         RECAPTCHA_MINIMUM_SCORE = 0.5
 
+        # rubocop:disable Rails/LexicallyScopedActionFilter
         before_action :verify_recaptcha, only: :create
+        # rubocop:enable Rails/LexicallyScopedActionFilter
 
         private
 
@@ -28,12 +30,12 @@ module Decidim
 
           response = Net::HTTP.get_response(uri)
 
-          https = Net::HTTP.new(uri.host, uri.port)
-          https.use_ssl = true
-          req = Net::HTTP::Post.new(uri.path)
+          # https = Net::HTTP.new(uri.host, uri.port)
+          # https.use_ssl = true
+          # req = Net::HTTP::Post.new(uri.path)
 
-          res = https.request(req)
-          puts "Response #{res.code} #{res.message}: #{res.body}"
+          # res = https.request(req)
+          # puts "Response #{res.code} #{res.message}: #{res.body}"
 
           json = JSON.parse(response.body)
 

@@ -6,6 +6,9 @@ es:
         numbers_constraint: Restricciones
         numbers_range: Rango de números
         street_id: Calle
+      census_authorization_handler: 
+        date_of_birth: "Fecha de nacimiento"
+        document_number: "Número de documento"
   census_authorization:
     form:
       date_select:
@@ -18,6 +21,7 @@ es:
         connection_error: No ha sido posible realizar la verificación
         explanation: Verifica tu cuenta con el censo municipal
         fields:
+          date_of_birth: "Fecha de nacimiento"
           street: 'Calle:'
           street_number: 'Número de calle:'
           zones: 'Zonas válidas:'
@@ -26,4 +30,6 @@ es:
   recaptcha:
     errors:
       verification_failed: No se ha podido verificar el registro con reCaptcha
+  getxo:
+    connection_error: Error de conexión con el censo municipal
   
