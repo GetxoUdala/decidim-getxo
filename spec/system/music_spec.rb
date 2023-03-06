@@ -5,9 +5,7 @@ require "rails_helper"
 describe "Visit a proposal", type: :system do
   let(:organization) { create(:organization) }
   let!(:process) do
-    create(
-      :participatory_process, :active, :promoted, organization: organization,
-    )
+    create(:participatory_process, :active, :promoted, organization: organization)
   end
 
   before do
