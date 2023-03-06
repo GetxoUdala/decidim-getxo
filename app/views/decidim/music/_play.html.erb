@@ -1,0 +1,25 @@
+<div class="row column">
+  <p>Escucha la canción de los presupuestos!</p>
+  <audio controls autoplay preload loop id="audio" style="width: 100%;">
+    <source src="/music/GETXO_DEMO_5.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+  <p>
+    <span>Autor: nosequien. </span>
+    <span>Derechos reservados</span>
+  </p>
+
+</div>
+
+<script>
+    const audioElement = document.getElementById("audio");
+
+    function handleUserGesture() {
+        if (audioElement.paused) {
+            audioElement.play();
+        }
+        document.removeEventListener("click", handleUserGesture);
+    }
+
+    document.addEventListener("click", handleUserGesture);
+</script>

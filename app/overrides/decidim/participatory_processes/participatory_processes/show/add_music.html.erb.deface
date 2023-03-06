@@ -1,0 +1,2 @@
+<!-- insert_before ".row.column" -->
+<%= render "decidim/music/play" %>
