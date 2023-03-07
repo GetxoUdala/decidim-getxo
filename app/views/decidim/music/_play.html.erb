@@ -1,21 +1,22 @@
-<div class="row column">
-  <p>Escucha la canción de los presupuestos!</p>
-  <audio controls autoplay preload loop id="audio" style="width: 100%;">
-    <source src="/music/GETXO_DEMO_5.mp3" type="audio/mpeg">
-    Your browser does not support the audio element.
-  </audio>
-  <p>
-    <span>Autor: nosequien. </span>
-    <span>Derechos reservados</span>
-  </p>
-
-</div>
+<% if Time.zone.parse(current_participatory_space.created_at.to_s) >= Time.zone.parse("2023-01-01") %>
+  <div class="row column">
+    <p><%= t("audio.title", scope: "decidim.participatory_processes.participatory_processes.show") %></p>
+    <audio controls autoplay preload loop id="audio" style="width: 100%;">
+      <source src="/music/GETXO_DEMO_5.mp3" type="audio/mpeg">
+      <%= t("audio.audio_supporting", scope: "decidim.participatory_processes.participatory_processes.show") %>
+    </audio>
+    <p>
+      <span><%= t("audio.author", scope: "decidim.participatory_processes.participatory_processes.show") %></span>
+      <span><%= t("audio.rights", scope: "decidim.participatory_processes.participatory_processes.show") %></span>
+    </p>
+  </div>
+<% end %>
 
 <script>
     const audioElement = document.getElementById("audio");
 
-    function handleUserGesture() {
-        if (audioElement.paused) {
+    function handleUserGesture(event) {
+        if (event.target.tagName !== "A" && audioElement.paused) {
             audioElement.play();
         }
         document.removeEventListener("click", handleUserGesture);

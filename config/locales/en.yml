@@ -1,5 +1,14 @@
 ---
 en:
+  decidim:
+    participatory_processes:
+      participatory_processes:
+        show:
+          audio:
+            title: Listen to the budget song!
+            author: "Author: whoever"
+            rights: All rights reserved
+            audio_supporting:  Your browser does not support the audio element.
   hello: Hello world
   recaptcha:
     errors:

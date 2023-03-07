@@ -36,6 +36,17 @@ eu:
   decidim:
     accessibility:
       front_page_link: Link
+    followers:
+      followers_count: Jarraitzaileak
+    participatory_processes:
+      participatory_processes:
+        show:
+          title: Prozesu partaideak
+          audio:
+            title: Escucha la canción de los presupuestos!
+            author: "Autor: nosequien."
+            rights: Derechos reservados
+            audio_supporting: Tu navegador no soporta el elemento de audio.
   layouts:
     decidim:
       decidim_awesome:

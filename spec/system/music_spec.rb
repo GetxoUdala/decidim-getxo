@@ -4,9 +4,8 @@ require "rails_helper"
 
 describe "Visit a proposal", type: :system do
   let(:organization) { create(:organization) }
-  let!(:process) do
-    create(:participatory_process, :active, :promoted, organization: organization)
-  end
+  let!(:process_old) { create(:participatory_process, :active, :promoted, organization: organization, created_at: Time.zone.parse("31.12.2022")) }
+  let!(:process_new) { create(:participatory_process, :active, :promoted, organization: organization, created_at: Time.zone.parse("01.01.2023")) }
 
   before do
     switch_to_host(organization.host)
@@ -14,16 +13,27 @@ describe "Visit a proposal", type: :system do
   end
 
   describe "music player" do
-    it "plays the music when the page is loaded" do
-      within first(".card__content") do
-        find("h2.card__title").click
+    context "when process is old" do
+      it "doesn't play music" do
+        within first("#highlighted-processes") do
+          find("h2.card__title", text: translated(process_old.title)).click
+        end
+        expect(page).to have_no_selector("audio")
       end
+    end
 
-      audio_element = find("audio#audio")
+    context "when process is new" do
+      it "plays the music when the page is loaded" do
+        within first("#highlighted-processes") do
+          find("h2.card__title", text: translated(process_new.title)).click
+        end
 
-      sleep 2
-      expect(audio_element[:paused]).to eq("false")
-      expect(audio_element[:loop]).to eq("true")
+        audio_element = find("audio#audio")
+
+        sleep 2
+        expect(audio_element[:paused]).to eq("false")
+        expect(audio_element[:loop]).to eq("true")
+      end
     end
   end
 end

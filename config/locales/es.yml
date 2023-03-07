@@ -27,9 +27,17 @@ es:
           zones: 'Zonas válidas:'
         invalid_document: Documento no válido
         name: Censo municipal
+    participatory_processes:
+      participatory_processes:
+        show:
+          title: Prozesu partaideak
+          audio:
+            title: Escucha la canción del presupuesto!
+            author: "Autor: quien sea"
+            rights: Todos los derechos reservados
+            audio_supporting: Su navegador no soporta el elemento audio.
   recaptcha:
     errors:
       verification_failed: No se ha podido verificar el registro con reCaptcha
   getxo:
     connection_error: Error de conexión con el censo municipal
-  
