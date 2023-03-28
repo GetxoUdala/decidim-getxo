@@ -27,9 +27,17 @@ es:
           zones: 'Zonas válidas:'
         invalid_document: Documento no válido
         name: Censo municipal
+    participatory_processes:
+      participatory_processes:
+        show:
+          title: Prozesu partaideak
+          audio:
+            title: Dale al play! ¡Ponle ritmo a la participación y siente la energía! Escucha la música que, a partir de ahora, acompañará a los procesos participativos. Anímate y participa
+            author: "Autora/Egilea: Mad Muasel (Lore Rouco Corona)"
+            rights: Todos los derechos reservados
+            audio_supporting: Su navegador no soporta el elemento audio.
   recaptcha:
     errors:
       verification_failed: No se ha podido verificar el registro con reCaptcha
   getxo:
     connection_error: Error de conexión con el censo municipal
-  

@@ -1,5 +1,16 @@
 ---
 en:
+  decidim:
+    participatory_processes:
+      participatory_processes:
+        show:
+          audio:
+            audio_supporting: Your browser does not support the audio element.
+            author: 'Author: Mad Muasel (Lore Rouco Corona)'
+            rights: All rights reserved
+            title: Click PLAY! Set the beat for participation and feel the energy!
+              Listen to the music that will accompany the processes of participation
+              from now on. Come and participate!
   hello: Hello world
   recaptcha:
     errors:

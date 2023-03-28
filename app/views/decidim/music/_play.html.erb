@@ -1,0 +1,24 @@
+<div class="row column">
+  <p><%= t("audio.title", scope: "decidim.participatory_processes.participatory_processes.show") %></p>
+  <audio controls autoplay preload loop id="audio" style="width: 100%;">
+    <source src="/music/GETXO_DEMO_5.mp3" type="audio/mpeg">
+    <%= t("audio.audio_supporting", scope: "decidim.participatory_processes.participatory_processes.show") %>
+  </audio>
+  <p>
+    <span><%= t("audio.author", scope: "decidim.participatory_processes.participatory_processes.show") %></span>
+    <span><%= t("audio.rights", scope: "decidim.participatory_processes.participatory_processes.show") %></span>
+  </p>
+</div>
+
+<script>
+    const audioElement = document.getElementById("audio");
+
+    function handleUserGesture(event) {
+        if (event.target.tagName !== "A" && audioElement.paused) {
+            audioElement.play();
+        }
+        document.removeEventListener("click", handleUserGesture);
+    }
+
+    document.addEventListener("click", handleUserGesture);
+</script>
