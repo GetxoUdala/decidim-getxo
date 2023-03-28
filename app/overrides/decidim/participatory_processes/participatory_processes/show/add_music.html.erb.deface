@@ -1,0 +1,2 @@
+<!-- insert_before ".row.column" -->
+<%= render "decidim/music/play" if current_participatory_space.created_at >= "2023-01-01".to_date %>
