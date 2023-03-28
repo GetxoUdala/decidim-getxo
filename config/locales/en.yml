@@ -5,10 +5,12 @@ en:
       participatory_processes:
         show:
           audio:
-            title: Listen to the budget song!
-            author: "Author: whoever"
+            audio_supporting: Your browser does not support the audio element.
+            author: 'Author: Mad Muasel (Lore Rouco Corona)'
             rights: All rights reserved
-            audio_supporting:  Your browser does not support the audio element.
+            title: Click PLAY! Set the beat for participation and feel the energy!
+              Listen to the music that will accompany the processes of participation
+              from now on. Come and participate!
   hello: Hello world
   recaptcha:
     errors:
