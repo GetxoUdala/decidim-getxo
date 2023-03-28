@@ -36,6 +36,17 @@ eu:
   decidim:
     accessibility:
       front_page_link: Link
+    followers:
+      followers_count: Jarraitzaileak
+    participatory_processes:
+      participatory_processes:
+        show:
+          title: Prozesu partaideak
+          audio:
+            title: Sakatu play! Jarri erritmoa parte-hartzeari eta sentitu energía! Entzun hemendik aurrera parte hartzeko prozesuak lagunduko dituen musika. Animatu eta hartu parte!
+            author: "Autora/Egilea: Mad Muasel (Lore Rouco Corona)"
+            rights: Derechos reservados
+            audio_supporting: Tu navegador no soporta el elemento de audio.
   layouts:
     decidim:
       decidim_awesome:
