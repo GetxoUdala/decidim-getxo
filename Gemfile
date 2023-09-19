@@ -4,13 +4,13 @@ source "https://rubygems.org"
 
 ruby RUBY_VERSION
 
-DECIDIM_VERSION = { git: "https://github.com/decidim/decidim", branch: "release/0.26-stable" }.freeze
+DECIDIM_VERSION = { git: "https://github.com/decidim/decidim", branch: "release/0.27-stable" }.freeze
 gem "decidim", DECIDIM_VERSION
 gem "decidim-consultations", DECIDIM_VERSION
 # gem "decidim-initiatives", DECIDIM_VERSION
 gem "decidim-decidim_awesome", git: "https://github.com/decidim-ice/decidim-module-decidim_awesome"
-gem "decidim-friendly_signup"
-gem "decidim-term_customizer", git: "https://github.com/openpoke/decidim-module-term_customizer"
+gem "decidim-friendly_signup", git: "https://github.com/OpenSourcePolitics/decidim-module-friendly_signup.git"
+gem "decidim-term_customizer", github: "mainio/decidim-module-term_customizer", branch: "master"
 gem "decidim-verifications", DECIDIM_VERSION
 
 gem "bootsnap", "~> 1.7"
@@ -35,7 +35,7 @@ group :development do
   gem "letter_opener_web", "~> 2.0"
   gem "listen", "~> 3.1"
   gem "rubocop-faker"
-  gem "spring", "~> 2.1"
+  gem "spring", "~> 4.1.1"
   gem "spring-watcher-listen", "~> 2.0"
   gem "web-console", "~> 4.2"
   gem "xliffle"
