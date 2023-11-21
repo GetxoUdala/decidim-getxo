@@ -1,15 +1,15 @@
 GIT
   remote: https://github.com/OpenSourcePolitics/decidim-module-friendly_signup.git
-  revision: 8b59953a247337d02f26eff4a034bf54977369f7
+  revision: 4ecc478bb8492653b7c7120103fcb3c2d1f74576
   specs:
     decidim-friendly_signup (0.4.5)
       decidim-core (~> 0.27)
 
 GIT
   remote: https://github.com/decidim-ice/decidim-module-decidim_awesome
-  revision: af40e0ce83f8db0a2a373b19ace3146dfd489465
+  revision: 720e68b1812490b65292c8fc203f35372a7aed2c
   specs:
-    decidim-decidim_awesome (0.10.1)
+    decidim-decidim_awesome (0.10.2)
       decidim-admin (>= 0.26.0, < 0.28)
       decidim-core (>= 0.26.0, < 0.28)
       deface (>= 1.5)
@@ -17,7 +17,7 @@ GIT
 
 GIT
   remote: https://github.com/decidim/decidim
-  revision: bf42a655f8f8a64e5030ca3c9a0c8a8909b70c93
+  revision: 4ded360d50f8771c8653ea214530f2a971131465
   branch: release/0.27-stable
   specs:
     decidim (0.27.4)
@@ -284,7 +284,7 @@ GEM
       thread_safe (~> 0.3, >= 0.3.1)
     base64 (0.2.0)
     batch-loader (1.5.0)
-    bcrypt (3.1.19)
+    bcrypt (3.1.20)
     better_html (1.0.16)
       actionview (>= 4.0)
       activesupport (>= 4.0)
@@ -550,7 +550,7 @@ GEM
       timeout
     net-smtp (0.4.0)
       net-protocol
-    nio4r (2.5.9)
+    nio4r (2.6.1)
     nokogiri (1.14.5-x86_64-darwin)
       racc (~> 1.4)
     nokogiri (1.14.5-x86_64-linux)
@@ -614,7 +614,7 @@ GEM
       actionmailer (>= 3)
       net-smtp
       premailer (~> 1.7, >= 1.7.9)
-    public_suffix (5.0.3)
+    public_suffix (5.0.4)
     puma (5.6.7)
       nio4r (~> 2.0)
     raabro (1.4.0)
