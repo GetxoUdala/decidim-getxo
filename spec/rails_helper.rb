@@ -7,14 +7,13 @@ require File.expand_path("../config/environment", __dir__)
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 require "spec_helper"
 require "rspec/rails"
+# Add additional requires below this line. Rails is not loaded until this point!
 
 require "decidim/dev"
 
 Decidim::Dev.dummy_app_path = File.expand_path(File.join(__dir__, ".."))
 
 require "decidim/dev/test/base_spec_helper"
-
-# Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
@@ -67,17 +66,4 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
-
-  # Make :en locale available in tests.
-  config.before do
-    available_locales = Decidim.available_locales + [:en]
-    default_locale = :en
-
-    I18n.available_locales = available_locales
-    I18n.default_locale = default_locale
-    I18n.locale = default_locale
-
-    Decidim.available_locales = available_locales
-    Decidim.default_locale = default_locale
-  end
 end

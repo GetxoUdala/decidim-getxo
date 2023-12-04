@@ -21,9 +21,6 @@
 /storage/*
 !/storage/.keep
 
-/node_modules
-/yarn-error.log
-
 /public/assets
 .byebug_history
 
@@ -54,3 +51,6 @@ spec/decidim_dummy_app
 /yarn-error.log
 yarn-debug.log*
 .yarn-integrity
+
+/public/sw.js*
+coverage/

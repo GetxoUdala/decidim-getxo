@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class GetxoZone < ApplicationRecord
-  RANGE_REGEXP = /(\A\d+(-(\d+)*)\z)|(\A[\d+(,\d)*]+\z)/.freeze
+  RANGE_REGEXP = /(\A\d+(-(\d+)*)\z)|(\A[\d+(,)*]+\z)/
 
   belongs_to :organization,
              foreign_key: "decidim_organization_id",
@@ -10,7 +10,7 @@ class GetxoZone < ApplicationRecord
              class_name: "GetxoStreet"
   enum numbers_constraint: { all_numbers: 0, odd_numbers: 1, even_numbers: 2 }
 
-  validates :street_id, :numbers_constraint, presence: true
+  validates :numbers_constraint, presence: true
   validates :numbers_range, format: { with: GetxoZone::RANGE_REGEXP }, if: ->(form) { form.numbers_range.present? }
   validate :unique_combination
 

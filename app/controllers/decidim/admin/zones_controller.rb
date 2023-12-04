@@ -26,6 +26,7 @@ module Decidim
         @form = form(GetxoZoneForm).from_model(zone)
       end
 
+      # rubocop:disable Rails/I18nLocaleTexts
       def create
         @form = form(GetxoZoneForm).from_params(params)
         CreateGetxoZone.call(@form) do
@@ -72,6 +73,7 @@ module Decidim
           end
         end
       end
+      # rubocop:enable Rails/I18nLocaleTexts
 
       private
 
