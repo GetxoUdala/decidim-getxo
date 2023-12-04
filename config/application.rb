@@ -5,7 +5,7 @@ require_relative "boot"
 require "decidim/rails"
 # Add the frameworks used by your app that are not loaded by Decidim.
 require "action_cable/engine"
-require "rails/test_unit/railtie"
+# require "rails/test_unit/railtie"
 # require "action_mailbox/engine"
 # require "action_text/engine"
 
@@ -16,7 +16,7 @@ Bundler.require(*Rails.groups)
 module DecidimTest
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
-    config.load_defaults 5.2
+    config.load_defaults 6.1
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
