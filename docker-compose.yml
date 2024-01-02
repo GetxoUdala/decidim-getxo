@@ -3,8 +3,8 @@ services:
   app:
     build: .
     volumes:
-      - ./public/uploads:/app/public/uploads
-      - ./storage:/app/storage
+      - decidim_uploads:/app/public/uploads
+      - decidim_storage:/app/storage
     restart: ${RESTART_POLICY:-always}
     environment:
       - RUN_RAILS=true
@@ -42,8 +42,8 @@ services:
   sidekiq:
     build: .
     volumes:
-      - ./public/uploads:/app/public/uploads
-      - ./storage:/app/storage
+      - decidim_uploads:/app/public/uploads
+      - decidim_storage:/app/storage
     restart: ${RESTART_POLICY:-always}
     environment:
       - DATABASE_URL=${DATABASE_URL:-postgres://postgres:decidim@db/decidim}
@@ -91,3 +91,5 @@ services:
 volumes:
   pg_data:
   redis_data:
+  decidim_uploads:
+  decidim_storage:
