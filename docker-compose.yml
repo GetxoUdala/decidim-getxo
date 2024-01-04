@@ -10,7 +10,8 @@ services:
       - 80:80
       - 443:443
     volumes:
-      - ./.local/share/docker/certs:/etc/ssl/certs
+      - /home/dockerexec/.local/share/docker/certs/privatekeymultidominiogetxo.pem:/etc/ssl/certs/privatekeymultidominiogetxo.pem
+      - /home/dockerexec/.local/share/docker/certs/ssl-bundle.pem:/etc/ssl/certs/ssl-bundle.pem
   app:
     build: .
     volumes:
@@ -90,7 +91,8 @@ services:
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-decidim}
       - POSTGRES_DB=${POSTGRES_DB:-decidim}
     volumes:
-      - ./.local/share/docker/certs:/certs
+      - /home/dockerexec/.local/share/docker/certs/privatekeymultidominiogetxo.pem:/certs/privatekeymultidominiogetxo.pem
+      - /home/dockerexec/.local/share/docker/certs/ssl-bundle.pem:/certs/ssl-bundle.pem
       - pg_data:/var/lib/postgresql/data
   redis:
     image: redis
