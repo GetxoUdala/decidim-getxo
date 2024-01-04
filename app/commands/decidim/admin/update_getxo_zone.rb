@@ -2,7 +2,7 @@
 
 module Decidim
   module Admin
-    class UpdateGetxoZone < Rectify::Command
+    class UpdateGetxoZone < Decidim::Command
       def initialize(form)
         @form = form
       end
