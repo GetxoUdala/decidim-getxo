@@ -548,7 +548,7 @@ GEM
       net-protocol
     net-protocol (0.2.2)
       timeout
-    net-smtp (0.4.0)
+    net-smtp (0.3.4)
       net-protocol
     nio4r (2.6.1)
     nokogiri (1.14.5-x86_64-darwin)
@@ -874,6 +874,7 @@ DEPENDENCIES
   faker (~> 2.14)
   letter_opener_web (~> 2.0)
   listen (~> 3.1)
+  net-smtp (~> 0.3.3)
   puma (>= 5.3.1)
   rubocop-faker
   ruby-ntlm
@@ -890,4 +891,4 @@ RUBY VERSION
    ruby 3.0.6p216
 
 BUNDLED WITH
-   2.4.21
+   2.5.4

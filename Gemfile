@@ -19,6 +19,8 @@ gem "deface"
 gem "puma", ">= 5.3.1"
 
 gem "ruby-ntlm"
+# net/smtp 0.4 does not work well with NTLM authentication
+gem "net-smtp", "~> 0.3.3"
 gem "sentry-rails"
 gem "sentry-ruby"
 
