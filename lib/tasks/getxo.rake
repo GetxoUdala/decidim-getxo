@@ -114,8 +114,11 @@ namespace :getxo do
                                    from: Decidim.mailer_sender,
                                    subject: "A test mail from #{Decidim.application_name}",
                                    body: "Sent by #{ENV.fetch("LOGNAME", nil)} in #{ENV.fetch("HOME", nil)} at #{Date.current}")
+    puts "Sending mail..."
     mail.deliver_now
-  rescue ArgumentError
+    puts "Mail sent!"
+  rescue ArgumentError => e
+    puts "\n\e[31mERROR: #{e.message}\e[0m\n\n"
     puts mail_usage
   end
 
