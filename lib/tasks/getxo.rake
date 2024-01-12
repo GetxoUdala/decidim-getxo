@@ -96,9 +96,10 @@ namespace :getxo do
   end
   desc "Test email server"
   task :mail_test, [:email] => :environment do |_task, args|
-    raise ArgumentError if args.email.blank?
+    email = args.email
+    raise ArgumentError if email.blank?
 
-    puts "Sending a test email to #{args.email}"
+    puts "Sending a test email to #{email}"
 
     if ENV["SMTP_SETTINGS"].present?
       settings_string = ENV["SMTP_SETTINGS"].gsub(/(\w+)\s*:/, '"\1":').gsub("\\", "").gsub("'", "")
@@ -109,7 +110,7 @@ namespace :getxo do
     puts "Using configuration:"
     puts ActionMailer::Base.smtp_settings
 
-    mail = ActionMailer::Base.mail(to: args.email,
+    mail = ActionMailer::Base.mail(to: email,
                                    from: Decidim.mailer_sender,
                                    subject: "A test mail from #{Decidim.application_name}",
                                    body: "Sent by #{ENV.fetch("LOGNAME", nil)} in #{ENV.fetch("HOME", nil)} at #{Date.current}")
