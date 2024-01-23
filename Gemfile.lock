@@ -889,6 +889,7 @@ DEPENDENCIES
   decidim-decidim_awesome!
   decidim-dev!
   decidim-friendly_signup
+  decidim-templates!
   decidim-term_customizer!
   decidim-verifications!
   deface

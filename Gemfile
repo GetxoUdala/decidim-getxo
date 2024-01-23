@@ -7,6 +7,7 @@ ruby RUBY_VERSION
 DECIDIM_VERSION = { git: "https://github.com/decidim/decidim", branch: "release/0.26-stable" }.freeze
 gem "decidim", DECIDIM_VERSION
 gem "decidim-consultations", DECIDIM_VERSION
+gem "decidim-templates", DECIDIM_VERSION
 # gem "decidim-initiatives", DECIDIM_VERSION
 gem "decidim-decidim_awesome", git: "https://github.com/decidim-ice/decidim-module-decidim_awesome"
 gem "decidim-friendly_signup"
