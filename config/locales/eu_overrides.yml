@@ -2405,7 +2405,8 @@ eu:
       user_menu:
         account: 'Erabiltzailearen kontua: %{name}'
   locale:
-    name_with_error: Ingelesa (Errorea!)
+    name: Euskera
+    name_with_error: Euskera (Errorea!)
   social_share_button:
     telegram: Telegram
     whatsapp_app: WhatsApp
