@@ -25,6 +25,7 @@ gem "faker", "~> 2.14"
 gem "ruby-ntlm"
 gem "sentry-rails"
 gem "sentry-ruby"
+gem "net-smtp", "~> 0.3.3"
 
 group :development, :test do
   gem "byebug", "~> 11.0", platform: :mri
