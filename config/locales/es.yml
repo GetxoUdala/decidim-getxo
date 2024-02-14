@@ -36,6 +36,11 @@ es:
             author: "Autores: colaboración Lore Rouco y Rubén G. Mateos"
             rights: Todos los derechos reservados
             audio_supporting: Su navegador no soporta el elemento audio.
+    system:
+      devise:
+        shared:
+          links:
+            log_in: Iniciar sesión
   recaptcha:
     errors:
       verification_failed: No se ha podido verificar el registro con reCaptcha

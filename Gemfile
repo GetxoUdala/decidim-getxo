@@ -10,7 +10,7 @@ gem "decidim-consultations", DECIDIM_VERSION
 # gem "decidim-initiatives", DECIDIM_VERSION
 gem "decidim-decidim_awesome", git: "https://github.com/decidim-ice/decidim-module-decidim_awesome"
 gem "decidim-friendly_signup", git: "https://github.com/OpenSourcePolitics/decidim-module-friendly_signup.git"
-gem "decidim-term_customizer", github: "mainio/decidim-module-term_customizer", branch: "master"
+gem "decidim-term_customizer", github: "mainio/decidim-module-term_customizer", branch: "release/0.27-stable"
 gem "decidim-verifications", DECIDIM_VERSION
 
 gem "bootsnap", "~> 1.7"
