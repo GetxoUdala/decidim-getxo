@@ -11,6 +11,8 @@ services:
       - 443:443
     volumes:
       - /home/dockerexec/.local/share/docker/certs/:/etc/ssl/certs
+    networks:
+      - getxo
   app:
     build: .
     volumes:
@@ -46,6 +48,8 @@ services:
     depends_on:
       - db
       - redis
+    networks:
+      - getxo
   db:
     image: postgres:14
     environment:
@@ -54,12 +58,20 @@ services:
       - POSTGRES_DB=${POSTGRES_DB:-decidim}
     volumes:
       - pg_data:/var/lib/postgresql/data
+    networks:
+      - getxo
   redis:
     image: redis
     volumes:
       - redis_data:/data
+    networks:
+      - getxo
 volumes:
   pg_data:
   redis_data:
   decidim_uploads:
   decidim_storage:
+networks:
+  getxo:
+    name: net_containers_service
+    external: true
