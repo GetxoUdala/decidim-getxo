@@ -13,6 +13,7 @@ services:
       - /home/dockerexec/.local/share/docker/certs/:/etc/ssl/certs
     networks:
       - getxo
+    restart: ${RESTART_POLICY:-always}
   app:
     build: .
     volumes:
@@ -60,12 +61,14 @@ services:
       - pg_data:/var/lib/postgresql/data
     networks:
       - getxo
+    restart: ${RESTART_POLICY:-always}
   redis:
     image: redis
     volumes:
       - redis_data:/data
     networks:
       - getxo
+    restart: ${RESTART_POLICY:-always}
 volumes:
   pg_data:
   redis_data:
