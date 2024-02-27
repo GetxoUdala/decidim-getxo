@@ -26,14 +26,6 @@ eu:
           date_of_birth: Jaioteguna
         invalid_document: Dokumentu baliogabea
         name: Udal errolda
-  recaptcha:
-    errors:
-      verification_failed: Ezin da egiaztatu reCaptcha-rekin erregistratzea
-  getxo:
-    connection_error: Lotura-errorea udal erroldarekin
-  
-
-  decidim:
     accessibility:
       front_page_link: Link
     followers:
@@ -47,6 +39,11 @@ eu:
             author: "Egileak: Lore Rouco eta Rubén G. Mateos kolaborazioa"
             rights: Derechos reservados
             audio_supporting: Tu navegador no soporta el elemento de audio.
+  recaptcha:
+    errors:
+      verification_failed: Ezin da egiaztatu reCaptcha-rekin erregistratzea
+  getxo:
+    connection_error: Lotura-errorea udal erroldarekin
   layouts:
     decidim:
       decidim_awesome:

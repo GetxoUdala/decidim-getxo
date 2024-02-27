@@ -19,7 +19,10 @@ Decidim::Verifications.register_workflow(:census_authorization_handler) do |work
   end
 end
 
-# User select2 to enable multiple zones selector in resource permissions
 Rails.application.config.to_prepare do
+  # use captcha on signup
+  Decidim::Devise::RegistrationsController.include(Decidim::Devise::RecaptchableSignUp)
+
+  # User select2 to enable multiple zones selector in resource permissions
   Decidim::Admin::ResourcePermissionsController.include(Decidim::Admin::NeedsMultiselectSnippets)
 end
