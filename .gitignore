@@ -55,3 +55,4 @@ yarn-debug.log*
 /public/sw.js*
 coverage/
 .local
+*.sql
