@@ -4,6 +4,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.nginx
+    pull_policy: build
     depends_on:
       - app
     ports:
@@ -16,6 +17,7 @@ services:
     restart: ${RESTART_POLICY:-always}
   app:
     build: .
+    pull_policy: build
     volumes:
       - /home/dockerexec/storage:/app/storage
     restart: ${RESTART_POLICY:-always}
