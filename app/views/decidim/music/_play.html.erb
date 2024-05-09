@@ -9,16 +9,3 @@
     <span><%= t("audio.rights", scope: "decidim.participatory_processes.participatory_processes.show") %></span>
   </p>
 </div>
-
-<script>
-    const audioElement = document.getElementById("audio");
-
-    function handleUserGesture(event) {
-        if (event.target.tagName !== "A" && audioElement.paused) {
-            audioElement.play();
-        }
-        document.removeEventListener("click", handleUserGesture);
-    }
-
-    document.addEventListener("click", handleUserGesture);
-</script>
