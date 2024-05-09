@@ -1,6 +1,6 @@
 <div class="row column">
   <p><%= t("audio.title", scope: "decidim.participatory_processes.participatory_processes.show") %></p>
-  <audio controls autoplay preload loop id="audio" style="width: 100%;">
+  <audio controls preload id="audio" style="width: 100%;">
     <source src="/music/GETXO_DEMO_5.mp3" type="audio/mpeg">
     <%= t("audio.audio_supporting", scope: "decidim.participatory_processes.participatory_processes.show") %>
   </audio>
@@ -10,6 +10,7 @@
   </p>
 </div>
 
+<% if ENV.fetch("GETXO_AUTOPLAY", nil).to_s.downcase == "true" %>
 <script>
     const audioElement = document.getElementById("audio");
 
@@ -22,3 +23,4 @@
 
     document.addEventListener("click", handleUserGesture);
 </script>
+<% end %>
