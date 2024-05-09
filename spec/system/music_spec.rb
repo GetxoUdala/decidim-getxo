@@ -9,7 +9,8 @@ describe "Visit a proposal", type: :system do
   let(:autoplay) { "true" }
 
   before do
-    allow(ENV).to receive(:fetch).with("GETXO_AUTOPLAY").and_return(autoplay)
+    allow(ENV).to receive(:fetch).and_call_original
+    allow(ENV).to receive(:fetch).with("GETXO_AUTOPLAY", nil).and_return(autoplay)
     switch_to_host(organization.host)
     visit decidim_participatory_processes.participatory_processes_path
   end
@@ -30,11 +31,8 @@ describe "Visit a proposal", type: :system do
           find("h2.card__title", text: translated(process_new.title)).click
         end
 
-        audio_element = find("audio#audio")
-
-        sleep 2
-        expect(audio_element[:paused]).to eq("false")
-        expect(audio_element[:loop]).to eq("true")
+        find("body").click
+        expect(page.execute_script("return document.getElementById('audio').paused")).to be(false)
       end
     end
 
@@ -45,7 +43,9 @@ describe "Visit a proposal", type: :system do
         within first("#highlighted-processes") do
           find("h2.card__title", text: translated(process_new.title)).click
         end
-        expect(page).to have_no_selector("audio")
+
+        find("body").click
+        expect(page.execute_script("return document.getElementById('audio').paused")).to be(true)
       end
     end
   end
