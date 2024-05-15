@@ -25,4 +25,5 @@ Rails.application.config.to_prepare do
 
   # User select2 to enable multiple zones selector in resource permissions
   Decidim::Admin::ResourcePermissionsController.include(Decidim::Admin::NeedsMultiselectSnippets)
+  Decidim::LayoutHelper.prepend(LayoutHelperOverride)
 end
