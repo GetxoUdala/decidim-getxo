@@ -48,6 +48,12 @@ services:
       - MAPS_PROVIDER=${MAPS_PROVIDER:-here}
       - RACK_ATTACK_SECRET
       - CENSUS_URL
+      - OMNIAUTH_FACEBOOK_APP_ID
+      - OMNIAUTH_FACEBOOK_APP_SECRET
+      - OMNIAUTH_GOOGLE_CLIENT_ID
+      - OMNIAUTH_GOOGLE_CLIENT_SECRET
+      - RECAPTCHA_SITE_KEY
+      - RECAPTCHA_SECRET_KEY
     depends_on:
       - db
       - redis
