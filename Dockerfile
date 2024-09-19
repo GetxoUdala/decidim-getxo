@@ -87,6 +87,7 @@ RUN apt-get update && \
     imagemagick \
     curl \
     supervisor && \
+    nano vim && \
     apt-get clean
 
 EXPOSE 3000
@@ -97,13 +98,6 @@ ENV RAILS_ENV production
 
 ARG RUN_RAILS
 ARG RUN_SIDEKIQ
-ARG COMMIT_SHA
-ARG COMMIT_TIME
-ARG COMMIT_VERSION
-
-ENV COMMIT_SHA ${COMMIT_SHA}
-ENV COMMIT_TIME ${COMMIT_TIME}
-ENV COMMIT_VERSION ${COMMIT_VERSION}
 
 # Add user
 RUN addgroup --system --gid 1000 app && \
