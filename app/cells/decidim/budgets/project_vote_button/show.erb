@@ -14,7 +14,11 @@
       disabled: vote_button_disabled?,
       title: vote_button_label do %>
   <% if resource_added? %>
-    <%= current_order.score_for(model) %>
+    <% if model.budget.settings.disable_custom_budgets %>
+      <%= icon("x", class: "icon--small", aria_label: vote_button_label, role: "img") %>
+    <% else %>
+      <%= current_order.score_for(model) %>
+    <% end %>
   <% else %>
     <%= icon("check", class: "icon--small", aria_label: vote_button_label, role: "img") %>
   <% end %>

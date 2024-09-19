@@ -9,9 +9,11 @@
         <ul class="budget-summary__selected-list">
           <% current_order.sorted_projects.each do |project| %>
             <li class="budget-summary__selected-item">
-              <span class="badge success budget-summary_project-score">
-                <%= current_order.score_for(project) %>
-              </span>
+              <% unless budget.component.settings.disable_custom_budgets %>
+                <span class="badge success budget-summary_project-score">
+                  <%= current_order.score_for(project) %>
+                </span>
+              <% end %>
               
               <%= link_to translated_attribute(project.title), resource_locator([budget, project]).path %>
               <strong class="budget-summary__selected-number">

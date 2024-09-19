@@ -16,6 +16,11 @@ es:
         month: Mes
         year: Año
   decidim:
+    components:
+      budgets:
+        settings:
+          global:
+            disable_custom_budgets: Deshabilitar presupuestos personalizados
     authorization_handlers:
       census_authorization_handler:
         connection_error: No ha sido posible realizar la verificación
