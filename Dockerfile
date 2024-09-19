@@ -86,7 +86,7 @@ RUN apt-get update && \
     apt-get install -y postgresql-client \
     imagemagick \
     curl \
-    supervisor && \
+    supervisor \
     nano vim && \
     apt-get clean
 
