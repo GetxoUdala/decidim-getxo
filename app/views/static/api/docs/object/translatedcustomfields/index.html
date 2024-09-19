@@ -1,78 +1,64 @@
 <div class="content"><h1>
-<a id="assemblymember" class="anchor" href="#assemblymember" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>AssemblyMember</h1>
-<p>An assembly member</p>
+<a id="translatedcustomfields" class="anchor" href="#translatedcustomfields" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>TranslatedCustomFields</h1>
+<p>A translated field</p>
 <h2>
 <a id="fields" class="anchor" href="#fields" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Fields</h2>
 <div class="field-entry ">
-  <span id="id" class="field-name anchored">id (<code><a href="/api/docs/scalar/id">ID!</a></code>)</span>
+  <span id="locales" class="field-name anchored">locales (<code><a href="/api/docs/scalar/string">[String]</a></code>)</span>
   <div class="description-wrapper">
-   <p>Internal ID of the member</p>
+   <p>Lists all the locales in which this translation is available</p>
   </div>
 </div>
 <div class="field-entry ">
-  <span id="fullname" class="field-name anchored">fullName (<code><a href="/api/docs/scalar/string">String</a></code>)</span>
+  <span id="translations" class="field-name anchored">translations (<code><a href="/api/docs/object/localizedcustomfields">[LocalizedCustomFields]!</a></code>)</span>
   <div class="description-wrapper">
-   <p>Full name of the member</p>
+   <p>All the localized custom fields for this translation.</p>
+     <table class="arguments">
+  <thead>
+  <tr>
+    <th>Argument</th>
+    <th>Type</th>
+    <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+  <td><code class="anchored">locales</code></td>
+  <td>
+    <code><a href="/api/docs/scalar/string">[String!]</a></code>
+  </td>
+  <td>
+    <p>A list of locales to scope the translations to.</p>
+   </td>
+  </tr>
+  </tbody>
+</table>
   </div>
 </div>
 <div class="field-entry ">
-  <span id="position" class="field-name anchored">position (<code><a href="/api/docs/scalar/string">String</a></code>)</span>
+  <span id="translation" class="field-name anchored">translation (<code><a href="/api/docs/scalar/json">JSON</a></code>)</span>
   <div class="description-wrapper">
-   <p>Position of the member in the assembly</p>
-  </div>
-</div>
-<div class="field-entry ">
-  <span id="user" class="field-name anchored">user (<code><a href="/api/docs/object/user">User</a></code>)</span>
-  <div class="description-wrapper">
-   <p>The corresponding decidim user</p>
-  </div>
-</div>
-<div class="field-entry ">
-  <span id="createdat" class="field-name anchored">createdAt (<code><a href="/api/docs/scalar/datetime">DateTime</a></code>)</span>
-  <div class="description-wrapper">
-   <p>The time this member was created</p>
-  </div>
-</div>
-<div class="field-entry ">
-  <span id="updatedat" class="field-name anchored">updatedAt (<code><a href="/api/docs/scalar/datetime">DateTime</a></code>)</span>
-  <div class="description-wrapper">
-   <p>The time this member was updated</p>
-  </div>
-</div>
-<div class="field-entry ">
-  <span id="weight" class="field-name anchored">weight (<code><a href="/api/docs/scalar/int">Int</a></code>)</span>
-  <div class="description-wrapper">
-   <p>Order of appearance in which it should be represented</p>
-  </div>
-</div>
-<div class="field-entry ">
-  <span id="gender" class="field-name anchored">gender (<code><a href="/api/docs/scalar/string">String</a></code>)</span>
-  <div class="description-wrapper">
-   <p>Gender of the member</p>
-  </div>
-</div>
-<div class="field-entry ">
-  <span id="birthplace" class="field-name anchored">birthplace (<code><a href="/api/docs/scalar/string">String</a></code>)</span>
-  <div class="description-wrapper">
-   <p>Birthplace of the member</p>
-  </div>
-</div>
-<div class="field-entry ">
-  <span id="designationdate" class="field-name anchored">designationDate (<code><a href="/api/docs/scalar/date">Date</a></code>)</span>
-  <div class="description-wrapper">
-   <p>Date of designation of the member</p>
-  </div>
-</div>
-<div class="field-entry ">
-  <span id="positionother" class="field-name anchored">positionOther (<code><a href="/api/docs/scalar/string">String</a></code>)</span>
-  <div class="description-wrapper">
-   <p>Custom position name</p>
-  </div>
-</div>
-<div class="field-entry ">
-  <span id="ceaseddate" class="field-name anchored">ceasedDate (<code><a href="/api/docs/scalar/date">Date</a></code>)</span>
-  <div class="description-wrapper">
-   <p>Date of cease for the member</p>
+   <p>Returns a single translation given a locale.</p>
+     <table class="arguments">
+  <thead>
+  <tr>
+    <th>Argument</th>
+    <th>Type</th>
+    <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+  <td><code class="anchored">locale</code></td>
+  <td>
+    <code><a href="/api/docs/scalar/string">String!</a></code>
+  </td>
+  <td>
+    <p>A locale to search for</p>
+   </td>
+  </tr>
+  </tbody>
+</table>
   </div>
 </div></div>
 <div id="sidebar"><ul class="categories">

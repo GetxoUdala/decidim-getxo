@@ -1,78 +1,24 @@
 <div class="content"><h1>
-<a id="assemblymember" class="anchor" href="#assemblymember" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>AssemblyMember</h1>
-<p>An assembly member</p>
+<a id="localizedcustomfields" class="anchor" href="#localizedcustomfields" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>LocalizedCustomFields</h1>
+<p>Represents a particular translation of a LocalizedCustomFieldsType</p>
 <h2>
 <a id="fields" class="anchor" href="#fields" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Fields</h2>
 <div class="field-entry ">
-  <span id="id" class="field-name anchored">id (<code><a href="/api/docs/scalar/id">ID!</a></code>)</span>
+  <span id="locale" class="field-name anchored">locale (<code><a href="/api/docs/scalar/string">String!</a></code>)</span>
   <div class="description-wrapper">
-   <p>Internal ID of the member</p>
+   <p>The standard locale of this translation.</p>
   </div>
 </div>
 <div class="field-entry ">
-  <span id="fullname" class="field-name anchored">fullName (<code><a href="/api/docs/scalar/string">String</a></code>)</span>
+  <span id="fields" class="field-name anchored">fields (<code><a href="/api/docs/scalar/json">JSON</a></code>)</span>
   <div class="description-wrapper">
-   <p>Full name of the member</p>
+   <p>The fields of this translation.</p>
   </div>
 </div>
 <div class="field-entry ">
-  <span id="position" class="field-name anchored">position (<code><a href="/api/docs/scalar/string">String</a></code>)</span>
+  <span id="machinetranslated" class="field-name anchored">machineTranslated (<code><a href="/api/docs/scalar/boolean">Boolean!</a></code>)</span>
   <div class="description-wrapper">
-   <p>Position of the member in the assembly</p>
-  </div>
-</div>
-<div class="field-entry ">
-  <span id="user" class="field-name anchored">user (<code><a href="/api/docs/object/user">User</a></code>)</span>
-  <div class="description-wrapper">
-   <p>The corresponding decidim user</p>
-  </div>
-</div>
-<div class="field-entry ">
-  <span id="createdat" class="field-name anchored">createdAt (<code><a href="/api/docs/scalar/datetime">DateTime</a></code>)</span>
-  <div class="description-wrapper">
-   <p>The time this member was created</p>
-  </div>
-</div>
-<div class="field-entry ">
-  <span id="updatedat" class="field-name anchored">updatedAt (<code><a href="/api/docs/scalar/datetime">DateTime</a></code>)</span>
-  <div class="description-wrapper">
-   <p>The time this member was updated</p>
-  </div>
-</div>
-<div class="field-entry ">
-  <span id="weight" class="field-name anchored">weight (<code><a href="/api/docs/scalar/int">Int</a></code>)</span>
-  <div class="description-wrapper">
-   <p>Order of appearance in which it should be represented</p>
-  </div>
-</div>
-<div class="field-entry ">
-  <span id="gender" class="field-name anchored">gender (<code><a href="/api/docs/scalar/string">String</a></code>)</span>
-  <div class="description-wrapper">
-   <p>Gender of the member</p>
-  </div>
-</div>
-<div class="field-entry ">
-  <span id="birthplace" class="field-name anchored">birthplace (<code><a href="/api/docs/scalar/string">String</a></code>)</span>
-  <div class="description-wrapper">
-   <p>Birthplace of the member</p>
-  </div>
-</div>
-<div class="field-entry ">
-  <span id="designationdate" class="field-name anchored">designationDate (<code><a href="/api/docs/scalar/date">Date</a></code>)</span>
-  <div class="description-wrapper">
-   <p>Date of designation of the member</p>
-  </div>
-</div>
-<div class="field-entry ">
-  <span id="positionother" class="field-name anchored">positionOther (<code><a href="/api/docs/scalar/string">String</a></code>)</span>
-  <div class="description-wrapper">
-   <p>Custom position name</p>
-  </div>
-</div>
-<div class="field-entry ">
-  <span id="ceaseddate" class="field-name anchored">ceasedDate (<code><a href="/api/docs/scalar/date">Date</a></code>)</span>
-  <div class="description-wrapper">
-   <p>Date of cease for the member</p>
+   <p>Whether this string is machine translated or not.</p>
   </div>
 </div></div>
 <div id="sidebar"><ul class="categories">

@@ -8,7 +8,7 @@ DECIDIM_VERSION = { github: "decidim/decidim", branch: "release/0.27-stable" }.f
 gem "decidim", DECIDIM_VERSION
 gem "decidim-consultations", DECIDIM_VERSION
 # gem "decidim-initiatives", DECIDIM_VERSION
-gem "decidim-decidim_awesome", github: "decidim-ice/decidim-module-decidim_awesome"
+gem "decidim-decidim_awesome", github: "decidim-ice/decidim-module-decidim_awesome", branch: "release/0.27-stable"
 gem "decidim-friendly_signup", github: "OpenSourcePolitics/decidim-module-friendly_signup"
 gem "decidim-term_customizer", github: "mainio/decidim-module-term_customizer", branch: "release/0.27-stable"
 
