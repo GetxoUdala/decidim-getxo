@@ -89,7 +89,7 @@ Rails.application.config.to_prepare do
     end
 
     def number
-      content_tag :div, count, class: "text-large"
+      content_tag :div, votes_count, class: "text-large"
     end
   end
 
