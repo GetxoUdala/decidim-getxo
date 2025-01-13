@@ -1,6 +1,6 @@
-FROM ruby:3.0 AS builder
+FROM ruby:3.1.6 AS builder
 
-RUN NODE_MAJOR=16 && \
+RUN NODE_MAJOR=18 && \
     apt-get update && apt-get upgrade -y && apt-get install -y ca-certificates curl gnupg && \
     mkdir -p /etc/apt/keyrings && \
     curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg && \
@@ -80,7 +80,7 @@ RUN mv config/credentials.bak config/credentials 2>/dev/null || true
 RUN rm -rf node_modules tmp/cache vendor/bundle test spec app/packs .git
 
 # This image is for production env only
-FROM ruby:3.0-slim AS final
+FROM ruby:3.1.6-slim AS final
 
 RUN apt-get update && \
     apt-get install -y postgresql-client \

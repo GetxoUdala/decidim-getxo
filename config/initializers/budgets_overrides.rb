@@ -41,7 +41,7 @@ Rails.application.config.to_prepare do
     end
 
     def line_item_for(project)
-      line_items.find_by(project: project)
+      line_items.find_by(project:)
     end
 
     def score_for(project)

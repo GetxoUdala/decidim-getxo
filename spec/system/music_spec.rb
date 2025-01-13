@@ -2,10 +2,10 @@
 
 require "rails_helper"
 
-describe "Visit a proposal", type: :system do
+describe "Visit a proposal" do # rubocop:disable RSpec/DescribeClass
   let(:organization) { create(:organization) }
-  let!(:process_old) { create(:participatory_process, :active, :promoted, organization: organization, created_at: "31.12.2022".to_date) }
-  let!(:process_new) { create(:participatory_process, :active, :promoted, organization: organization, created_at: "01.01.2023".to_date) }
+  let!(:process_old) { create(:participatory_process, :active, :promoted, organization:, created_at: "31.12.2022".to_date) }
+  let!(:process_new) { create(:participatory_process, :active, :promoted, organization:, created_at: "01.01.2023".to_date) }
   let(:autoplay) { "true" }
 
   before do

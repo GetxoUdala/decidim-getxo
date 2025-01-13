@@ -1,14 +1,9 @@
 .budget-summary_project-score {
-  display: inline-block;
-  width: 2rem;
-  height: 2rem;
-  font-size: 1rem;
-  padding: 0.2rem 0.7rem;
-  margin: 0.5rem 0.25rem;
+  @apply inline-block w-8 h-8 text-xs p-2 m-2;
 }
 
 #project {
   [id$="budget-button"] {
-    display: none;
+    @apply hidden;
   }
 }

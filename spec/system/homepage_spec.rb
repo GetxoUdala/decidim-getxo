@@ -2,8 +2,8 @@
 
 require "rails_helper"
 
-describe "Visit the home page", type: :system, perform_enqueued: true do
-  let(:organization) { create :organization }
+describe "Visit the home page", perform_enqueued: true do # rubocop:disable RSpec/DescribeClass
+  let(:organization) { create(:organization) }
 
   before do
     switch_to_host(organization.host)
@@ -16,7 +16,7 @@ describe "Visit the home page", type: :system, perform_enqueued: true do
 
   it "changes the locale to the chosen one" do
     within_language_menu do
-      click_link "Euskera"
+      click_on "Euskera"
     end
 
     expect(page).to have_content("Hasiera")

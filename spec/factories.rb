@@ -11,7 +11,7 @@ FactoryBot.define do
   end
   factory :getxo_zone, class: "GetxoZone" do
     name { Faker::Address.street_name }
-    street { create :getxo_street }
+    street { create(:getxo_street) }
     organization
     numbers_constraint { "all_numbers" }
   end
