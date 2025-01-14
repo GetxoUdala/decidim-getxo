@@ -32,5 +32,14 @@ jobs:
       - run: bundle exec rubocop -P
         name: Lint Ruby files
 
-      - run: bundle exec mdl *.md
+      - run: npm run lint
+        name: Lint JavaScript files
+
+      - run: npm run stylelint
+        name: Lint CSS files
+
+      - run: npm run markdownlint
         name: Lint Markdown files
+
+      - run: npm run linthtml
+        name: Lint HTML files

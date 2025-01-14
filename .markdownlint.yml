@@ -1,0 +1,12 @@
+# frozen_string_literal: true
+
+default: true
+
+first-line-h1: false
+line-length: false
+no-bare-urls: false
+no-inline-html: false
+ol-prefix: false
+
+no-trailing-punctuation:
+    punctuation: ".,;:!"
