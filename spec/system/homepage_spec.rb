@@ -16,7 +16,7 @@ describe "Visit the home page", perform_enqueued: true do # rubocop:disable RSpe
 
   it "changes the locale to the chosen one" do
     within_language_menu do
-      click_on "Euskera"
+      click_on "Euskara"
     end
 
     expect(page).to have_content("Hasiera")

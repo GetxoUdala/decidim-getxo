@@ -19,7 +19,7 @@ describe "Visit a proposal" do # rubocop:disable RSpec/DescribeClass
     context "when process is old" do
       it "doesn't play music" do
         within first("#highlighted-processes") do
-          find("h2.card__title", text: translated(process_old.title)).click
+          find("h3", text: translated(process_old.title)).click
         end
         expect(page).to have_no_selector("audio")
       end
@@ -28,7 +28,7 @@ describe "Visit a proposal" do # rubocop:disable RSpec/DescribeClass
     context "when process is new" do
       it "plays the music when the page is loaded" do
         within first("#highlighted-processes") do
-          find("h2.card__title", text: translated(process_new.title)).click
+          find("h3", text: translated(process_new.title)).click
         end
 
         find("body").click
@@ -41,10 +41,12 @@ describe "Visit a proposal" do # rubocop:disable RSpec/DescribeClass
 
       it "doesn't play the music when the page is loaded" do
         within first("#highlighted-processes") do
-          find("h2.card__title", text: translated(process_new.title)).click
+          find("h3", text: translated(process_new.title)).click
         end
 
         find("body").click
+        expect(page).to have_css("#audio")
+
         expect(page.execute_script("return document.getElementById('audio').paused")).to be(true)
       end
     end
