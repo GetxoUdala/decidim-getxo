@@ -1,7 +1,7 @@
-var $orderTotalBudget = $('#order-total-budget');
-var $orderSelectedProjects = $('#order-selected-projects');
-var $orderProgress = $('#order-progress');
-var $budgetConfirm = $('#budget-confirm');
+const $orderTotalBudget = $('#order-total-budget');
+const $orderSelectedProjects = $('#order-selected-projects');
+const $orderProgress = $('#order-progress');
+const $budgetConfirm = $('#budget-confirm');
 
 morphdom($orderTotalBudget[0], '<%= j(render partial: "decidim/budgets/projects/order_total_budget").strip.html_safe %>');
 morphdom($orderSelectedProjects[0], '<%= j(render partial: "decidim/budgets/projects/order_selected_projects").strip.html_safe %>');
@@ -12,13 +12,13 @@ $("#order-progress").foundation();
 $(".budget-summary__selected").foundation();
 
 <% project.budget.projects.each_with_index do |p| %>
-  var $projectItem = $('#project-<%= p.id %>-item');
-  if ($projectItem.length > 0) {
+const $projectItem = $('#project-<%= p.id %>-item');
+if ($projectItem.length > 0) {
     morphdom($projectItem[0], '<%= j(render partial: "decidim/budgets/projects/project", locals: { project: p }).strip.html_safe %>');
   }
 
-  var $projectBudgetButton = $('#project-<%= p.id %>-budget-button');
-  if ($projectBudgetButton.length > 0) {
+const $projectBudgetButton = $('#project-<%= p.id %>-budget-button');
+if ($projectBudgetButton.length > 0) {
     morphdom($projectBudgetButton[0], '<%= j(render partial: "decidim/budgets/projects/project_budget_button", locals: { project: p }).strip.html_safe %>');
   }
 <% end %>

@@ -8,7 +8,7 @@
   "scripts": {
     "markdownlint": "markdownlint '*.md'",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "eslint --no-error-on-unmatched-pattern --ignore-pattern app/packs/vendor --ext .js app/packs",
+    "eslint": "eslint --no-error-on-unmatched-pattern --ignore-pattern app/packs/vendor --ext .js app/packs",
     "lint-fix": "eslint -c .eslintrc.json --ext .js app/packs/ --fix",
     "stylelint": "stylelint app/packs/**/*.scss",
     "stylelint-fix": "stylelint **/*.scss --fix"
@@ -51,29 +51,17 @@
     "extends @decidim/browserslist-config"
   ],
   "devDependencies": {
-    "@babel/eslint-parser": "^7.26.5",
-    "@babel/plugin-proposal-class-properties": "^7.18.6",
-    "@babel/plugin-proposal-private-methods": "^7.18.6",
-    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
-    "@babel/plugin-transform-classes": "^7.25.9",
-    "@babel/plugin-transform-regenerator": "^7.25.9",
-    "@babel/plugin-transform-runtime": "^7.25.9",
-    "@babel/preset-env": "^7.26.0",
-    "@babel/preset-react": "^7.26.3",
+    "@babel/eslint-parser": "^7.25.1",
+    "@babel/plugin-transform-classes": "^7.25.4",
+    "@babel/plugin-transform-regenerator": "^7.24.7",
+    "@babel/plugin-transform-runtime": "^7.25.4",
+    "@babel/preset-env": "^7.25.4",
+    "@babel/preset-react": "^7.24.7",
     "@decidim/dev": "^0.28.0",
     "@decidim/eslint-config": "^0.28.0",
     "@decidim/prettier-config": "^0.28.0",
     "@decidim/stylelint-config": "^0.28.0",
-    "@tarekraafat/autocomplete.js": "^10.2.7",
-    "@webpack-cli/serve": "^1.7.0",
-    "eslint": "^8.7.0",
-    "eslint-config-prettier": "^8.10.0",
-    "eslint-config-standard": "^17.0.0",
-    "eslint-plugin-import": "^2.30.0",
-    "eslint-plugin-standard": "^3.1.0",
     "postcss-scss": "^4.0.9",
-    "sass-embedded": "~1.57.1",
-    "stylelint": "^15.3.0",
-    "webpack-dev-server": "^4.9.2"
+    "sass-embedded": "~1.57.1"
   }
 }

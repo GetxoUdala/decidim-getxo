@@ -2,11 +2,12 @@
 
 # Admin menu
 Decidim.menu :admin_menu do |menu|
-  menu.item "Censo Getxo",
-            "/admin/getxo",
-            icon_name: "dial",
-            position: 1.2,
-            active: :inclusive
+  menu.add_item :getxo,
+                "Censo Getxo",
+                "/admin/getxo",
+                icon_name: "dashboard-2-line",
+                position: 1.2,
+                active: :inclusive
 end
 
 # Multiselect for street verificator
