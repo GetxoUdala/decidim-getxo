@@ -35,11 +35,11 @@ describe "Orders" do
       end
 
       after do
-        within "#order-progress .budget-summary__content" do
+        within "#order-progress .budget-summary__progressbox-buttons" do
           page.find(".button", match: :first).click
         end
 
-        expect(page).to have_css("#budget-confirm", visible: :visible)
+        expect(page).to have_css("#budget-confirm")
 
         within "#budget-confirm" do
           page.find_all(".budget-summary__selected-item").each do |element|
@@ -49,8 +49,11 @@ describe "Orders" do
               expect(element.text).to include("2 #{first_project.title["en"]}")
             end
           end
-          click_on(class: "form button")
+          click_on "Confirm"
         end
+
+        expect(page).to have_css("#project-#{first_project.id}-item .budget-summary_project-score", text: "2")
+        expect(page).to have_css("#project-#{last_project.id}-item .budget-summary_project-score", text: "3")
 
         expect(Decidim::Budgets::Order.find_by(budget:, user:)).to be_checked_out
         expect(Decidim::Budgets::Project.find(first_project.id).confirmed_orders_count).to be 2
@@ -63,7 +66,6 @@ describe "Orders" do
         end
 
         expect(page).to have_css("#project-#{first_project.id}-item .budget-list__action", text: "3")
-        expect(page).to have_css("#project-#{first_project.id}-item .project-votes", text: "3")
         expect(Decidim::Budgets::LineItem.where(order: Decidim::Budgets::Order.find_by(budget:, user:)).count).to be 1
 
         within "#project-#{last_project.id}-item" do
@@ -71,7 +73,6 @@ describe "Orders" do
         end
 
         expect(page).to have_css("#project-#{last_project.id}-item .budget-list__action", text: "2")
-        expect(page).to have_css("#project-#{last_project.id}-item .project-votes", text: "2")
         expect(Decidim::Budgets::LineItem.where(order: Decidim::Budgets::Order.find_by(budget:, user:)).count).to be 2
 
         within "#project-#{first_project.id}-item" do
@@ -79,9 +80,7 @@ describe "Orders" do
         end
 
         expect(page).to have_css("#project-#{first_project.id}-item .budget-list__action", text: "")
-        expect(page).to have_css("#project-#{first_project.id}-item .project-votes", text: "0")
         expect(page).to have_css("#project-#{last_project.id}-item .budget-list__action", text: "3")
-        expect(page).to have_css("#project-#{last_project.id}-item .project-votes", text: "3")
         expect(Decidim::Budgets::LineItem.where(order: Decidim::Budgets::Order.find_by(budget:, user:)).count).to be 1
 
         within "#project-#{first_project.id}-item" do
@@ -89,9 +88,7 @@ describe "Orders" do
         end
 
         expect(page).to have_css("#project-#{first_project.id}-item .budget-list__action", text: "2")
-        expect(page).to have_css("#project-#{first_project.id}-item .project-votes", text: "2")
         expect(page).to have_css("#project-#{last_project.id}-item .budget-list__action", text: "3")
-        expect(page).to have_css("#project-#{last_project.id}-item .project-votes", text: "3")
         expect(Decidim::Budgets::LineItem.where(order: Decidim::Budgets::Order.find_by(budget:, user:)).count).to be 2
 
         expect(Decidim::Budgets::Order.find_by(budget:, user:)).not_to be_checked_out
