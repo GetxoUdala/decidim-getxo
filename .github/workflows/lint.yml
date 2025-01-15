@@ -29,14 +29,17 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
 
-      - run: bundle exec rubocop -P
-        name: Lint Ruby files
+      - name: Install JS dependencies
+        run: npm ci
 
-      - run: npm run eslint
-        name: Lint JavaScript files
+      - name: Lint Ruby files
+        run: bundle exec rubocop -P
 
-      - run: npm run stylelint
-        name: Lint CSS files
+      - name: Lint JavaScript files
+        run: npm run eslint
 
-      - run: npm run markdownlint
-        name: Lint Markdown files
+      - name: Lint CSS files
+        run: npm run stylelint
+
+      - name: Lint Markdown files
+        run: npm run markdownlint
