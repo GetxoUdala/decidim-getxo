@@ -28,6 +28,5 @@ Rails.application.config.to_prepare do
                   Decidim::Admin::Engine.routes.url_helpers.streets_admin_getxo_index_path,
                   position: 4,
                   active: is_active_link?(Decidim::Admin::Engine.routes.url_helpers.streets_admin_getxo_index_path)
-
   end
 end
