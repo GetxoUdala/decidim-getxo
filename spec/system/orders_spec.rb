@@ -35,9 +35,11 @@ describe "Orders" do
       end
 
       after do
-        within "#order-progress" do
-          click_on(class: "budget-summary__progressbox button")
+        within "#order-progress .budget-summary__content" do
+          page.find(".button", match: :first).click
         end
+
+        expect(page).to have_css("#budget-confirm", visible: :visible)
 
         within "#budget-confirm" do
           page.find_all(".budget-summary__selected-item").each do |element|

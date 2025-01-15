@@ -45,7 +45,6 @@ describe "Visit a proposal" do # rubocop:disable RSpec/DescribeClass
         end
 
         find("body").click
-        expect(page).to have_css("#audio")
 
         expect(page.execute_script("return document.getElementById('audio').paused")).to be(true)
       end

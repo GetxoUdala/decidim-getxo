@@ -3,6 +3,7 @@
 Rails.application.config.to_prepare do
   # Register the new icons
   Decidim.icons.register(name: "dashboard-2-line", icon: "dashboard-2-line", category: "system", description: "", engine: :admin_getxo)
+  Decidim.icons.register(name: "check", icon: "check", category: "system", description: "", engine: :core)
 
   # Register the new menu item
   Decidim.menu :admin_getxo_menu do |menu|
