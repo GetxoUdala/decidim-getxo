@@ -32,7 +32,7 @@ jobs:
       - run: bundle exec rubocop -P
         name: Lint Ruby files
 
-      - run: npm run lint
+      - run: npm run eslint
         name: Lint JavaScript files
 
       - run: npm run stylelint
