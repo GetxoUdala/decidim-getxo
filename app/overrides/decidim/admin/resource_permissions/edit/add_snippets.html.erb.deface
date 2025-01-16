@@ -1,0 +1,4 @@
+<!-- insert_before 'section#components' -->
+
+<% append_stylesheet_pack_tag "decidim_admin_getxo_selects" %>
+<% append_javascript_pack_tag "decidim_admin_getxo_selects" %>

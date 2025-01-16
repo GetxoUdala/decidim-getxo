@@ -37,7 +37,6 @@ end
 
 # Register the new icons
 Decidim.icons.register(name: "dashboard-2-line", icon: "dashboard-2-line", category: "system", description: "", engine: :admin_getxo)
-Decidim.icons.register(name: "check", icon: "check", category: "system", description: "", engine: :core)
 
 # Multiselect for street verificator
 Decidim::Verifications.register_workflow(:census_authorization_handler) do |workflow|
@@ -52,8 +51,5 @@ end
 Rails.application.config.to_prepare do
   # use captcha on signup
   Decidim::Devise::RegistrationsController.include(Decidim::Devise::RecaptchableSignUp)
-
-  # User select2 to enable multiple zones selector in resource permissions
-  Decidim::Admin::ResourcePermissionsController.include(Decidim::Admin::NeedsMultiselectSnippets)
   Decidim::LayoutHelper.prepend(LayoutHelperOverride)
 end
