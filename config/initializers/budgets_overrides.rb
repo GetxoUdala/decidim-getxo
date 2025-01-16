@@ -106,7 +106,7 @@ Rails.application.config.to_prepare do
       return original_hint if model.budget.component.settings.disable_custom_budgets
 
       contents = []
-      contents << icon("check", role: "img", "aria-hidden": true)
+      contents << icon("check-line", role: "img", "aria-hidden": true)
       contents << " "
       contents << t("decidim.budgets.projects.project.you_voted")
       contents << " "
