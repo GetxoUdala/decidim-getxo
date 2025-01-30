@@ -14,20 +14,12 @@ gem "deface"
 
 gem "puma", ">= 6.3.1"
 
-gem "ruby-ntlm"
-# net/smtp 0.4 does not work well with NTLM authentication
-gem "net-smtp", "~> 0.3.3"
-gem "sentry-rails"
-gem "sentry-ruby"
-
 group :development, :test do
   gem "byebug", "~> 11.0", platform: :mri
 
   gem "brakeman", "~> 5.4"
   gem "decidim-dev", DECIDIM_VERSION
   gem "faker", "~> 3.2"
-  gem "net-imap", "~> 0.2.3"
-  gem "net-pop", "~> 0.1.1"
   gem "rubocop-rspec", "~> 2.20.0"
 end
 
