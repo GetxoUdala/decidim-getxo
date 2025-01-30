@@ -1,5 +1,5 @@
-<!-- insert_before "erb[loud]:contains('invisible_captcha')" -->
+<!-- insert_after "#card__tos" -->
 
-<div class="mb-s">
+<div class="mb-4">
 	<%= recaptcha_tag %>
 </div>
