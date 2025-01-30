@@ -1,4 +1,4 @@
-<!-- insert_after ".actions" -->
+<!-- insert_before "erb[loud]:contains('invisible_captcha')" -->
 
 <div class="mb-s">
 	<%= recaptcha_tag %>
