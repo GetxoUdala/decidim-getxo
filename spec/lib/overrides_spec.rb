@@ -11,7 +11,8 @@ checksums = [
     files: {
       # layouts
       "/app/views/decidim/devise/registrations/new.html.erb" => "6f8ab8020d181e9ed5cd9cf9de0c97ae",
-      "/app/controllers/decidim/devise/registrations_controller.rb" => "d5f7e3d61b62c3ce2704ecd48f2a080c"
+      "/app/controllers/decidim/devise/registrations_controller.rb" => "d5f7e3d61b62c3ce2704ecd48f2a080c",
+      "/app/views/layouts/decidim/header/_main.html.erb" => "a6496ec11e073062743a927ee3c8bd3c"
     }
   },
   {
