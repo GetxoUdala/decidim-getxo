@@ -10,7 +10,7 @@ gem "decidim-decidim_awesome"
 gem "decidim-term_customizer", github: "mainio/decidim-module-term_customizer"
 
 gem "bootsnap", "~> 1.4"
-gem "deface"
+gem "deface", ">= 1.9"
 
 gem "puma", ">= 6.3.1"
 
