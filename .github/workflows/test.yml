@@ -9,7 +9,7 @@ on:
 env:
   RUBY_VERSION: 3.1.6
   NODE_VERSION: 18.17.1
-  CHROME_VERSION: "119.0.6045.105"
+  CHROME_VERSION: "126.0.6478.182"
 
 jobs:
   test:
