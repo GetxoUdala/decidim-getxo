@@ -75,12 +75,17 @@ RUN mv config/credentials.bak config/credentials 2>/dev/null || true
 
 RUN rm -rf node_modules tmp/cache vendor/bundle test spec app/packs .git
 
-COPY ./.git /app/.git
-RUN echo "REVISION=$(git describe --tags --always)" > /app/.env && \
-    echo "AUTHOR=$(git log -1 --pretty=%an)" >> /app/.env && \
-    echo "EMAIL=$(git log -1 --pretty=%ae)" >> /app/.env && \
-    echo "DESCRIPTION=$(git log -1 --pretty=%s)" >> /app/.env && \
-    echo "DATE=$(git log -1 --pretty=%cd)" >> /app/.env && \
+ARG GIT_BRANCH=upgrade-28
+ENV GIT_BRANCH=${GIT_BRANCH}
+RUN env > /app/envcheck
+RUN git init . && \
+    git remote add origin https://github.com/GetxoUdala/decidim-getxo && \
+    git fetch origin upgrade-28 --depth 1 && \
+    echo "REVISION=$(git describe --tags --always $GIT_BRANCH)" > /app/.env && \
+    echo "AUTHOR=$(git log -1 --pretty=%an $GIT_BRANCH)" >> /app/.env && \
+    echo "EMAIL=$(git log -1 --pretty=%ae $GIT_BRANCH)" >> /app/.env && \
+    echo "DESCRIPTION=$(git log -1 --pretty=%s $GIT_BRANCH)" >> /app/.env && \
+    echo "DATE=$(git log -1 --pretty=%cd $GIT_BRANCH)" >> /app/.env && \
     rm -rf /app/.git
 
 # This image is for production env only
