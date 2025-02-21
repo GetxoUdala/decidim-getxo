@@ -171,7 +171,8 @@ GIT
 
 GIT
   remote: https://github.com/mainio/decidim-module-term_customizer.git
-  revision: 9133eea57ebfc4164b640efd1ac6b9ca1628c793
+  revision: 063bac05464a1138ddb3a2e0539656d27f76b88b
+  branch: l10n_main
   specs:
     decidim-term_customizer (0.28.0)
       decidim-admin (~> 0.28.0)
@@ -766,7 +767,7 @@ GEM
       activesupport (>= 6.1)
       sprockets (>= 3.0.0)
     ssrf_filter (1.2.0)
-    stringio (3.1.4)
+    stringio (3.1.5)
     temple (0.10.3)
     terminal-table (4.0.0)
       unicode-display_width (>= 1.1.1, < 4)

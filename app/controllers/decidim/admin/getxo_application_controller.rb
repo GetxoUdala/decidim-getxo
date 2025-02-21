@@ -10,6 +10,7 @@ module Decidim
       def logged_and_admin?
         return if current_user&.admin?
 
+        flash[:alert] = "Admins only!"
         redirect_to decidim_admin.root_path
       end
     end

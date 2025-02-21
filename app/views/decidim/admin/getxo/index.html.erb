@@ -7,7 +7,7 @@
   </div>
 
   <div class="card-driver">
-    <h2>TestDBConnection:</h2>
+    <h2>TestDBconnection:</h2>
     <code class="code-block"><%= service.try :slim_response %></code>
   </div>
 
@@ -18,25 +18,20 @@
         <div class="card pt-4">
           <div class="card-section">
             <div class="row column">
-              <%= form.collection_select :street_id, streets, :id, :name %>
-            </div>
-
-            <div class="row column">
               <%= f.text_field :document_number %>
             </div>
 
             <div class="row column">
               <%= f.date_field :date_of_birth %>
             </div>
+            <div class="row column">
+              <%= f.submit "Validar DNI", class: "button button__sm button__secondary" %>
+            </div>
           </div>
         </div>
       </div>
-      <div class="item__edit-sticky">
-        <div class="item__edit-sticky-container">
-          <%= form.submit "Validar DNI", class: "button button__sm button__secondary" %>
-        </div>
-      </div>
     <% end %>
+
     <% if @response %>
       <br>
       <div class="row column">

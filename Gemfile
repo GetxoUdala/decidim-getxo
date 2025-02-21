@@ -7,7 +7,7 @@ ruby RUBY_VERSION
 DECIDIM_VERSION = { github: "decidim/decidim", branch: "release/0.28-stable" }.freeze
 gem "decidim", DECIDIM_VERSION
 gem "decidim-decidim_awesome"
-gem "decidim-term_customizer", github: "mainio/decidim-module-term_customizer"
+gem "decidim-term_customizer", github: "mainio/decidim-module-term_customizer", branch: "l10n_main"
 
 gem "bootsnap", "~> 1.4"
 gem "deface", ">= 1.9"
