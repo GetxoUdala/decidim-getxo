@@ -34,8 +34,9 @@ RUN gem install bundler:$(grep -A 1 'BUNDLED WITH' Gemfile.lock | tail -n 1 | xa
     find /usr/local/bundle/ -name "*.o" -delete && \
     find /usr/local/bundle/ -name ".git" -exec rm -rf {} + && \
     find /usr/local/bundle/ -name ".github" -exec rm -rf {} + && \
-    # Remove additional unneded decidim files
-    find /usr/local/bundle/ -name "spec" -exec rm -rf {} +
+    # Remove additional unneeded decidim files
+    find /usr/local/bundle/ -name "spec" -exec rm -rf {} + && \
+    find /usr/local/bundle/ -wholename "*/decidim-dev/lib/decidim/dev/assets/*" -exec rm -rf {} +
 
 RUN npm ci
 
@@ -74,6 +75,14 @@ RUN mv config/credentials.bak config/credentials 2>/dev/null || true
 
 RUN rm -rf node_modules tmp/cache vendor/bundle test spec app/packs .git
 
+COPY ./.git /app/.git
+RUN echo "REVISION=$(git describe --tags --always)" > /app/.env && \
+    echo "AUTHOR=$(git log -1 --pretty=%an)" >> /app/.env && \
+    echo "EMAIL=$(git log -1 --pretty=%ae)" >> /app/.env && \
+    echo "DESCRIPTION=$(git log -1 --pretty=%s)" >> /app/.env && \
+    echo "DATE=$(git log -1 --pretty=%cd)" >> /app/.env && \
+    rm -rf /app/.git
+
 # This image is for production env only
 FROM ruby:3.1.6-slim AS final
 
@@ -94,9 +103,6 @@ ENV APP_REVISION=${CAPROVER_GIT_COMMIT_SHA}
 ENV RAILS_LOG_TO_STDOUT true
 ENV RAILS_SERVE_STATIC_FILES true
 ENV RAILS_ENV production
-
-ARG RUN_RAILS
-ARG RUN_SIDEKIQ
 
 # Add user
 RUN addgroup --system --gid 1000 app && \
