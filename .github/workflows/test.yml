@@ -42,7 +42,11 @@ jobs:
           fetch-depth: 1
 
       - name: Install GraphicsMagick
-        run: sudo apt-get update && sudo apt-get install -y graphicsmagick
+        run: sudo apt-get update && sudo apt-get install -y graphicsmagick 7zip wkhtmltopdf
+
+      - uses: nanasess/setup-chromedriver@v2
+        with:
+          chromedriver-version: 119.0.6045.105
 
       - uses: ruby/setup-ruby@v1
         with:

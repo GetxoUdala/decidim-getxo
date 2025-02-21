@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 if ENV["RORVSWILD_API_KEY"].present?
   env_file = Rails.root.join(".env").to_s
   if File.exist?(env_file)
