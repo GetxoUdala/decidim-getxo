@@ -75,9 +75,8 @@ RUN mv config/credentials.bak config/credentials 2>/dev/null || true
 
 RUN rm -rf node_modules tmp/cache vendor/bundle test spec app/packs .git
 
-ARG GIT_BRANCH=upgrade-28
+ARG GIT_BRANCH=origin/upgrade-28
 ENV GIT_BRANCH=${GIT_BRANCH}
-RUN env > /app/envcheck
 RUN git init . && \
     git remote add origin https://github.com/GetxoUdala/decidim-getxo && \
     git fetch origin upgrade-28 --depth 1 && \
