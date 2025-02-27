@@ -1,4 +1,15 @@
 GIT
+  remote: https://github.com/decidim-ice/decidim-module-decidim_awesome.git
+  revision: 84ebe63ad748cb67691452025636ddce375e7247
+  branch: main
+  specs:
+    decidim-decidim_awesome (0.11.3)
+      decidim-admin (>= 0.28.0, < 0.29)
+      decidim-core (>= 0.28.0, < 0.29)
+      deface (>= 1.5)
+      sassc (~> 2.3)
+
+GIT
   remote: https://github.com/decidim/decidim.git
   revision: fe34a4f5312a7552337b27fe55e255c2f34d5004
   branch: backport/0.28/use-leaflet-tilelayer-here-v20-14164
@@ -318,11 +329,6 @@ GEM
     date_validator (0.12.0)
       activemodel (>= 3)
       activesupport (>= 3)
-    decidim-decidim_awesome (0.11.3)
-      decidim-admin (>= 0.28.0, < 0.29)
-      decidim-core (>= 0.28.0, < 0.29)
-      deface (>= 1.5)
-      sassc (~> 2.3)
     declarative-builder (0.2.0)
       trailblazer-option (~> 0.1.0)
     declarative-option (0.1.0)
@@ -839,7 +845,7 @@ DEPENDENCIES
   brakeman (~> 5.4)
   byebug (~> 11.0)
   decidim!
-  decidim-decidim_awesome
+  decidim-decidim_awesome!
   decidim-dev!
   decidim-term_customizer!
   deface (>= 1.9)

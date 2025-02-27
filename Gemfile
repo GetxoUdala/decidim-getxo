@@ -6,7 +6,7 @@ ruby RUBY_VERSION
 
 DECIDIM_VERSION = { github: "decidim/decidim", branch: "backport/0.28/use-leaflet-tilelayer-here-v20-14164" }.freeze
 gem "decidim", DECIDIM_VERSION
-gem "decidim-decidim_awesome"
+gem "decidim-decidim_awesome", github: "decidim-ice/decidim-module-decidim_awesome", branch: "main"
 gem "decidim-term_customizer", github: "mainio/decidim-module-term_customizer", branch: "l10n_main"
 
 gem "bootsnap", "~> 1.4"
