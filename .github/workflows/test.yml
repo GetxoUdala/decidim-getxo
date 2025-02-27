@@ -9,18 +9,17 @@ on:
 env:
   RUBY_VERSION: 3.1.6
   NODE_VERSION: 18.17.1
-  CHROME_VERSION: "126.0.6478.182"
+  CHROME_VERSION: "119.0.6045.105"
+  RAILS_ENV: test
+  DATABASE_USERNAME: postgres
+  DATABASE_PASSWORD: postgres
+  DATABASE_HOST: localhost
 
 jobs:
   test:
     name: Test
     runs-on: ubuntu-latest
-    if: "!startsWith(github.head_ref, 'chore/l10n')"
-    timeout-minutes: 60
     env:
-      DATABASE_USERNAME: postgres
-      DATABASE_PASSWORD: postgres
-      DATABASE_HOST: localhost
       RUBYOPT: '-W:no-deprecated'
     services:
       postgres:
@@ -32,9 +31,6 @@ jobs:
           --health-timeout 5s
           --health-retries 5
         env:
-          RAILS_ENV: test
-          DATABASE_USERNAME: postgres
-          DATABASE_PASSWORD: postgres
           POSTGRES_HOST_AUTH_METHOD: trust
 
     steps:
@@ -70,21 +66,11 @@ jobs:
       - name: Setup & create Database
         run: |
           bundle exec rails db:create db:schema:load
-        env:
-          RAILS_ENV: test
-          DATABASE_USERNAME: postgres
-          DATABASE_PASSWORD: postgres
 
       - name: Precompile assets
         run: |
           npm ci
           bundle exec rake assets:precompile
-        env:
-          RAILS_ENV: test
 
       - name: Run RSpec
         run: SIMPLECOV=1 CODECOV=1 bundle exec rspec
-        env:
-          RAILS_ENV: test
-          DATABASE_USERNAME: postgres
-          DATABASE_PASSWORD: postgres

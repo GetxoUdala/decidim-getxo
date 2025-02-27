@@ -8,6 +8,6 @@ end
 
 if ENV.fetch("HEALTHCHECK_EXCLUDE_CHECKS", nil)
   HealthCheck.setup do |config|
-    config.standard_checks -= ENV.fetch("HEALTHCHECK_EXCLUDE_CHECKS", nil).split
+    config.standard_checks -= ENV.fetch("HEALTHCHECK_EXCLUDE_CHECKS", "emailconf").split
   end
 end
