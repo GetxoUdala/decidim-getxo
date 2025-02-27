@@ -58,6 +58,11 @@ jobs:
           cache: 'npm'
           cache-dependency-path: ./package-lock.json
 
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ env.RUBY_VERSION }}
+          bundler-cache: true
+  
       - name: Setup & create Database
         run: |
           bundle exec rails db:create db:schema:load
