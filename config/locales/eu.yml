@@ -5,7 +5,7 @@ eu:
         numbers_constraint: Murrizketak
         numbers_range: Zenbaki sorta
         street_id: Kaleak
-      census_authorization_handler: 
+      census_authorization_handler:
         date_of_birth: Jaioteguna
         document_number: Dokumentuaren zenbakia
   census_authorization:
@@ -45,4 +45,10 @@ eu:
   getxo:
     connection_error: Lotura-errorea udal erroldarekin (%{error})
     street_sync_success: Kaleak ondo sinkronizatu dira (%{count} kale jasoak webservice-tik)
-
+    admin:
+      menu:
+        census: Getxoko errolda
+        sync: Webservice Sync
+        check: Check
+        zones: Zonak
+        streets: Kaleak

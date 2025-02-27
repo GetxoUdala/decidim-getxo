@@ -52,3 +52,10 @@ es:
   getxo:
     connection_error: Error de conexión con el censo municipal (%{error})
     street_sync_success: Calles sincronizadas correctamente (%{count} calles recibidas del webservice)
+    admin:
+      menu:
+        census: Censo Getxo
+        sync: Webservice Sync
+        check: Check
+        zones: Zonas
+        streets: Calles

@@ -9,6 +9,13 @@
 
 @import "stylesheets/getxo";
 
+// fix a little UI bug in budgets
+.budget-summary__progressbar-legend {
+  width: auto !important;
+}
+
+
+// language menu on top
 .main-bar__links-desktop {
   @media (min-width: 768px){
     [data-target*=dropdown] {
