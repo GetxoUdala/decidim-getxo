@@ -17,7 +17,7 @@ class GetxoZone < ApplicationRecord
   private
 
   def unique_combination
-    return unless GetxoZone.exists?(street_id: street_id, organization: organization, numbers_constraint: numbers_constraint, numbers_range: numbers_range)
+    return unless GetxoZone.exists?(street_id:, organization:, numbers_constraint:, numbers_range:)
 
     errors.add(:name, :invalid)
   end

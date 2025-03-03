@@ -12,12 +12,12 @@ module Decidim
       let(:numbers_range) { "2-3" }
       let(:params) do
         {
-          street_id: street_id,
-          numbers_constraint: numbers_constraint,
-          numbers_range: numbers_range
+          street_id:,
+          numbers_constraint:,
+          numbers_range:
         }
       end
-      let(:organization) { create :organization }
+      let(:organization) { create(:organization) }
       let(:form) do
         described_class.from_params(params).with_context(current_organization: organization)
       end

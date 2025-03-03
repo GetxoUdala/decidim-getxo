@@ -5,11 +5,11 @@ require "rails_helper"
 describe GetxoZone do
   subject { zone }
 
-  let(:zone) { build :getxo_zone, street: street, numbers_constraint: numbers_constraint, numbers_range: numbers_range, organization: organization }
-  let(:street) { create :getxo_street }
+  let(:zone) { build(:getxo_zone, street:, numbers_constraint:, numbers_range:, organization:) }
+  let(:street) { create(:getxo_street) }
   let(:numbers_constraint) { "all_numbers" }
   let(:numbers_range) { "2-4" }
-  let(:organization) { create :organization }
+  let(:organization) { create(:organization) }
 
   describe "validations" do
     it "is valid" do
@@ -58,14 +58,14 @@ describe GetxoZone do
   end
 
   describe "when combination exists" do
-    let!(:existing) { create :getxo_zone, street: street, numbers_constraint: numbers_constraint, numbers_range: numbers_range, organization: organization }
+    let!(:existing) { create(:getxo_zone, street:, numbers_constraint:, numbers_range:, organization:) }
 
     it "is invalid" do
       expect(subject).to be_invalid
     end
 
     context "and different organization" do
-      let!(:existing) { create :getxo_zone, street: street, numbers_constraint: numbers_constraint, numbers_range: numbers_range }
+      let!(:existing) { create(:getxo_zone, street:, numbers_constraint:, numbers_range:) }
 
       it "is valid" do
         expect(subject).to be_valid
@@ -73,7 +73,7 @@ describe GetxoZone do
     end
 
     context "and different number_range" do
-      let!(:existing) { create :getxo_zone, street: street, numbers_constraint: numbers_constraint, numbers_range: "1-3", organization: organization }
+      let!(:existing) { create(:getxo_zone, street:, numbers_constraint:, numbers_range: "1-3", organization:) }
 
       it "is valid" do
         expect(subject).to be_valid
@@ -81,7 +81,7 @@ describe GetxoZone do
     end
 
     context "and different numbers_constraint" do
-      let!(:existing) { create :getxo_zone, street: street, numbers_constraint: "odd_numbers", numbers_range: numbers_range, organization: organization }
+      let!(:existing) { create(:getxo_zone, street:, numbers_constraint: "odd_numbers", numbers_range:, organization:) }
 
       it "is valid" do
         expect(subject).to be_valid
@@ -89,7 +89,7 @@ describe GetxoZone do
     end
 
     context "and different street" do
-      let!(:existing) { create :getxo_zone, numbers_constraint: numbers_constraint, numbers_range: numbers_range, organization: organization }
+      let!(:existing) { create(:getxo_zone, numbers_constraint:, numbers_range:, organization:) }
 
       it "is valid" do
         expect(subject).to be_valid

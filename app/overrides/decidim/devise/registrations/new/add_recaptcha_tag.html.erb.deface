@@ -1,5 +1,5 @@
-<!-- insert_after ".actions" -->
+<!-- insert_after "#card__tos" -->
 
-<div class="mb-s">
+<div class="mb-4">
 	<%= recaptcha_tag %>
 </div>

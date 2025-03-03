@@ -18,7 +18,7 @@ namespace :getxo do
       form = CensusAuthorizationHandler.from_params(document_number: dni)
       auth = Decidim::Authorization.find_by(unique_id: form.unique_id)
       if auth
-        ok = Decidim::Budgets::Order.exists?(budget: budget, user: auth.user)
+        ok = Decidim::Budgets::Order.exists?(budget:, user: auth.user)
         puts "DNI #{dni} BUDGET #{args.budget} VOTED #{ok}"
       else
         puts "DNI #{dni} is not authorized. No user found"
@@ -69,7 +69,7 @@ namespace :getxo do
         days.each do |day|
           new_metrics = klass.new(day.to_s, org)
           ActiveRecord::Base.transaction do
-            old_metrics.where(day: day).delete_all
+            old_metrics.where(day:).delete_all
             new_metrics.save
           end
         end
@@ -113,7 +113,7 @@ namespace :getxo do
     mail = ActionMailer::Base.mail(to: email,
                                    from: Decidim.mailer_sender,
                                    subject: "A test mail from #{Decidim.application_name}",
-                                   body: "Sent by #{ENV.fetch("LOGNAME", nil)} in #{ENV.fetch("HOME", nil)} at #{Date.current}")
+                                   body: "Sent by #{ENV.fetch("LOGNAME", nil)} in #{Dir.home} at #{Date.current}")
     puts "Sending mail..."
     mail.deliver_now
     puts "Mail sent!"

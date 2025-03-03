@@ -1,39 +1,42 @@
+<% add_decidim_page_title("Calles de Getxo") %>
 <div class="card">
-  <div class="card-divider">
-    <h2 class="card-title">
+  <div class="item_show__header">
+    <h1 class="item_show__header-title">
       Calles de Getxo
-
-      <%= link_to "Sincronizar", sync_admin_getxo_index_path, class: "button tiny button--title" %>
-    </h2>
+      <%= link_to "Sincronizar", sync_admin_getxo_index_path, class: "button button__sm button__secondary" %>
+    </h1>
   </div>
-  <div class="card-section">
-    <h3>Calles disponibles:</h3>
-    <h5>Última sincronización: <strong class="<%= last_sync_class(last_sync) %>"><%= l(last_sync, format: :decidim_short) if last_sync %></strong></h5>
-    <% if streets_list.any? %>
+  <h3>Calles disponibles:</h3>
+  <h5>Última sincronización:
+    <strong class="<%= last_sync_class(last_sync) %>"><%= l(last_sync, format: :decidim_short) if last_sync %></strong>
+  </h5>
+
+  <% if streets_list.any? %>
+    <div class="table-scroll">
       <table class="table-list civicrm-groups">
         <thead>
-          <tr>
-            <th>Id</th>
-            <th>Nombre calle</th>
-            <th>Creado</th>
-          </tr>
+        <tr>
+          <th>Id</th>
+          <th>Nombre calle</th>
+          <th>Creado</th>
+        </tr>
         </thead>
         <tbody>
-          <% streets_list.each do |street| %>
-            <tr>
-              <td><%= street.id %></td>
-              <td><%= street.name %></td>
-              <td><%= l street.created_at, format: :decidim_short %></td>
-            </tr>
-          <% end %>
+        <% streets_list.each do |street| %>
+          <tr>
+            <td><%= street.id %></td>
+            <td><%= street.name %></td>
+            <td><%= l street.created_at, format: :decidim_short %></td>
+          </tr>
+        <% end %>
         </tbody>
       </table>
-      <%= paginate streets_list, theme: "decidim" %>
-    <% else %>
-      <p class="callout warning">
-        El sistema no se ha sincronizado nunca todavía.
-        <%= link_to "Sincronizar ahora", sync_admin_getxo_index_path %>
-      </p>
-    <% end %>
-  </div>
+    </div>
+    <%= decidim_paginate streets_list %>
+  <% else %>
+    <p class="callout warning">
+      El sistema no se ha sincronizado nunca todavía.
+      <%= link_to "Sincronizar ahora", sync_admin_getxo_index_path %>
+    </p>
+  <% end %>
 </div>
