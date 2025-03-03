@@ -41,7 +41,7 @@ Rails.application.config.to_prepare do
     end
 
     def line_item_for(project)
-      line_items.find_by(project: project)
+      line_items.find_by(project:)
     end
 
     def score_for(project)
@@ -82,14 +82,18 @@ Rails.application.config.to_prepare do
       return original_content if model.budget.component.settings.disable_custom_budgets
 
       if options[:layout] == :one_line
-        safe_join([votes_count, " ", label(t("decidim.budgets.projects.project.votes", count: votes_count))])
+        safe_join([votes_count, " ", count_label])
       else
-        safe_join([number, label(t("decidim.budgets.projects.project.votes", count: votes_count))])
+        safe_join([number, count_label])
       end
     end
 
     def number
-      content_tag :div, votes_count, class: "text-large"
+      content_tag :div, model.confirmed_orders_count
+    end
+
+    def count_label
+      content_tag(:span, t("decidim.budgets.projects.project.votes", count: model.confirmed_orders_count))
     end
   end
 
@@ -102,7 +106,7 @@ Rails.application.config.to_prepare do
       return original_hint if model.budget.component.settings.disable_custom_budgets
 
       contents = []
-      contents << icon("check", role: "img", "aria-hidden": true)
+      contents << icon("check-line", role: "img", "aria-hidden": true)
       contents << " "
       contents << t("decidim.budgets.projects.project.you_voted")
       contents << " "

@@ -4,26 +4,26 @@ require "rails_helper"
 require "decidim/core/test/factories"
 require "decidim/budgets/test/factories"
 
-describe "Orders", type: :system do
+describe "Orders" do
   include_context "with a component"
   let(:manifest_name) { "budgets" }
 
-  let(:organization) { create :organization, available_authorizations: %w(dummy_authorization_handler) }
-  let!(:user) { create :user, :confirmed, organization: organization }
+  let(:organization) { create(:organization, available_authorizations: %w(dummy_authorization_handler)) }
+  let!(:user) { create(:user, :confirmed, organization:) }
   let(:first_project) { projects.first }
   let(:last_project) { projects.last }
 
   let!(:component) do
     create(:budgets_component,
            :with_show_votes_enabled,
-           manifest: manifest,
+           manifest:,
            participatory_space: participatory_process)
   end
 
-  let(:budget) { create :budget, component: component, total_budget: 50_000_000 }
+  let(:budget) { create(:budget, component:, total_budget: 50_000_000) }
 
   context "when the user is logged in" do
-    let!(:projects) { create_list(:project, 3, budget: budget, budget_amount: 25_000_000) }
+    let!(:projects) { create_list(:project, 3, budget:, budget_amount: 25_000_000) }
 
     before do
       login_as user, scope: :user
@@ -35,9 +35,11 @@ describe "Orders", type: :system do
       end
 
       after do
-        within "#order-progress" do
-          page.find(".budget-summary__progressbox button").click
+        within "#order-progress .budget-summary__progressbox-buttons" do
+          page.find(".button", match: :first).click
         end
+
+        expect(page).to have_css("#budget-confirm")
 
         within "#budget-confirm" do
           page.find_all(".budget-summary__selected-item").each do |element|
@@ -47,10 +49,13 @@ describe "Orders", type: :system do
               expect(element.text).to include("2 #{first_project.title["en"]}")
             end
           end
-          page.find("form button").click
+          click_on "Confirm"
         end
 
-        expect(Decidim::Budgets::Order.find_by(budget: budget, user: user)).to be_checked_out
+        expect(page).to have_css("#project-#{first_project.id}-item .budget-summary_project-score", text: "2")
+        expect(page).to have_css("#project-#{last_project.id}-item .budget-summary_project-score", text: "3")
+
+        expect(Decidim::Budgets::Order.find_by(budget:, user:)).to be_checked_out
         expect(Decidim::Budgets::Project.find(first_project.id).confirmed_orders_count).to be 2
         expect(Decidim::Budgets::Project.find(last_project.id).confirmed_orders_count).to be 3
       end
@@ -60,39 +65,33 @@ describe "Orders", type: :system do
           page.find(".budget-list__action").click
         end
 
-        expect(page).to have_selector("#project-#{first_project.id}-item .budget-list__action", text: "3")
-        expect(page).to have_selector("#project-#{first_project.id}-item .project-votes", text: "3")
-        expect(Decidim::Budgets::LineItem.where(order: Decidim::Budgets::Order.find_by(budget: budget, user: user)).count).to be 1
+        expect(page).to have_css("#project-#{first_project.id}-item .budget-list__action", text: "3")
+        expect(Decidim::Budgets::LineItem.where(order: Decidim::Budgets::Order.find_by(budget:, user:)).count).to be 1
 
         within "#project-#{last_project.id}-item" do
           page.find(".budget-list__action").click
         end
 
-        expect(page).to have_selector("#project-#{last_project.id}-item .budget-list__action", text: "2")
-        expect(page).to have_selector("#project-#{last_project.id}-item .project-votes", text: "2")
-        expect(Decidim::Budgets::LineItem.where(order: Decidim::Budgets::Order.find_by(budget: budget, user: user)).count).to be 2
+        expect(page).to have_css("#project-#{last_project.id}-item .budget-list__action", text: "2")
+        expect(Decidim::Budgets::LineItem.where(order: Decidim::Budgets::Order.find_by(budget:, user:)).count).to be 2
 
         within "#project-#{first_project.id}-item" do
           page.find(".budget-list__action").click
         end
 
-        expect(page).to have_selector("#project-#{first_project.id}-item .budget-list__action", text: "")
-        expect(page).to have_selector("#project-#{first_project.id}-item .project-votes", text: "0")
-        expect(page).to have_selector("#project-#{last_project.id}-item .budget-list__action", text: "3")
-        expect(page).to have_selector("#project-#{last_project.id}-item .project-votes", text: "3")
-        expect(Decidim::Budgets::LineItem.where(order: Decidim::Budgets::Order.find_by(budget: budget, user: user)).count).to be 1
+        expect(page).to have_css("#project-#{first_project.id}-item .budget-list__action", text: "")
+        expect(page).to have_css("#project-#{last_project.id}-item .budget-list__action", text: "3")
+        expect(Decidim::Budgets::LineItem.where(order: Decidim::Budgets::Order.find_by(budget:, user:)).count).to be 1
 
         within "#project-#{first_project.id}-item" do
           page.find(".budget-list__action").click
         end
 
-        expect(page).to have_selector("#project-#{first_project.id}-item .budget-list__action", text: "2")
-        expect(page).to have_selector("#project-#{first_project.id}-item .project-votes", text: "2")
-        expect(page).to have_selector("#project-#{last_project.id}-item .budget-list__action", text: "3")
-        expect(page).to have_selector("#project-#{last_project.id}-item .project-votes", text: "3")
-        expect(Decidim::Budgets::LineItem.where(order: Decidim::Budgets::Order.find_by(budget: budget, user: user)).count).to be 2
+        expect(page).to have_css("#project-#{first_project.id}-item .budget-list__action", text: "2")
+        expect(page).to have_css("#project-#{last_project.id}-item .budget-list__action", text: "3")
+        expect(Decidim::Budgets::LineItem.where(order: Decidim::Budgets::Order.find_by(budget:, user:)).count).to be 2
 
-        expect(Decidim::Budgets::Order.find_by(budget: budget, user: user)).not_to be_checked_out
+        expect(Decidim::Budgets::Order.find_by(budget:, user:)).not_to be_checked_out
         expect(first_project.confirmed_orders_count).to be 0
         expect(last_project.confirmed_orders_count).to be 0
       end

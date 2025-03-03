@@ -44,10 +44,11 @@ Rails.application.configure do
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
   # config.force_ssl = true
+  config.ssl_options = { redirect: { exclude: ->(request) { request.path =~ /health_check/ } } }
 
   # Use the lowest log level to ensure availability of diagnostic information
   # when problems arise.
-  config.log_level = %w(debug info warn error fatal).include?(ENV.fetch("RAILS_LOG_LEVEL", nil)) ? ENV["RAILS_LOG_LEVEL"] : :info
+  config.log_level = %w(debug info warn error fatal).include?(ENV.fetch("RAILS_LOG_LEVEL", nil)) ? ENV.fetch("RAILS_LOG_LEVEL", nil) : :info
 
   # Prepend all log lines with the following tags.
   config.log_tags = [:request_id]
@@ -74,7 +75,7 @@ Rails.application.configure do
   config.active_support.deprecation = :notify
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
-  config.log_formatter = ::Logger::Formatter.new
+  config.log_formatter = Logger::Formatter.new
   config.action_mailer.smtp_settings = {
     address: Rails.application.secrets.smtp_address,
     port: Rails.application.secrets.smtp_port,
@@ -89,11 +90,26 @@ Rails.application.configure do
   # Use a different logger for distributed setups.
   # require 'syslog/logger'
   # config.logger = ActiveSupport::TaggedLogging.new(Syslog::Logger.new 'app-name')
-
   if ENV["RAILS_LOG_TO_STDOUT"].present?
     logger = ActiveSupport::Logger.new($stdout)
     logger.formatter = config.log_formatter
     config.logger = ActiveSupport::TaggedLogging.new(logger)
+  end
+
+  if ENV["APPSIGNAL_PUSH_API_KEY"].present?
+    appsignal_logger = ActiveSupport::TaggedLogging.new(Appsignal::Logger.new("rails"))
+    if ENV["RAILS_LOG_TO_STDOUT"].present?
+      # Use AppSignal's logger and a STDOUT logger
+      logger = ActiveSupport::Logger.new($stdout)
+      logger.formatter = config.log_formatter
+      config.logger = logger.extend(ActiveSupport::Logger.broadcast(appsignal_logger))
+    else
+      config.logger = appsignal_logger
+    end
+    Sidekiq.configure_server do |config|
+      config.logger = Appsignal::Logger.new("sidekiq")
+      config.logger.formatter = Sidekiq::Logger::Formatters::WithoutTimestamp.new
+    end
   end
 
   # Do not dump schema after migrations.

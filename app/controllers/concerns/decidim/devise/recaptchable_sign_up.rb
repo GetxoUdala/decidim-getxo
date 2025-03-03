@@ -13,8 +13,6 @@ module Decidim
         # https://developers.google.com/recaptcha/docs/verify
         # https://developers.google.com/recaptcha/docs/display
 
-        RECAPTCHA_MINIMUM_SCORE = 0.5
-
         # rubocop:disable Rails/LexicallyScopedActionFilter
         before_action :verify_recaptcha, only: :create
         # rubocop:enable Rails/LexicallyScopedActionFilter
@@ -22,9 +20,10 @@ module Decidim
         private
 
         def verify_recaptcha
-          token = params["g-recaptcha-response"]
-
           secret_key = Rails.application.secrets[:recaptcha_secret_key]
+          return if secret_key.blank?
+
+          token = params["g-recaptcha-response"]
 
           uri = URI.parse("https://www.google.com/recaptcha/api/siteverify?secret=#{secret_key}&response=#{token}")
 

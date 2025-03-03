@@ -23,6 +23,10 @@ Decidim.configure do |config|
 
   config.base_uploads_path = "#{ENV.fetch("BASE_UPLOADS_PATH")}/" if ENV["BASE_UPLOADS_PATH"].present?
 
+  config.social_share_services = Rails.application.secrets.decidim[:social_share_services]
+
+  config.password_similarity_length = Rails.application.secrets.decidim[:password_similarity_length] if Rails.application.secrets.decidim[:password_similarity_length].present?
+
   # Restrict access to the system part with an authorized ip list.
   # You can use a single ip like ("1.2.3.4"), or an ip subnet like ("1.2.3.4/24")
   # You may specify multiple ip in an array ["1.2.3.4", "1.2.3.4/24"]
@@ -48,7 +52,7 @@ Decidim.configure do |config|
     dynamic_provider = Rails.application.secrets.maps[:dynamic_provider]
     dynamic_url = Rails.application.secrets.maps[:dynamic_url]
     static_url = Rails.application.secrets.maps[:static_url]
-    static_url = "https://image.maps.ls.hereapi.com/mia/1.6/mapview" if static_provider == "here" && static_url.blank?
+    static_url = "https://image.maps.hereapi.com/mia/v3/base/mc/overlay" if static_provider == "here" && static_url.blank?
     config.maps = {
       provider: static_provider,
       api_key: Rails.application.secrets.maps[:static_api_key],
@@ -418,7 +422,7 @@ Rails.application.config.to_prepare do
   Decidim::Api::Schema.max_depth = 50
 end
 
-Cell::ViewModel.view_paths << File.expand_path(Rails.root.join("app/views"))
+Cell::ViewModel.view_paths << Rails.root.join("app/views").expand_path
 
 # Inform Decidim about the assets folder
 Decidim.register_assets_path File.expand_path("app/packs", Rails.application.root)

@@ -3,7 +3,7 @@
 module Decidim
   module Admin
     # The controller to handle getxo webservice sync
-    class GetxoController < Decidim::Admin::ApplicationController
+    class GetxoController < GetxoApplicationController
       include Paginable
       layout "decidim/admin/getxo"
 
@@ -34,13 +34,14 @@ module Decidim
       end
 
       def sync
-        GetxoStreet.import_streets!(current_organization)
+        streets = GetxoStreet.import_streets!(current_organization)
+        flash[:notice] = t("getxo.sync_success", count: streets.count)
         redirect_to streets_admin_getxo_index_path
       end
 
       private
 
-      def service(action: "TestDBConnection")
+      def service(action: "TestDBconnection")
         @service ||= GetxoWebservice.new(action)
       end
 

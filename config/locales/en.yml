@@ -15,3 +15,13 @@ en:
   recaptcha:
     errors:
       verification_failed: Registration could not be verified with reCaptcha
+  getxo:
+    connection_error: Connection error with the municipal census (%{error})
+    street_sync_success: Streets synchronized correctly (%{count} streets received from the webservice)
+    admin:
+      menu:
+        census: Getxo Census
+        sync: Webservice Sync
+        check: Check
+        zones: Zones
+        streets: Streets

@@ -4,43 +4,37 @@ source "https://rubygems.org"
 
 ruby RUBY_VERSION
 
-DECIDIM_VERSION = { github: "decidim/decidim", branch: "release/0.27-stable" }.freeze
+DECIDIM_VERSION = { github: "decidim/decidim", branch: "backport/0.28/use-leaflet-tilelayer-here-v20-14164" }.freeze
 gem "decidim", DECIDIM_VERSION
-gem "decidim-consultations", DECIDIM_VERSION
-# gem "decidim-initiatives", DECIDIM_VERSION
-gem "decidim-decidim_awesome", github: "decidim-ice/decidim-module-decidim_awesome", branch: "release/0.27-stable"
-gem "decidim-friendly_signup", github: "OpenSourcePolitics/decidim-module-friendly_signup"
-gem "decidim-term_customizer", github: "mainio/decidim-module-term_customizer", branch: "release/0.27-stable"
+gem "decidim-decidim_awesome", github: "decidim-ice/decidim-module-decidim_awesome", branch: "main"
+gem "decidim-term_customizer", github: "mainio/decidim-module-term_customizer", branch: "l10n_main"
 
-gem "bootsnap", "~> 1.7"
-gem "deface"
-
-gem "puma", ">= 5.3.1"
-
-gem "ruby-ntlm"
-# net/smtp 0.4 does not work well with NTLM authentication
-gem "net-smtp", "~> 0.3.3"
-gem "sentry-rails"
-gem "sentry-ruby"
+gem "bootsnap", "~> 1.4"
+gem "deface", ">= 1.9"
+gem "health_check"
+gem "puma", ">= 6.3.1"
+gem "rorvswild"
 
 group :development, :test do
   gem "byebug", "~> 11.0", platform: :mri
-  gem "faker", "~> 2.14"
 
+  gem "brakeman", "~> 5.4"
   gem "decidim-dev", DECIDIM_VERSION
+  gem "faker", "~> 3.2"
+  gem "rubocop-rspec", "~> 2.20.0"
 end
 
 group :development do
-  gem "letter_opener_web", "~> 2.0"
-  gem "listen", "~> 3.1"
+  gem "letter_opener_web"
+  gem "listen"
   gem "rubocop-faker"
-  gem "spring", "~> 4.1.1"
-  gem "spring-watcher-listen", "~> 2.0"
-  gem "web-console", "~> 4.2"
+  gem "spring"
+  gem "spring-watcher-listen"
+  gem "web-console"
   gem "xliffle"
 end
 
 group :production do
-  gem "sidekiq", "<7"
+  gem "sidekiq"
   gem "sidekiq-cron"
 end

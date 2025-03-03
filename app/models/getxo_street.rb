@@ -7,7 +7,7 @@ class GetxoStreet < ApplicationRecord
 
   def self.import_streets!(organization)
     import_streets.each do |street|
-      s = GetxoStreet.find_or_initialize_by(name: street, organization: organization)
+      s = GetxoStreet.find_or_initialize_by(name: street, organization:)
       # rubocop:disable Rails/SkipsModelValidations
       s.touch if s.persisted?
       # rubocop:enable Rails/SkipsModelValidations

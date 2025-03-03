@@ -1,0 +1,11 @@
+_<% if tag_id = ENV.fetch("GOOGLE_TAG_MANAGER", nil) %>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script type="text/plain" data-consent="marketing" async src="https://www.googletagmanager.com/gtag/js?id=<%= tag_id %>"></script>
+  <script type="text/plain" data-consent="marketing">
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', '<%= tag_id %>');
+  </script>
+<% end %>

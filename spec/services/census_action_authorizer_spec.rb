@@ -7,12 +7,12 @@ describe CensusActionAuthorizer do
 
   let(:organization) { create(:organization, available_authorizations: [name]) }
   let(:name) { "census_authorization_handler" }
-  let(:user) { create(:user, organization: organization) }
+  let(:user) { create(:user, organization:) }
   let(:authorizer) { described_class.new(authorization, options, nil, nil) }
   let(:response) { subject.authorize }
 
   let!(:authorization) do
-    create(:authorization, :granted, name: name, metadata: metadata, user: user)
+    create(:authorization, :granted, name:, metadata:, user:)
   end
 
   let(:metadata) do
@@ -27,11 +27,11 @@ describe CensusActionAuthorizer do
   let(:zones) { zone.id.to_s }
   let(:street_name) { street.name }
   let(:street_number) { 3 }
-  let(:street) { create :getxo_street, organization: organization }
-  let(:zone) { create :getxo_zone, street: street, numbers_constraint: numbers_constraint, numbers_range: numbers_range, organization: organization }
+  let(:street) { create(:getxo_street, organization:) }
+  let(:zone) { create(:getxo_zone, street:, numbers_constraint:, numbers_range:, organization:) }
   let(:numbers_constraint) { "all_numbers" }
   let(:numbers_range) { "1-4" }
-  let(:zone2) { create :getxo_zone, organization: organization }
+  let(:zone2) { create(:getxo_zone, organization:) }
 
   shared_examples "ok" do
     it "returns ok" do
