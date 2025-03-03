@@ -25,8 +25,7 @@ user.save!
 
 You're good to go!
 
-
-# Docker build
+## Docker build
 
 To ensure minimal downtime in portainer:
 
@@ -34,7 +33,6 @@ To ensure minimal downtime in portainer:
    "Successfully built 3f4cfd9a1b4d"
 2. Tag `docker tag 3f4cfd9a1b4d decidim-production-app:latest`
 3. Redeploy in portainer by going to the container `decidim-production-app-1` and press "recreate". No need to re-pull the image.
-
 
 Option 2 (more downtime)
 
