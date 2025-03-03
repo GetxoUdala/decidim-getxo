@@ -55,6 +55,7 @@ services:
       - OMNIAUTH_GOOGLE_CLIENT_SECRET
       - RECAPTCHA_SITE_KEY
       - RECAPTCHA_SECRET_KEY
+      - GOOGLE_TAG_MANAGER
     depends_on:
       - db
       - redis
