@@ -35,17 +35,11 @@ es:
     participatory_processes:
       participatory_processes:
         show:
-          title: Prozesu partaideak
           audio:
             title: Dale al play! ¡Ponle ritmo a la participación y siente la energía! Escucha la música que, a partir de ahora, acompañará a los procesos participativos. Anímate y participa
             author: "Autores: colaboración Lore Rouco y Rubén G. Mateos"
             rights: Todos los derechos reservados
             audio_supporting: Su navegador no soporta el elemento audio.
-    system:
-      devise:
-        shared:
-          links:
-            log_in: Iniciar sesión
   recaptcha:
     errors:
       verification_failed: No se ha podido verificar el registro con reCaptcha

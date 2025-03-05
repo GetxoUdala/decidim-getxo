@@ -15,6 +15,11 @@ eu:
         month: Hilabetea
         year: Urtea
   decidim:
+    components:
+      budgets:
+        settings:
+          global:
+            disable_custom_budgets: Desgaitu aurrekontu pertsonalizatuak
     authorization_handlers:
       census_authorization_handler:
         connection_error: Ezin izan da egiaztapena egin
@@ -26,14 +31,9 @@ eu:
           date_of_birth: Jaioteguna
         invalid_document: Dokumentu baliogabea
         name: Udal errolda
-    accessibility:
-      front_page_link: Link
-    followers:
-      followers_count: Jarraitzaileak
     participatory_processes:
       participatory_processes:
         show:
-          title: Prozesu partaideak
           audio:
             title: Sakatu play! Jarri erritmoa parte-hartzeari eta sentitu energía! Entzun hemendik aurrera parte hartzeko prozesuak lagunduko dituen musika. Animatu eta hartu parte!
             author: "Egileak: Lore Rouco eta Rubén G. Mateos kolaborazioa"
