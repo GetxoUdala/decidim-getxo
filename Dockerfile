@@ -1,4 +1,4 @@
-FROM ruby:3.1.6 AS builder
+FROM ruby:3.2.2 AS builder
 
 RUN apt-get update && apt-get upgrade -y && apt-get install -y ca-certificates curl gnupg && \
     mkdir -p /etc/apt/keyrings && \
@@ -88,7 +88,7 @@ RUN git init . && \
     rm -rf /app/.git
 
 # This image is for production env only
-FROM ruby:3.1.6-slim AS final
+FROM ruby:3.2.2-slim AS final
 
 RUN apt-get update && \
     apt-get install -y postgresql-client \
