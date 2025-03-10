@@ -5,6 +5,25 @@
     "node": ">=18.17.1",
     "npm": ">=9.6.7"
   },
+  "scripts": {
+    "markdownlint": "markdownlint '*.md'",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "eslint": "eslint --no-error-on-unmatched-pattern --ignore-pattern app/packs/vendor --ext .js app/packs",
+    "lint-fix": "eslint -c .eslintrc.json --ext .js app/packs/ --fix",
+    "stylelint": "stylelint app/packs/**/*.scss",
+    "stylelint-fix": "stylelint **/*.scss --fix"
+  },
+  "stylelint": {
+    "extends": "@decidim/stylelint-config"
+  },
+  "eslintConfig": {
+    "extends": "@decidim/eslint-config",
+    "settings": {
+      "react": {
+        "version": "detect"
+      }
+    }
+  },
   "dependencies": {
     "@decidim/browserslist-config": "file:packages/browserslist-config",
     "@decidim/core": "file:packages/core",
@@ -14,6 +33,7 @@
     "core-js": "^3.41.0",
     "form-storage": "^1.3.5",
     "formBuilder": "^3.19.13",
+    "graphiql": "^3.8.3",
     "highlight.js": "^11.11.1",
     "inline-attacher": "^0.0.7",
     "jsrender": "^1.0.15",
