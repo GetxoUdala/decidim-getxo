@@ -10,7 +10,7 @@ describe "Visit the register page" do # rubocop:disable RSpec/DescribeClass
   before do
     switch_to_host(organization.host)
     visit decidim.root_path
-    click_on "Sign Up"
+    click_on "Create an account"
   end
 
   it "allows viewing the register page" do
