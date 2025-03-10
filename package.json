@@ -41,6 +41,8 @@
     "jquery-ui": "^1.14.0",
     "jsrender": "^1.0.15",
     "leaflet.featuregroup.subgroup": "^1.0.2",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
     "select2": "^4.1.0-rc.0",
     "tom-select": "^2.2.2",
     "webpack": "^5.51.1",
