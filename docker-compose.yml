@@ -56,6 +56,8 @@ services:
       - RECAPTCHA_SITE_KEY
       - RECAPTCHA_SECRET_KEY
       - GOOGLE_TAG_MANAGER
+      - DECIDIM_THROTTLING_MAX_REQUESTS
+      - DECIDIM_THROTTLING_PERIOD
     depends_on:
       - db
       - redis
