@@ -8,7 +8,7 @@ module Decidim
       private
 
       def logged_and_admin?
-        return if current_user&.admin?
+        return false if current_user&.admin?
 
         flash[:alert] = "Admins only!" # rubocop:disable Rails/I18nLocaleTexts:
         redirect_to decidim_admin.root_path
