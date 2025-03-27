@@ -122,7 +122,7 @@ COPY --from=builder --chown=app:app /app /app
 COPY ./public/music /app/public/music
 
 USER app
-HEALTHCHECK --interval=1m --timeout=5s --start-period=30s \
+HEALTHCHECK --interval=1m --timeout=5s --start-period=15s \
     CMD (curl -sS http://localhost:3000/health_check | grep success) || exit 1
 
 ENTRYPOINT ["/app/entrypoint.sh"]
