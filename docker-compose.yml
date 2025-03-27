@@ -15,8 +15,7 @@ services:
       - getxo
     restart: ${RESTART_POLICY:-always}
   app:
-    build: .
-    pull_policy: build
+    image: decidim-production-app:latest
     volumes:
       - /home/dockerexec/storage:/app/storage
     restart: ${RESTART_POLICY:-always}
