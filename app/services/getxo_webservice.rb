@@ -12,7 +12,7 @@ class GetxoWebservice
     return @response if defined?(@response)
 
     begin
-      response ||= Faraday.post Rails.application.secrets.census_url do |request|
+      response ||= Faraday.new(ssl: {verify: false}).post Rails.application.secrets.census_url do |request|
         request.headers["Content-Type"] = "text/xml;charset=UTF-8'"
         request.headers["SOAPAction"] = ["http://webtests02.getxo.org/#{action}"]
         request.body = request_body
