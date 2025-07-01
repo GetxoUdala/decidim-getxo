@@ -4,7 +4,73 @@ Free Open-Source participatory democracy, citizen participation and open governm
 
 This is the open-source repository for decidim-getxo, based on [Decidim](https://github.com/decidim/decidim).
 
-![Build](https://github.com/Platoniq/decidim-getxo/workflows/Build/badge.svg?branch=master)
+[![Test](https://github.com/GetxoUdala/decidim-getxo/actions/workflows/test.yml/badge.svg)](https://github.com/GetxoUdala/decidim-getxo/actions/workflows/test.yml)
+
+This is the instance for Zeugaz Getxo https://zeugaz.getxo.eus
+
+## Server configuration
+
+Docker & Docker Compose is needed, then clone this repository:
+
+```
+git clone https://github.com/GetxoUdala/decidim-getxo
+```
+
+or update:
+```
+cd decidim-getxo
+git pull
+```
+
+Ensure the `.env` file has these values defined:
+```
+DATABASE_URL=postgres://xxxxx:xxxxx@db/xxxxx
+POSTGRES_USER=XXXXXX
+POSTGRES_PASSWORD=XXXXXX
+POSTGRES_DB=XXXXXX
+SECRET_KEY_BASE=XXXXXX
+CENSUS_URL=xxxxxxx
+MAPS_PROVIDER=here
+MAPS_API_KEY=XXXXXX
+EMAIL=XXXXXX
+SMTP_USERNAME=XXXXXX
+SMTP_PASSWORD=XXXXXX
+SMTP_ADDRESS=XXXXXX
+SMTP_DOMAIN=XXXXXX
+SMTP_PORT=XXXXXX
+DECIDIM_ENV=production
+```
+
+### SSL configuration
+
+This application uses Traefik to handle the certificates, ensure that the following files are available:
+
+- `certs/cert.crt`
+- `certs/cert.key`
+
+## Deploy
+
+This instance uses Docker Compose to deploy the application with Traefik as a proxy.
+
+You need to build and tag the image:
+
+1. Ensure you have the ENV value DECIDIM_ENV=staging or DECIDIM_ENV=production
+2. Run
+   ```
+   ./build.sh
+   ```
+3. Deploy
+  ```
+  docker compose up -d
+  ```
+
+## Backups
+
+Database is backup every day using https://github.com/tiredofit/docker-db-backup (see docker-compose.yml for details)
+
+Backups are stored in:
+
+- `backups/*`
 
 ## Setting up the application
 
@@ -24,17 +90,3 @@ user.save!
 6. Fill the rest of the form and submit it.
 
 You're good to go!
-
-## Docker build
-
-To ensure minimal downtime in portainer:
-
-1. Run `docker build .`:
-   "Successfully built 3f4cfd9a1b4d"
-2. Tag `docker tag 3f4cfd9a1b4d decidim-production-app:latest`
-3. Redeploy in portainer by going to the container `decidim-production-app-1` and press "recreate". No need to re-pull the image.
-
-Option 2 (more downtime)
-
-1. Go to the stack `decidim-production`
-2. Press "Pull and redeploy". Ensure "Re-pull image" is active
