@@ -12,18 +12,20 @@ This is the instance for Zeugaz Getxo https://zeugaz.getxo.eus
 
 Docker & Docker Compose is needed, then clone this repository:
 
-```
+```bash
 git clone https://github.com/GetxoUdala/decidim-getxo
 ```
 
 or update:
-```
+
+```bash
 cd decidim-getxo
 git pull
 ```
 
 Ensure the `.env` file has these values defined:
-```
+
+```bash
 DATABASE_URL=postgres://xxxxx:xxxxx@db/xxxxx
 POSTGRES_USER=XXXXXX
 POSTGRES_PASSWORD=XXXXXX
@@ -56,11 +58,13 @@ You need to build and tag the image:
 
 1. Ensure you have the ENV value DECIDIM_ENV=staging or DECIDIM_ENV=production
 2. Run
-   ```
+
+   ```bash
    ./build.sh
    ```
 3. Deploy
-  ```
+
+  ```bash
   docker compose up -d
   ```
 
