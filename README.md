@@ -56,17 +56,11 @@ This instance uses Docker Compose to deploy the application with Traefik as a pr
 
 You need to build and tag the image:
 
-1. Ensure you have the ENV value DECIDIM_ENV=staging or DECIDIM_ENV=production
-2. Run
-
-   ```bash
-   ./build.sh
-   ```
-3. Deploy
-
-  ```bash
-  docker compose up -d
-  ```
+1. Ensure you have the ENV value `DECIDIM_ENV=staging` or `DECIDIM_ENV=production`
+2. Run:
+   `./build.sh`
+3. Deploy:
+  `docker compose up -d`
 
 ## Backups
 
