@@ -25,7 +25,7 @@ services:
     volumes:
       # Traefik can listen to the Docker events
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
-      - /home/dockerexec/.local/share/docker/certs/:/certs
+      - ./certs:/certs
     labels:
       # Traefik Dashboard HTTP with BasicAuth
       - "traefik.enable=true"
