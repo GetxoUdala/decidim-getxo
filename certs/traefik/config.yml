@@ -1,11 +1,11 @@
 tls:
   certificates:
-    - certFile: /certs/cert.crt
-      keyFile: /certs/cert.key
+    - certFile: /certs/ssl-bundle.pem
+      keyFile: /certs/privatekeymultidominiogetxo.pem
       stores:
         - default
   stores:
     default:
       defaultCertificate:
-        certFile: /certs/cert.crt
-        keyFile: /certs/cert.key
+        certFile: /certs/ssl-bundle.pem
+        keyFile: /certs/privatekeymultidominiogetxo.pem
