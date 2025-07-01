@@ -60,6 +60,7 @@ coverage/
 *.sql
 certs/*
 !certs/.keep
+!certs/traefik
 backups/*
 !backups/.keep
 tailwind.config.js
