@@ -29,8 +29,10 @@ You're good to go!
 
 To ensure minimal downtime in portainer:
 
-1. Run `docker build . -t decidim-production-app:latest`
-2. Redeploy in portainer by going to the container `decidim-production-app-1` and press "recreate". No need to re-pull the image.
+1. Go to the git folder: `cd decidim-getxo`
+2. Update the code `git pull` (check branches, etc)
+3. Run `docker build . -t decidim-production-app:latest`
+4. Redeploy in portainer by going to the `decidim-production` stack "pull and redeploy"., then "update" No need to re-pull the image.
 
 To update the Nginx container:
 
