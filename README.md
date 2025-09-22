@@ -29,10 +29,12 @@ You're good to go!
 
 To ensure minimal downtime in portainer:
 
-1. Run `docker build .`:
-   "Successfully built 3f4cfd9a1b4d"
-2. Tag `docker tag 3f4cfd9a1b4d decidim-production-app:latest`
-3. Redeploy in portainer by going to the container `decidim-production-app-1` and press "recreate". No need to re-pull the image.
+1. Run `docker build . -t decidim-production-app:latest`
+2. Redeploy in portainer by going to the container `decidim-production-app-1` and press "recreate". No need to re-pull the image.
+
+To update the Nginx container:
+
+1. Run `docker build . -f Dockerfile.nginx -t decidim-production-web:latest`
 
 Option 2 (more downtime)
 

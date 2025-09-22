@@ -1,9 +1,6 @@
 services:
   web:
-    build:
-      context: .
-      dockerfile: Dockerfile.nginx
-    pull_policy: build
+    image: docker-production-web:latest
     depends_on:
       - app
     ports:
