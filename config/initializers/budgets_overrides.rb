@@ -87,14 +87,6 @@ Rails.application.config.to_prepare do
         safe_join([number, count_label])
       end
     end
-
-    def number
-      content_tag :div, model.confirmed_orders_count
-    end
-
-    def count_label
-      content_tag(:span, t("decidim.budgets.projects.project.votes", count: model.confirmed_orders_count))
-    end
   end
 
   Decidim::Budgets::ProjectVotedHintCell.class_eval do

@@ -41,6 +41,7 @@ public/uploads
 .rspec-failures
 
 # Ignore .rbenv-vars
+.env
 .rbenv-vars
 spec/decidim_dummy_app
 
@@ -57,5 +58,10 @@ yarn-debug.log*
 coverage/
 .local
 *.sql
+certs/*
+!certs/.keep
+!certs/traefik
+backups/*
+!backups/.keep
 tailwind.config.js
 .rubocop-http*
