@@ -1,4 +1,7 @@
 eu:
+  # Fix for Decidim 0.31 bug: eu.yml has locale.name: "Ingelesa" instead of "Euskara"
+  locale:
+    name: Euskara
   activemodel:
     attributes:
       getxo_zone:

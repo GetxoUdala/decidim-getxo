@@ -52,6 +52,9 @@ describe "Orders" do
           click_on "Confirm"
         end
 
+        # After checkout, page redirects to status page. Navigate back to projects page.
+        page.visit Decidim::EngineRouter.main_proxy(component).budget_projects_path(budget)
+
         expect(page).to have_css("#project-#{first_project.id}-item .budget-summary_project-score", text: "2")
         expect(page).to have_css("#project-#{last_project.id}-item .budget-summary_project-score", text: "3")
 
