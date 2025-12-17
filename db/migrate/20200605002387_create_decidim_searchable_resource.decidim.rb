@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # This migration comes from decidim (originally 20180209122819)
-
+# This file has been modified by `decidim upgrade:migrations` task on 2025-12-17 13:08:04 UTC
 class CreateDecidimSearchableResource < ActiveRecord::Migration[5.1]
   def change
     create_table :decidim_searchable_resources do |t|

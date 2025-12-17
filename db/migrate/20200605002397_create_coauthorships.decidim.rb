@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # This migration comes from decidim (originally 20180427141253)
-
+# This file has been modified by `decidim upgrade:migrations` task on 2025-12-17 13:08:04 UTC
 class CreateCoauthorships < ActiveRecord::Migration[5.1]
   def change
     create_table :decidim_coauthorships do |t|
