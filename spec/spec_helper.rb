@@ -100,9 +100,9 @@ RSpec.configure do |config|
   Kernel.srand config.seed
 
   config.before do
-    I18n.available_locales = [:en, :es, :eu]
+    I18n.available_locales = [:en, :es, :eu, :ca]
     I18n.default_locale = :en
-    Decidim.available_locales = [:en, :es, :eu]
+    Decidim.available_locales = [:en, :es, :eu, :ca]
     Decidim.default_locale = :en
   end
 

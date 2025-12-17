@@ -1,42 +1,48 @@
 var $orderSelectedProjectsCount = $('#order-selected-projects-count');
-var $orderProgressElements = document.querySelectorAll('[id^=order-progress] .budget-summary__content');
+var $orderProgress = document.querySelectorAll('[data-order-progress-responsive]');
+var $projectItem = $('#project-<%= project.id %>-item');
+var $projectBudgetButton = $('#project-<%= project.id %>-budget-button');
 var $budgetConfirm = $('#budget-confirm');
 
-$orderProgressElements.forEach((orderProgress) => {
-    var $orderTotalBudget = $(orderProgress).find("[id^=order-total-budget]");
-    $orderTotalBudget.html('<%= j(render partial: "decidim/budgets/projects/order_total_budget").strip.html_safe %>');
+$orderProgress.forEach((orderProgress) => {
+  var $orderTotalBudget = $(orderProgress).find("[id^=order-total-budget]");
+  $orderTotalBudget.html('<%= j(render partial: "decidim/budgets/projects/order_total_budget").strip.html_safe %>');
 
-    if(orderProgress.dataset.orderProgressResponsive) {
-        morphdom(orderProgress, '<%= j(render partial: "decidim/budgets/projects/order_progress_summary_content", locals: { include_heading: true, responsive: true }).strip.html_safe %>');
-    } else {
-        morphdom(orderProgress, '<%= j(render partial: "decidim/budgets/projects/order_progress_summary_content", locals: { include_heading: true, responsive: false }).strip.html_safe %>');
-    }
+  if(orderProgress.dataset.orderProgressResponsive === "true") {
+    morphdom(orderProgress, '<%= j(render partial: "decidim/budgets/projects/order_progress_summary/content_responsive", locals: { focus_mode_origin: @focus_mode_origin }).strip.html_safe %>');
+  } else {
+    morphdom(orderProgress, '<%= j(render partial: "decidim/budgets/projects/order_progress_summary/content").strip.html_safe %>');
+  }
 });
 
+morphdom($budgetConfirm[0], '<%= j(render partial: "decidim/budgets/projects/budget_confirm").strip.html_safe %>')
 if ($orderSelectedProjectsCount.length > 0) {
-    morphdom($orderSelectedProjectsCount[0], '<%= j(render partial: "decidim/budgets/projects/projects_count", locals: { count: current_order.projects.size }).strip.html_safe %>');
+  morphdom($orderSelectedProjectsCount[0], '<%= j(render partial: "decidim/budgets/projects/projects_count", locals: { count: current_order.projects.size }).strip.html_safe %>')
 }
 
-morphdom($budgetConfirm[0], '<%= j(render partial: "decidim/budgets/projects/budget_confirm").strip.html_safe %>');
-
-<% project.budget.projects.each_with_index do |p| %>
-var $projectItem = $('#project-<%= p.id %>-item');
-if ($projectItem.length > 0) {
-    morphdom($projectItem[0], '<%= j(render partial: "decidim/budgets/projects/project", locals: { project: p }).strip.html_safe %>');
+<%# Custom: re-render ALL OTHER projects in the budget to update scores (current project is handled below) %>
+<% project.budget.projects.where.not(id: project.id).each do |p| %>
+var $pItem = $('#project-<%= p.id %>-item');
+if ($pItem.length > 0) {
+  morphdom($pItem[0], '<%= j(render partial: "decidim/budgets/projects/project", locals: { project: p }).strip.html_safe %>');
 }
 
-var $projectBudgetButton = $('#project-<%= p.id %>-budget-button');
-if ($projectBudgetButton.length > 0) {
-    morphdom($projectBudgetButton[0], '<%= j(render partial: "decidim/budgets/projects/project_budget_button", locals: { project: p }).strip.html_safe %>');
+var $pBudgetButton = $('#project-<%= p.id %>-budget-button');
+if ($pBudgetButton.length > 0) {
+  morphdom($pBudgetButton[0], '<%= j(render partial: "decidim/budgets/projects/project_budget_button", locals: { project: p }).strip.html_safe %>');
 }
 <% end %>
 
-if ($('#project-<%= project.id %>-item').length > 0) {
-    <% if params[:action] == "destroy" && params[:show_only_added] == "true" %>
-    $('#project-<%= project.id %>-item').remove();
-    <% else %>
-    morphdom($('#project-<%= project.id %>-item')[0], '<%= j(render partial: "decidim/budgets/projects/project", locals: { project: }).strip.html_safe %>');
-    <% end %>
+if ($projectItem.length > 0) {
+  <% if params[:action] == "destroy" && params[:show_only_added] == "true" %>
+    $projectItem[0].remove();
+  <% else %>
+    morphdom($projectItem[0], '<%= j(render partial: "decidim/budgets/projects/project", locals: { project: }).strip.html_safe %>');
+  <% end %>
+}
+
+if ($projectBudgetButton.length > 0) {
+  morphdom($projectBudgetButton[0], '<%= j(render partial: "decidim/budgets/projects/project_budget_button", locals: { project: }).strip.html_safe %>');
 }
 
 window.DecidimBudgets.checkProgressPosition();

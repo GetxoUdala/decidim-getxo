@@ -81,10 +81,10 @@ Rails.application.config.to_prepare do
     def content
       return original_content if model.budget.component.settings.disable_custom_budgets
 
-      if options[:layout] == :one_line
+      if options[:layout] == :with_count_label
         safe_join([votes_count, " ", count_label])
       else
-        safe_join([number, count_label])
+        number
       end
     end
   end
@@ -97,13 +97,16 @@ Rails.application.config.to_prepare do
     def hint
       return original_hint if model.budget.component.settings.disable_custom_budgets
 
-      contents = []
-      contents << icon("check-line", role: "img", "aria-hidden": true)
-      contents << " "
-      contents << t("decidim.budgets.projects.project.you_voted")
-      contents << " "
-      contents << content_tag(:div, class: "badge success budget-summary_project-score") do
-        current_order.score_for(model)
+      content_tag :div, class: "success" do
+        contents = []
+        contents << icon("check-line", role: "img", "aria-hidden": true)
+        contents << " "
+        contents << t("decidim.budgets.projects.project.you_voted")
+        contents << " "
+        contents << content_tag(:span, class: "badge success budget-summary_project-score") do
+          current_order.score_for(model).to_s
+        end
+        safe_join(contents)
       end
     end
   end
