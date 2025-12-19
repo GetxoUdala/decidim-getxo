@@ -1,16 +1,14 @@
+---
 eu:
-  # Fix for Decidim 0.31 bug: eu.yml has locale.name: "Ingelesa" instead of "Euskara"
-  locale:
-    name: Euskara
   activemodel:
     attributes:
+      census_authorization_handler:
+        date_of_birth: Jaioteguna
+        document_number: Dokumentuaren zenbakia
       getxo_zone:
         numbers_constraint: Murrizketak
         numbers_range: Zenbaki sorta
         street_id: Kaleak
-      census_authorization_handler:
-        date_of_birth: Jaioteguna
-        document_number: Dokumentuaren zenbakia
   census_authorization:
     form:
       date_select:
@@ -18,40 +16,49 @@ eu:
         month: Hilabetea
         year: Urtea
   decidim:
-    components:
-      budgets:
-        settings:
-          global:
-            disable_custom_budgets: Desgaitu aurrekontu pertsonalizatuak
     authorization_handlers:
       census_authorization_handler:
         connection_error: Ezin izan da egiaztapena egin
         explanation: Egiaztatu zure kontua udal erroldarekin
         fields:
+          date_of_birth: Jaioteguna
           street: Kaleak
           street_number: 'Kaleko zenbakia:'
           zones: 'Baliozko zonak:'
-          date_of_birth: Jaioteguna
         invalid_document: Dokumentu baliogabea
         name: Udal errolda
+    components:
+      budgets:
+        settings:
+          global:
+            disable_custom_budgets: Desgaitu aurrekontu pertsonalizatuak
     participatory_processes:
       participatory_processes:
         show:
           audio:
-            title: Sakatu play! Jarri erritmoa parte-hartzeari eta sentitu energía! Entzun hemendik aurrera parte hartzeko prozesuak lagunduko dituen musika. Animatu eta hartu parte!
-            author: "Egileak: Lore Rouco eta Rubén G. Mateos kolaborazioa"
-            rights: Derechos reservados
             audio_supporting: Tu navegador no soporta el elemento de audio.
-  recaptcha:
-    errors:
-      verification_failed: Ezin da egiaztatu reCaptcha-rekin erregistratzea
+            author: 'Egileak: Lore Rouco eta Rubén G. Mateos kolaborazioa'
+            rights: Derechos reservados
+            title: Sakatu play! Jarri erritmoa parte-hartzeari eta sentitu energía!
+              Entzun hemendik aurrera parte hartzeko prozesuak lagunduko dituen musika.
+              Animatu eta hartu parte!
   getxo:
-    connection_error: Lotura-errorea udal erroldarekin (%{error})
-    street_sync_success: Kaleak ondo sinkronizatu dira (%{count} kale jasoak webservice-tik)
     admin:
       menu:
         census: Getxoko errolda
-        sync: Webservice Sync
         check: Check
-        zones: Zonak
         streets: Kaleak
+        sync: Webservice Sync
+        zones: Zonak
+      zones:
+        actions:
+          confirm_destroy: Ziur zaude zona hau ezabatu nahi duzula?
+          destroy: Ezabatu
+          edit: Editatu
+    connection_error: Lotura-errorea udal erroldarekin (%{error})
+    street_sync_success: Kaleak ondo sinkronizatu dira (%{count} kale jasoak webservice-tik)
+  locale:
+    name: Euskara # Fix Decidim 0.31 bug: eu.yml has locale.name: "Ingelesa" instead of "Euskara"
+  recaptcha:
+    errors:
+      verification_failed: Ezin da egiaztatu reCaptcha-rekin erregistratzea
