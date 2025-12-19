@@ -1,0 +1,25 @@
+# i18n-tasks configuration
+# https://github.com/glebm/i18n-tasks
+
+base_locale: en
+locales: [en, es, eu]
+
+search:
+  paths:
+    - app/
+    - config/initializers/
+
+# Do not consider these keys missing:
+ignore_missing:
+  - decidim.budgets.order_summary_mailer.*
+  - decidim.budgets.projects.budget_confirm.*
+  - decidim.budgets.projects.project_budget_button.*
+  - layouts.decidim.language_chooser.*
+  - locale.name
+
+# Consider these keys used:
+ignore_unused:
+  - activemodel.attributes.census_authorization_handler.*
+  - activemodel.attributes.getxo_zone.*
+  - decidim.authorization_handlers.census_authorization_handler.*
+  - decidim.components.budgets.settings.global.disable_custom_budgets

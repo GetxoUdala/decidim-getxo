@@ -1,6 +1,37 @@
 ---
 en:
+  activemodel:
+    attributes:
+      census_authorization_handler:
+        date_of_birth: Date of birth
+        document_number: Document number
+      getxo_zone:
+        numbers_constraint: Constraints
+        numbers_range: Number range
+        street_id: Street
+  census_authorization:
+    form:
+      date_select:
+        day: Day
+        month: Month
+        year: Year
   decidim:
+    authorization_handlers:
+      census_authorization_handler:
+        connection_error: Verification could not be completed
+        explanation: Verify your account with the municipal census
+        fields:
+          date_of_birth: Date of birth
+          street: 'Street:'
+          street_number: 'Street number:'
+          zones: 'Valid zones:'
+        invalid_document: Invalid document
+        name: Municipal census
+    components:
+      budgets:
+        settings:
+          global:
+            disable_custom_budgets: Disable custom budgets
     participatory_processes:
       participatory_processes:
         show:
@@ -11,17 +42,22 @@ en:
             title: Click PLAY! Set the beat for participation and feel the energy!
               Listen to the music that will accompany the processes of participation
               from now on. Come and participate!
-  hello: Hello world
-  recaptcha:
-    errors:
-      verification_failed: Registration could not be verified with reCaptcha
   getxo:
-    connection_error: Connection error with the municipal census (%{error})
-    street_sync_success: Streets synchronized correctly (%{count} streets received from the webservice)
     admin:
       menu:
         census: Getxo Census
-        sync: Webservice Sync
         check: Check
-        zones: Zones
         streets: Streets
+        sync: Webservice Sync
+        zones: Zones
+      zones:
+        actions:
+          confirm_destroy: Are you sure you want to delete this zone?
+          destroy: Delete
+          edit: Edit
+    connection_error: Connection error with the municipal census (%{error})
+    street_sync_success: Streets synchronized correctly (%{count} streets received
+      from the webservice)
+  recaptcha:
+    errors:
+      verification_failed: Registration could not be verified with reCaptcha

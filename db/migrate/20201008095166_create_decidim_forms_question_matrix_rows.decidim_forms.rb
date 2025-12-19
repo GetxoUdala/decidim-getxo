@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # This migration comes from decidim_forms (originally 20200225123810)
-
+# This file has been modified by `decidim upgrade:migrations` task on 2025-12-17 13:08:04 UTC
 class CreateDecidimFormsQuestionMatrixRows < ActiveRecord::Migration[5.2]
   def change
     create_table :decidim_forms_question_matrix_rows do |t|

@@ -35,7 +35,7 @@ module Decidim
 
       def sync
         streets = GetxoStreet.import_streets!(current_organization)
-        flash[:notice] = t("getxo.sync_success", count: streets.count)
+        flash[:notice] = t("getxo.street_sync_success", count: streets.count)
         redirect_to streets_admin_getxo_index_path
       end
 

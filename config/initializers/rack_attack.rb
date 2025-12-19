@@ -17,10 +17,10 @@ if Rails.env.production?
     request.env.dig("rack.session", "warden.user.user.key").present?
   end
 
-  if Rails.application.secrets.rack_attack_skip.present?
+  if ENV.fetch("RACK_ATTACK_SECRET", nil).present?
     Rack::Attack.safelist("bypass with secret param") do |request|
       # Requests are allowed if the return value is truthy
-      request.params["skip_rack_attack"] == Rails.application.secrets.rack_attack_skip
+      request.params["skip_rack_attack"] == ENV.fetch("RACK_ATTACK_SECRET", nil)
     end
   end
 end

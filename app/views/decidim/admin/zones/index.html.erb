@@ -30,9 +30,8 @@
             <td><%= zone.name %></td>
             <td><%= l zone.created_at, format: :decidim_short %></td>
             <td class="table-list__actions">
-              <%= icon_link_to "pencil-line", edit_admin_getxo_zone_path(zone), t("actions.edit", scope: "decidim.admin"), class: "action-icon--edit" %>
-
-              <%= icon_link_to "delete-bin-line", admin_getxo_zone_path(zone), t("actions.destroy", scope: "decidim.admin"), class: "action-icon--remove", method: :delete, data: { confirm: t("actions.confirm_destroy", scope: "decidim.admin") } %>
+              <%= icon_link_to "pencil-line", edit_admin_getxo_zone_path(zone), t("actions.edit", scope: "getxo.admin.zones"), class: "action-icon--edit" %>
+              <%= icon_link_to "delete-bin-line", admin_getxo_zone_path(zone), t("actions.destroy", scope: "getxo.admin.zones"), class: "action-icon--remove", method: :delete, data: { confirm: t("actions.confirm_destroy", scope: "getxo.admin.zones") } %>
             </td>
           </tr>
         <% end %>

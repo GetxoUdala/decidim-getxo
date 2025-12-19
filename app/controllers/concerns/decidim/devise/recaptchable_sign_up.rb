@@ -20,7 +20,7 @@ module Decidim
         private
 
         def verify_recaptcha
-          secret_key = Rails.application.secrets[:recaptcha_secret_key]
+          secret_key = ENV.fetch("RECAPTCHA_SECRET_KEY", nil)
           return if secret_key.blank?
 
           token = params["g-recaptcha-response"]

@@ -3,7 +3,7 @@
 require "rails_helper"
 
 describe "Visit the home page", perform_enqueued: true do # rubocop:disable RSpec/DescribeClass
-  let(:organization) { create(:organization) }
+  let(:organization) { create(:organization, available_locales: %w(en eu)) }
 
   before do
     switch_to_host(organization.host)
