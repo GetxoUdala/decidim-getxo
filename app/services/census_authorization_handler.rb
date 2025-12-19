@@ -24,8 +24,8 @@ class CensusAuthorizationHandler < Decidim::AuthorizationHandler
   def metadata
     {
       date_of_birth: date_of_birth&.strftime("%Y-%m-%d"),
-      street: response&.xpath("//calle")&.text&.strip,
-      street_number: response&.xpath("//portal")&.text&.strip&.to_i
+      street: extract_xpath_text("//calle"),
+      street_number: extract_xpath_text("//portal").to_i
     }
   end
 
@@ -40,6 +40,11 @@ class CensusAuthorizationHandler < Decidim::AuthorizationHandler
   end
 
   private
+
+  def extract_xpath_text(xpath)
+    node = response&.xpath(xpath)
+    node&.text&.strip
+  end
 
   def sanitized_date_of_birth
     @sanitized_date_of_birth ||= date_of_birth&.strftime("%Y%m%d")
