@@ -1,7 +1,7 @@
 GIT
   remote: https://github.com/decidim-ice/decidim-module-decidim_awesome.git
-  revision: b8bbaef4fb1bae845f8ce4beede7323faed674f8
-  branch: release/0.31-stable
+  revision: 9ce4acae26a1161799cd0fc9ac767dcbaa11eadf
+  branch: main
   specs:
     decidim-decidim_awesome (0.14.0)
       active_hashcash (~> 0.4.0)
@@ -197,6 +197,22 @@ GIT
       decidim-core (= 0.31.1)
 
 GIT
+  remote: https://github.com/openpoke/decidim-module-pokecode.git
+  revision: fc05a75aac1771ac3b5504a3c2d1d3b4851d2b7d
+  branch: main
+  specs:
+    decidim-pokecode (0.2.0)
+      aws-sdk-s3
+      decidim-core (>= 0.31.0, < 0.32)
+      deface (>= 1.5)
+      health_check
+      rails_semantic_logger
+      sentry-rails
+      sentry-ruby
+      sidekiq
+      sidekiq-cron
+
+GIT
   remote: https://github.com/openpoke/decidim-module-term_customizer.git
   revision: 8cd8bafc273b34ff7dae7c0dcbf231062aa68466
   branch: main
@@ -292,6 +308,25 @@ GEM
     addressable (2.8.8)
       public_suffix (>= 2.0.2, < 8.0)
     ast (2.4.3)
+    aws-eventstream (1.4.0)
+    aws-partitions (1.1212.0)
+    aws-sdk-core (3.242.0)
+      aws-eventstream (~> 1, >= 1.3.0)
+      aws-partitions (~> 1, >= 1.992.0)
+      aws-sigv4 (~> 1.9)
+      base64
+      bigdecimal
+      jmespath (~> 1, >= 1.6.1)
+      logger
+    aws-sdk-kms (1.121.0)
+      aws-sdk-core (~> 3, >= 3.241.4)
+      aws-sigv4 (~> 1.5)
+    aws-sdk-s3 (1.213.0)
+      aws-sdk-core (~> 3, >= 3.241.4)
+      aws-sdk-kms (~> 1)
+      aws-sigv4 (~> 1.5)
+    aws-sigv4 (1.12.1)
+      aws-eventstream (~> 1, >= 1.0.2)
     base64 (0.3.0)
     batch-loader (2.0.6)
     bcrypt (3.1.21)
@@ -548,7 +583,8 @@ GEM
       pp (>= 0.6.0)
       rdoc (>= 4.0.0)
       reline (>= 0.4.2)
-    json (2.18.0)
+    jmespath (1.6.2)
+    json (2.18.1)
     jwt (3.1.2)
       base64
     kaminari (1.2.2)
@@ -1033,25 +1069,16 @@ PLATFORMS
 
 DEPENDENCIES
   bootsnap (~> 1.4)
-  brakeman (~> 5.4)
+  brakeman
   byebug (~> 11.0)
   decidim!
   decidim-decidim_awesome!
   decidim-dev!
+  decidim-pokecode!
   decidim-term_customizer!
-  deface (>= 1.9)
-  faker (~> 3.2)
-  health_check
   letter_opener_web
   listen
   puma (>= 6.3.1)
-  rails_semantic_logger
-  rubocop-faker
-  rubocop-rspec
-  sentry-rails
-  sentry-ruby
-  sidekiq
-  sidekiq-cron
   web-console
   xliffle
 
@@ -1072,6 +1099,12 @@ CHECKSUMS
   acts_as_list (1.2.6) sha256=8345380900b7bee620c07ad00991ccee59af3d8c9e8574f426e321da2865fdc8
   addressable (2.8.8) sha256=7c13b8f9536cf6364c03b9d417c19986019e28f7c00ac8132da4eb0fe393b057
   ast (2.4.3) sha256=954615157c1d6a382bc27d690d973195e79db7f55e9765ac7c481c60bdb4d383
+  aws-eventstream (1.4.0) sha256=116bf85c436200d1060811e6f5d2d40c88f65448f2125bc77ffce5121e6e183b
+  aws-partitions (1.1212.0) sha256=fa4f5de905cc2b6587747e5b1e2d215e610fa0449c70b9069e3c928a15cc2a15
+  aws-sdk-core (3.242.0) sha256=c17b3003acc78d80c1a8437b285a1cfc5e4d7749ce7821cf3071e847535a29a0
+  aws-sdk-kms (1.121.0) sha256=d563c1cfb4b5754efbc671216c8eca875338748adad0f42518c28dfa0a2d01e0
+  aws-sdk-s3 (1.213.0) sha256=af596ccf544582406db610e95cc9099276eaf03142f57a2f30f76940e598e50d
+  aws-sigv4 (1.12.1) sha256=6973ff95cb0fd0dc58ba26e90e9510a2219525d07620c8babeb70ef831826c00
   base64 (0.3.0) sha256=27337aeabad6ffae05c265c450490628ef3ebd4b67be58257393227588f5a97b
   batch-loader (2.0.6) sha256=93e313b8880740d5d8be32861bf4e1631f5975ad34f4cb8fb9cf7662ee009267
   bcrypt (3.1.21) sha256=5964613d750a42c7ee5dc61f7b9336fb6caca429ba4ac9f2011609946e4a2dcf
@@ -1123,6 +1156,7 @@ CHECKSUMS
   decidim-meetings (0.31.1)
   decidim-pages (0.31.1)
   decidim-participatory_processes (0.31.1)
+  decidim-pokecode (0.2.0)
   decidim-proposals (0.31.1)
   decidim-sortitions (0.31.1)
   decidim-surveys (0.31.1)
@@ -1201,7 +1235,8 @@ CHECKSUMS
   invisible_captcha (0.13.0) sha256=8c2db8295d7fc67c143886220a616ae7070907b26fd5557748f44c3f19fec8c4
   io-console (0.8.2) sha256=d6e3ae7a7cc7574f4b8893b4fca2162e57a825b223a177b7afa236c5ef9814cc
   irb (1.16.0) sha256=2abe56c9ac947cdcb2f150572904ba798c1e93c890c256f8429981a7675b0806
-  json (2.18.0) sha256=b10506aee4183f5cf49e0efc48073d7b75843ce3782c68dbeb763351c08fd505
+  jmespath (1.6.2) sha256=238d774a58723d6c090494c8879b5e9918c19485f7e840f2c1c7532cf84ebcb1
+  json (2.18.1) sha256=fe112755501b8d0466b5ada6cf50c8c3f41e897fa128ac5d263ec09eedc9f986
   jwt (3.1.2) sha256=af6991f19a6bb4060d618d9add7a66f0eeb005ac0bc017cd01f63b42e122d535
   kaminari (1.2.2) sha256=c4076ff9adccc6109408333f87b5c4abbda5e39dc464bd4c66d06d9f73442a3e
   kaminari-actionview (1.2.2) sha256=1330f6fc8b59a4a4ef6a549ff8a224797289ebf7a3a503e8c1652535287cc909
