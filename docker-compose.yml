@@ -33,8 +33,8 @@ services:
       - "traefik.enable=true"
       - "traefik.http.routers.traefik.service=api@internal"
   app:
-    container_name: decidim
-    image: decidim_${DECIDIM_ENV:-production}
+    container_name: decidim_${DECIDIM_ENV:-production}
+    image: ghcr.io/getxoudala/decidim-getxo:${GIT_REF:-main}
     volumes:
       - /home/dockerexec/storage:/app/storage
     restart: ${RESTART_POLICY:-always}
