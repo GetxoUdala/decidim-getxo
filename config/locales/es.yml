@@ -2,13 +2,13 @@
 es:
   activemodel:
     attributes:
+      census_authorization_handler:
+        date_of_birth: Fecha de nacimiento
+        document_number: Número de documento
       getxo_zone:
         numbers_constraint: Restricciones
         numbers_range: Rango de números
         street_id: Calle
-      census_authorization_handler: 
-        date_of_birth: "Fecha de nacimiento"
-        document_number: "Número de documento"
   census_authorization:
     form:
       date_select:
@@ -16,40 +16,48 @@ es:
         month: Mes
         year: Año
   decidim:
-    components:
-      budgets:
-        settings:
-          global:
-            disable_custom_budgets: Deshabilitar presupuestos personalizados
     authorization_handlers:
       census_authorization_handler:
         connection_error: No ha sido posible realizar la verificación
         explanation: Verifica tu cuenta con el censo municipal
         fields:
-          date_of_birth: "Fecha de nacimiento"
+          date_of_birth: Fecha de nacimiento
           street: 'Calle:'
           street_number: 'Número de calle:'
           zones: 'Zonas válidas:'
         invalid_document: Documento no válido
         name: Censo municipal
+    components:
+      budgets:
+        settings:
+          global:
+            disable_custom_budgets: Deshabilitar presupuestos personalizados
     participatory_processes:
       participatory_processes:
         show:
           audio:
-            title: Dale al play! ¡Ponle ritmo a la participación y siente la energía! Escucha la música que, a partir de ahora, acompañará a los procesos participativos. Anímate y participa
-            author: "Autores: colaboración Lore Rouco y Rubén G. Mateos"
-            rights: Todos los derechos reservados
             audio_supporting: Su navegador no soporta el elemento audio.
-  recaptcha:
-    errors:
-      verification_failed: No se ha podido verificar el registro con reCaptcha
+            author: 'Autores: colaboración Lore Rouco y Rubén G. Mateos'
+            rights: Todos los derechos reservados
+            title: Dale al play! ¡Ponle ritmo a la participación y siente la energía!
+              Escucha la música que, a partir de ahora, acompañará a los procesos
+              participativos. Anímate y participa
   getxo:
-    connection_error: Error de conexión con el censo municipal (%{error})
-    street_sync_success: Calles sincronizadas correctamente (%{count} calles recibidas del webservice)
     admin:
       menu:
         census: Censo Getxo
-        sync: Webservice Sync
         check: Check
-        zones: Zonas
         streets: Calles
+        sync: Webservice Sync
+        zones: Zonas
+      zones:
+        actions:
+          confirm_destroy: "¿Estás seguro de que deseas eliminar esta zona?"
+          destroy: Eliminar
+          edit: Editar
+    connection_error: Error de conexión con el censo municipal (%{error})
+    street_sync_success: Calles sincronizadas correctamente (%{count} calles recibidas
+      del webservice)
+  recaptcha:
+    errors:
+      verification_failed: No se ha podido verificar el registro con reCaptcha

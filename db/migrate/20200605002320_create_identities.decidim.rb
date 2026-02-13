@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # This migration comes from decidim (originally 20170116110851)
-
+# This file has been modified by `decidim upgrade:migrations` task on 2025-12-17 13:08:04 UTC
 class CreateIdentities < ActiveRecord::Migration[5.0]
   def change
     create_table :decidim_identities do |t|

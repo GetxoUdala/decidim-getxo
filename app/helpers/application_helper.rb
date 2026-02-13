@@ -3,7 +3,7 @@
 module ApplicationHelper
   def recaptcha_tag
     raw %(
-      <div class="g-recaptcha" data-sitekey="#{Rails.application.secrets.recaptcha_site_key}"></div>
+      <div class="g-recaptcha" data-sitekey="#{ENV.fetch("RECAPTCHA_SITE_KEY", nil)}"></div>
     )
   end
 end
