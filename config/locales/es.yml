@@ -13,6 +13,7 @@ es:
         street_id: Calle
   census_authorization:
     form:
+      document_number_help: Este dato se envía automáticamente al programa del padrón para verificar que la persona usuaria está empadronada. Zeugaz Getxo no guarda este dato y no puede acceder al mismo.
       date_select:
         day: Dia
         month: Mes
@@ -49,6 +50,7 @@ es:
               Escucha la música que, a partir de ahora, acompañará a los procesos
               participativos. Anímate y participa
   getxo:
+    data_disclaimer: Estos datos nos sirven para elaborar estadísticas con las que mejorar nuestros procesos participativos y llegar a todos los colectivos de nuestro municipio.
     admin:
       menu:
         census: Censo Getxo

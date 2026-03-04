@@ -16,6 +16,10 @@ class CensusAuthorizationHandler < Decidim::AuthorizationHandler
 
   validate :document_number_valid
 
+  def date_of_birth
+    Date.parse(user.extended_data["date_of_birth"]) if user.extended_data["date_of_birth"].present?
+  end
+
   # If you need to store any of the defined attributes in the authorization you
   # can do it here.
   #
