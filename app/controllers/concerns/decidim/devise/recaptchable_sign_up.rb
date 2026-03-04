@@ -37,7 +37,7 @@ module Decidim
             request.set_form_data(
               secret: secret_key,
               response: token,
-              remoteip: request.remote_ip
+              remoteip: self.request.remote_ip
             )
 
             response = http.request(request)
