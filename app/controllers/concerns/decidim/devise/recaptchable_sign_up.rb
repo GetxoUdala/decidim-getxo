@@ -46,14 +46,9 @@ module Decidim
 
             json = JSON.parse(response.body)
             verified = json["success"]
-            score = json["score"].to_f
 
-            # reCAPTCHA v3 returns a score between 0 (bot) and 1 (human)
-            # Adjust threshold as needed (0.5 is recommended)
-            score_threshold = ENV.fetch("RECAPTCHA_SCORE_THRESHOLD", "0.5").to_f
-
-            unless verified && score >= score_threshold
-              Rails.logger.warn("reCAPTCHA verification failed - success: #{verified}, score: #{score}")
+            unless verified
+              Rails.logger.warn("reCAPTCHA verification failed - success: #{verified}")
               reject_recaptcha
             end
           rescue StandardError => e
