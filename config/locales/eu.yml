@@ -2,6 +2,8 @@
 eu:
   activemodel:
     attributes:
+      user:
+        gender: "Mesedez, esan iezaguzu ea zu zaren:"
       census_authorization_handler:
         date_of_birth: Jaioteguna
         document_number: Dokumentuaren zenbakia

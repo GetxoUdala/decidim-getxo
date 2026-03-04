@@ -2,6 +2,8 @@
 es:
   activemodel:
     attributes:
+      user:
+        gender: "Indicanos por favor si eres:"
       census_authorization_handler:
         date_of_birth: Fecha de nacimiento
         document_number: Número de documento
@@ -16,6 +18,10 @@ es:
         month: Mes
         year: Año
   decidim:
+    extra_user_fields:
+      genders:
+        female: Mujer
+        male: Hombre
     authorization_handlers:
       census_authorization_handler:
         connection_error: No ha sido posible realizar la verificación
