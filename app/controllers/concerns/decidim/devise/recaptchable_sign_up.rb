@@ -24,26 +24,47 @@ module Decidim
           return if secret_key.blank?
 
           token = params["g-recaptcha-response"]
+          return reject_recaptcha if token.blank?
 
-          uri = URI.parse("https://www.google.com/recaptcha/api/siteverify?secret=#{secret_key}&response=#{token}")
+          begin
+            uri = URI.parse("https://www.google.com/recaptcha/api/siteverify")
+            http = Net::HTTP.new(uri.host, uri.port)
+            http.use_ssl = true
+            http.read_timeout = 5
+            http.open_timeout = 5
 
-          response = Net::HTTP.get_response(uri)
+            request = Net::HTTP::Post.new(uri.path)
+            request.set_form_data(
+              secret: secret_key,
+              response: token,
+              remoteip: request.remote_ip
+            )
 
-          # https = Net::HTTP.new(uri.host, uri.port)
-          # https.use_ssl = true
-          # req = Net::HTTP::Post.new(uri.path)
+            response = http.request(request)
 
-          # res = https.request(req)
-          # puts "Response #{res.code} #{res.message}: #{res.body}"
+            return reject_recaptcha if response.nil? || response.body.blank?
 
-          json = JSON.parse(response.body)
+            json = JSON.parse(response.body)
+            verified = json["success"]
+            score = json["score"].to_f
 
-          verified = json["success"]
+            # reCAPTCHA v3 returns a score between 0 (bot) and 1 (human)
+            # Adjust threshold as needed (0.5 is recommended)
+            score_threshold = ENV.fetch("RECAPTCHA_SCORE_THRESHOLD", "0.5").to_f
 
-          unless verified
-            flash[:alert] = t("recaptcha.errors.verification_failed")
-            redirect_to new_user_registration_path
+            unless verified && score >= score_threshold
+              Rails.logger.warn("reCAPTCHA verification failed - success: #{verified}, score: #{score}")
+              reject_recaptcha
+            end
+          rescue StandardError => e
+            Rails.logger.error("reCAPTCHA verification error: #{e.class} - #{e.message}")
+            reject_recaptcha
           end
+        end
+
+        def reject_recaptcha
+          flash[:alert] = t("recaptcha.errors.verification_failed")
+          redirect_to new_user_registration_path
         end
       end
     end

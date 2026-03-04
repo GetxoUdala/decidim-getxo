@@ -1,4 +1,4 @@
-<!-- insert_after "#card__tos" -->
+<!-- insert_after "erb[loud]:contains('decidim/devise/shared/tos_fields')" -->
 
 <div class="mb-4">
 	<%= recaptcha_tag %>
