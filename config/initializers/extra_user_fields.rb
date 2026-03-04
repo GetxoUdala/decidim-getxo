@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Decidim::ExtraUserFields.configure do |config|
   config.insight_fields = %w(gender age_span)
   config.genders = [:female, :male]
