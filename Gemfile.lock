@@ -12,7 +12,7 @@ GIT
 
 GIT
   remote: https://github.com/decidim/decidim.git
-  revision: a35d887093f9d341bc11f27c1254b4e8c4893637
+  revision: bbce16bcf323c7e29afb6a36c2952c1e9a01b2f0
   branch: release/0.31-stable
   specs:
     decidim (0.31.2)
@@ -198,7 +198,7 @@ GIT
 
 GIT
   remote: https://github.com/openpoke/decidim-module-extra_user_fields.git
-  revision: 39cb1bd23a519e29776ce64280823217d054f995
+  revision: 69b35f0429f7d823bc11179ed6d053e690c83408
   branch: main
   specs:
     decidim-extra_user_fields (0.31.0)
@@ -331,7 +331,7 @@ GEM
     aws-sdk-kms (1.122.0)
       aws-sdk-core (~> 3, >= 3.241.4)
       aws-sigv4 (~> 1.5)
-    aws-sdk-s3 (1.213.0)
+    aws-sdk-s3 (1.214.0)
       aws-sdk-core (~> 3, >= 3.241.4)
       aws-sdk-kms (~> 1)
       aws-sigv4 (~> 1.5)
@@ -478,7 +478,7 @@ GEM
     factory_bot_rails (6.5.1)
       factory_bot (~> 6.5)
       railties (>= 6.1.0)
-    faker (3.6.0)
+    faker (3.6.1)
       i18n (>= 1.8.11, < 2)
     faraday (2.14.1)
       faraday-net_http (>= 2.0, < 3.5)
@@ -1123,7 +1123,7 @@ CHECKSUMS
   aws-partitions (1.1221.0) sha256=f09304480191f5ff03f8994705067779bc8fe5b4731183ce45f092afb706e8eb
   aws-sdk-core (3.242.0) sha256=c17b3003acc78d80c1a8437b285a1cfc5e4d7749ce7821cf3071e847535a29a0
   aws-sdk-kms (1.122.0) sha256=47ce3f51b26bd7d76f1270cfdfca17b40073ecd3219c8c9400788712abfb4eb8
-  aws-sdk-s3 (1.213.0) sha256=af596ccf544582406db610e95cc9099276eaf03142f57a2f30f76940e598e50d
+  aws-sdk-s3 (1.214.0) sha256=923135327634c873ecedbd8f396ea9939874d524b14fa65eced766660c8dd62e
   aws-sigv4 (1.12.1) sha256=6973ff95cb0fd0dc58ba26e90e9510a2219525d07620c8babeb70ef831826c00
   base64 (0.3.0) sha256=27337aeabad6ffae05c265c450490628ef3ebd4b67be58257393227588f5a97b
   batch-loader (2.0.6) sha256=93e313b8880740d5d8be32861bf4e1631f5975ad34f4cb8fb9cf7662ee009267
@@ -1213,7 +1213,7 @@ CHECKSUMS
   extended-markdown-filter (0.7.0) sha256=c8eeef7409fbae18c6b407cd3e4eeb5d25c35cb08fe1ac06f375df3db2d4f138
   factory_bot (6.5.6) sha256=12beb373214dccc086a7a63763d6718c49769d5606f0501e0a4442676917e077
   factory_bot_rails (6.5.1) sha256=d3cc4851eae4dea8a665ec4a4516895045e710554d2b5ac9e68b94d351bc6d68
-  faker (3.6.0) sha256=4ce80bf91c8d09bbfff4c5596690bf862d60eac420f86737ca8ce12a54dc464a
+  faker (3.6.1) sha256=c513d23c1d26b426283e913b25e0b714576011d7c1ad368a9ac6ea2113a1ccde
   faraday (2.14.1) sha256=a43cceedc1e39d188f4d2cdd360a8aaa6a11da0c407052e426ba8d3fb42ef61c
   faraday-net_http (3.4.2) sha256=f147758260d3526939bf57ecf911682f94926a3666502e24c69992765875906c
   ffi (1.17.3-aarch64-linux-gnu) sha256=28ad573df26560f0aedd8a90c3371279a0b2bd0b4e834b16a2baa10bd7a97068
