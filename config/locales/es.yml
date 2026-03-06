@@ -50,7 +50,7 @@ es:
               Escucha la música que, a partir de ahora, acompañará a los procesos
               participativos. Anímate y participa
   getxo:
-    data_disclaimer: Estos datos nos sirven para elaborar estadísticas con las que mejorar nuestros procesos participativos y llegar a todos los colectivos de nuestro municipio.
+    data_disclaimer: Estos datos nos sirven para elaborar estadísticas con las que mejorar nuestros procesos participativos y llegar a todos los colectivos de nuestro municipio. Sólo se tratarán de forma agregada y anonimizada
     admin:
       menu:
         census: Censo Getxo
