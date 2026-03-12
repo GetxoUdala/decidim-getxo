@@ -45,7 +45,7 @@ eu:
               Entzun hemendik aurrera parte hartzeko prozesuak lagunduko dituen musika.
               Animatu eta hartu parte!
   getxo:
-    data_disclaimer: Datu horiek estatistikak egiteko balio digute, gure partaidetza-prozesuak hobetzeko eta gure udalerriko kolektibo guztiengana iristeko.  Modu agregatuan eta anonimoan baino ez dira tratatuko
+    data_disclaimer_html: Datu horiek <b>estatistikak</b> egiteko balio digute, gure partaidetza-prozesuak hobetzeko eta gure udalerriko kolektibo guztiengana iristeko. <b>Modu agregatuan eta anonimoan baino ez dira tratatuko</b>.
     admin:
       menu:
         census: Getxoko errolda

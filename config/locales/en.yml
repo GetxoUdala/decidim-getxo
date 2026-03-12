@@ -44,7 +44,7 @@ en:
               Listen to the music that will accompany the processes of participation
               from now on. Come and participate!
   getxo:
-    data_disclaimer: The data provided in this section is obtained from the municipal census and is used to verify that the user is registered in the census. Zeugaz Getxo does not store this data and cannot access it.
+    data_disclaimer_html: The data provided in this section is obtained from the municipal census and is used to verify that the user is registered in the census. Zeugaz Getxo does not store this data and cannot access it.
     admin:
       menu:
         census: Getxo Census
