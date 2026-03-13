@@ -62,9 +62,11 @@ First, you need to make sure you are logged into the Github Docker registry (ghc
 2. Generate a new token (Classic)
 3. Ensure you check the permission "read:packages" and "No expiration".
 4. In the server, login into docker, introduce your username and the token generated:
+
   ```bash
   docker login ghcr.io --username github-username
   ```
+
 5. You should stay logged permanently, you should not need to repeat this process.
 
 To re-deploy the image this should suffice:
