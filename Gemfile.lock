@@ -97,6 +97,9 @@ GIT
     decidim-comments (0.31.2)
       decidim-core (= 0.31.2)
       redcarpet (~> 3.5, >= 3.5.1)
+    decidim-conferences (0.31.2)
+      decidim-core (= 0.31.2)
+      decidim-meetings (= 0.31.2)
     decidim-core (0.31.2)
       active_link_to (~> 1.0)
       acts_as_list (~> 1.0)
@@ -1091,6 +1094,7 @@ DEPENDENCIES
   brakeman
   byebug (~> 11.0)
   decidim!
+  decidim-conferences!
   decidim-decidim_awesome!
   decidim-dev!
   decidim-extra_user_fields!
@@ -1169,6 +1173,7 @@ CHECKSUMS
   decidim-blogs (0.31.2)
   decidim-budgets (0.31.2)
   decidim-comments (0.31.2)
+  decidim-conferences (0.31.2)
   decidim-core (0.31.2)
   decidim-debates (0.31.2)
   decidim-decidim_awesome (0.14.1)
