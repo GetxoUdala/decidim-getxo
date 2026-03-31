@@ -1,0 +1,11 @@
+<%
+ collection = current_participatory_space.registration_types.published
+
+ if collection.any? %>
+  <p class="conference__registration-container-title"><%= t("decidim.conferences.registration_types.index.choose_an_option") %></p>
+  <div class="conference__registration-container">
+    <% collection.each do |registration_type| %>
+      <%= cell "decidim/conferences/registration_type", registration_type, allowed: allowed_to?(:join, :conference, conference: current_participatory_space) %>
+    <% end %>
+  </div>
+<% end %>

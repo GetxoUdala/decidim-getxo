@@ -1,0 +1,3 @@
+<!-- insert_bottom 'main' -->
+
+<%= render("getxo/conferences/register_buttons") %>
