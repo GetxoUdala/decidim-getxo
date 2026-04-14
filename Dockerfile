@@ -88,6 +88,7 @@ RUN apt-get update && \
     imagemagick \
     curl \
     p7zip \
+    nano \
     supervisor && \
     apt-get clean
 
