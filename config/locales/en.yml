@@ -11,11 +11,13 @@ en:
         street_id: Street
   census_authorization:
     form:
-      document_number_help: This data is automatically sent to the census program to verify that the user is registered. Zeugaz Getxo does not store this data and cannot access it.
       date_select:
         day: Day
         month: Month
         year: Year
+      document_number_help: This data is automatically sent to the census program
+        to verify that the user is registered. Zeugaz Getxo does not store this data
+        and cannot access it.
   decidim:
     authorization_handlers:
       census_authorization_handler:
@@ -23,6 +25,8 @@ en:
         explanation: Verify your account with the municipal census
         fields:
           date_of_birth: Date of birth
+          maximum_age: Maximum age
+          minimum_age: Minimum age
           street: 'Street:'
           street_number: 'Street number:'
           zones: 'Valid zones:'
@@ -44,7 +48,6 @@ en:
               Listen to the music that will accompany the processes of participation
               from now on. Come and participate!
   getxo:
-    data_disclaimer_html: The data provided in this section is obtained from the municipal census and is used to verify that the user is registered in the census. Zeugaz Getxo does not store this data and cannot access it.
     admin:
       menu:
         census: Getxo Census
@@ -58,6 +61,9 @@ en:
           destroy: Delete
           edit: Edit
     connection_error: Connection error with the municipal census (%{error})
+    data_disclaimer_html: The data provided in this section is obtained from the municipal
+      census and is used to verify that the user is registered in the census. Zeugaz
+      Getxo does not store this data and cannot access it.
     street_sync_success: Streets synchronized correctly (%{count} streets received
       from the webservice)
   recaptcha:

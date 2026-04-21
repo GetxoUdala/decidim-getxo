@@ -3,6 +3,7 @@
 class CensusActionAuthorizer < Decidim::Verifications::DefaultActionAuthorizer
   def authorize
     return [:missing, { action: :authorize }] if authorization.blank?
+    return [:unauthorized, {}] if age_restricted?
 
     return [:ok, {}] if zones.blank?
     return [:unauthorized, {}] if authorization_street.blank? || authorization_number.blank?
@@ -17,6 +18,34 @@ class CensusActionAuthorizer < Decidim::Verifications::DefaultActionAuthorizer
 
   def zones
     options["zones"]
+  end
+
+  def minimum_age
+    options["minimum_age"].to_i
+  end
+
+  def maximum_age
+    options["maximum_age"].to_i
+  end
+
+  def user_age
+    @user_age ||= begin
+      dob = Date.parse(authorization.metadata["date_of_birth"])
+      today = Date.current
+      age = today.year - dob.year
+      age -= 1 if today < dob + age.years
+      age
+    end
+  rescue ArgumentError, TypeError
+    nil
+  end
+
+  def age_restricted?
+    return false if minimum_age <= 0 && maximum_age <= 0
+    return false unless user_age
+
+    (minimum_age.positive? && user_age < minimum_age) ||
+      (maximum_age.positive? && user_age > maximum_age)
   end
 
   def authorization_street
