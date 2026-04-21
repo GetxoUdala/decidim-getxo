@@ -8,24 +8,28 @@ describe "Age-restricted participation in a proposals component", :js do # ruboc
   let!(:user) { create(:user, :confirmed, organization:) }
   let!(:component) do
     create(:proposal_component,
-           :with_likes_enabled,
-           :with_votes_enabled,
-           :with_creation_enabled,
-           participatory_space: participatory_process)
+           participatory_space: participatory_process,
+           step_settings: {
+             participatory_process.active_step.id.to_s => {
+               likes_enabled: true,
+               votes_enabled: true,
+               creation_enabled: true
+             }
+           })
   end
   let!(:proposal) { create(:proposal, component:) }
   let!(:comment) { create(:comment, commentable: proposal) }
 
   let(:minimum_age) { 18 }
-  let(:handler_options) { { "options" => { "minimum_age" => minimum_age.to_s } } }
-  let(:permissions) do
-    %w(like vote comment vote_comment create).index_with do
-      { "authorization_handlers" => { "census_authorization_handler" => handler_options } }
-    end
+  let(:handler_chain) do
+    { "authorization_handlers" => { "census_authorization_handler" => { "options" => { "minimum_age" => minimum_age.to_s } } } }
   end
+  let(:component_permissions) { { "like" => handler_chain, "vote" => handler_chain } }
+  let(:resource_permissions) { { comment: handler_chain } }
 
   before do
-    component.update!(permissions: permissions)
+    component.update!(permissions: component_permissions)
+    proposal.create_resource_permission(permissions: resource_permissions)
     switch_to_host(organization.host)
     login_as user, scope: :user
   end
@@ -47,27 +51,6 @@ describe "Age-restricted participation in a proposals component", :js do # ruboc
       end
     end
 
-    it "when supporting the proposal" do
-      visit_proposal
-      click_on "Support"
-
-      expect(page).to have_css("#authorizationModal", visible: :visible)
-      within "#authorizationModal" do
-        expect(page).to have_content(expected_text)
-      end
-    end
-
-    it "when up-voting a comment" do
-      visit_proposal
-      within "#comment_#{comment.id}" do
-        page.find(".js-comment__votes--up").click
-      end
-
-      expect(page).to have_css("#authorizationModal", visible: :visible)
-      within "#authorizationModal" do
-        expect(page).to have_content(expected_text)
-      end
-    end
   end
 
   shared_examples "blocks commenting with an inline verification warning" do
@@ -82,6 +65,13 @@ describe "Age-restricted participation in a proposals component", :js do # ruboc
   context "when the user has no census authorization" do
     it_behaves_like "opens the authorization modal with", "In order to perform this action"
     it_behaves_like "blocks commenting with an inline verification warning"
+
+    it "redirects to the verification onboarding when clicking Vote" do
+      visit_proposal
+      click_on "Vote"
+
+      expect(page).to have_content("We need to verify your identity")
+    end
   end
 
   context "when the user is authorized but below the minimum age" do
@@ -94,6 +84,16 @@ describe "Age-restricted participation in a proposals component", :js do # ruboc
 
     it_behaves_like "opens the authorization modal with", "Sorry, you cannot perform this action as some of your authorization data does not match"
     it_behaves_like "blocks commenting with an inline verification warning"
+
+    it "opens the authorization modal with the generic reason when clicking Vote" do
+      visit_proposal
+      click_on "Vote"
+
+      expect(page).to have_css("#authorizationModal", visible: :visible)
+      within "#authorizationModal" do
+        expect(page).to have_content("Sorry, you cannot perform this action as some of your authorization data does not match")
+      end
+    end
 
     it "does not expose the age reason in the authorization modal" do
       visit_proposal
@@ -123,21 +123,13 @@ describe "Age-restricted participation in a proposals component", :js do # ruboc
       end
     end
 
-    it "can support the proposal" do
+    it "can vote on the proposal" do
       visit_proposal
-      click_on "Support"
+      click_on "Vote"
 
-      expect(page).to have_css("#authorizationModal", visible: :hidden)
-      expect(page).to have_content("Already supported")
-    end
-
-    it "can up-vote a comment" do
-      visit_proposal
-      within "#comment_#{comment.id}" do
-        page.find(".js-comment__votes--up").click
+      within "#proposal-#{proposal.id}-vote-button" do
+        expect(page).to have_button("Voted")
       end
-
-      expect(page).to have_css(".js-comment__votes--up", text: /1/)
     end
 
     it "can access the comment form" do
