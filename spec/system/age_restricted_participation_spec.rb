@@ -50,7 +50,6 @@ describe "Age-restricted participation in a proposals component", :js do # ruboc
         expect(page).to have_content(expected_text)
       end
     end
-
   end
 
   shared_examples "blocks commenting with an inline verification warning" do
