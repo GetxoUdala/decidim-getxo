@@ -28,6 +28,12 @@ checksums = [
       "/app/views/decidim/budgets/projects/_budget_confirm.html.erb" => "9e4af16df8b72afc6a2d72a3d1184dcd",
       "/app/views/decidim/budgets/order_summary_mailer/order_summary.html.erb" => "073439e07191ed40e0bd1d2fee53cbfe"
     }
+  },
+  {
+    package: "decidim-admin",
+    files: {
+      "/app/forms/decidim/admin/permission_form.rb" => "e051853067d9bb04e1c072d5239b9cdc"
+    }
   }
 ]
 

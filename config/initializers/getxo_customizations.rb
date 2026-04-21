@@ -45,11 +45,23 @@ Decidim::Verifications.register_workflow(:census_authorization_handler) do |work
 
   workflow.options do |options|
     options.attribute :zones, type: :string
+    options.attribute :minimum_age, type: :integer, default: 0
+    options.attribute :maximum_age, type: :integer, default: 0
   end
+end
+
+Decidim::Verifications.find_workflow_manifest(:census_authorization_handler).options.schema.class_eval do
+  validates :minimum_age, :maximum_age,
+            numericality: { greater_than_or_equal_to: 0, allow_blank: true }
+
+  validates :maximum_age,
+            numericality: { greater_than_or_equal_to: :minimum_age },
+            if: -> { minimum_age.to_i.positive? && maximum_age.to_i.positive? }
 end
 
 Rails.application.config.to_prepare do
   # use captcha on signup
   Decidim::Devise::RegistrationsController.include(Decidim::Devise::RecaptchableSignUp)
   Decidim::LayoutHelper.prepend(LayoutHelperOverride)
+  Decidim::Admin::PermissionForm.include(PermissionFormOverride)
 end

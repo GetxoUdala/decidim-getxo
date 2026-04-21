@@ -4,5 +4,5 @@ base_path = File.expand_path("..", __dir__)
 
 Decidim::Shakapacker.register_path("#{base_path}/app/packs")
 Decidim::Shakapacker.register_entrypoints(
-  resource_permissions_multiselect: "#{base_path}/app/packs/entrypoints/decidim_admin_getxo_selects.js"
+  resource_permissions: "#{base_path}/app/packs/entrypoints/decidim_admin_resource_permissions.js"
 )
