@@ -27,6 +27,8 @@ es:
         explanation: Verifica tu cuenta con el censo municipal
         fields:
           date_of_birth: Fecha de nacimiento
+          maximum_age: Edad máxima
+          minimum_age: Edad mínima
           street: 'Calle:'
           street_number: 'Número de calle:'
           zones: 'Zonas válidas:'
