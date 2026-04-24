@@ -10,7 +10,7 @@ checksums = [
     package: "decidim-core",
     files: {
       # layouts
-      "/app/views/decidim/devise/registrations/new.html.erb" => "861b8821bbdc05e7b337fcdb921415ba",
+      "/app/views/decidim/devise/registrations/new.html.erb" => "4a64a07b83678fa5360ded05e2bfd96c",
       "/app/controllers/decidim/devise/registrations_controller.rb" => "3b9d431d19e456aeab3eb861b6189bf4",
       "/app/views/layouts/decidim/header/_main.html.erb" => "a090eeca739613446d2eab8f4de513b1"
     }
