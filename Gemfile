@@ -11,7 +11,7 @@ gem "decidim-decidim_awesome", github: "decidim-ice/decidim-module-decidim_aweso
 gem "decidim-extra_user_fields", github: "openpoke/decidim-module-extra_user_fields", branch: "main"
 gem "decidim-pokecode", github: "openpoke/decidim-module-pokecode", branch: "main"
 gem "decidim-templates", DECIDIM_VERSION
-gem "decidim-term_customizer", github: "openpoke/decidim-module-term_customizer", branch: "main"
+gem "decidim-term_customizer", github: "openpoke/decidim-module-term_customizer", branch: "release/0.31-stable"
 
 gem "bootsnap", "~> 1.4"
 gem "puma", ">= 6.3.1"
