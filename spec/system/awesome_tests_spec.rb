@@ -25,7 +25,7 @@ describe "Custom styles" do # rubocop:disable RSpec/DescribeClass
     end
 
     it "css is applied" do
-      expect(page.execute_script("return window.getComputedStyle($('body')[0]).backgroundColor")).to eq("rgb(255, 0, 0)")
+      expect(page.execute_script("return window.getComputedStyle(document.body).backgroundColor")).to eq("rgb(255, 0, 0)")
     end
   end
 
@@ -34,8 +34,8 @@ describe "Custom styles" do # rubocop:disable RSpec/DescribeClass
       expect(page.body).to have_no_content("body {background: red;}")
     end
 
-    it "css is not applyied" do
-      expect(page.execute_script("return window.getComputedStyle($('body')[0]).backgroundColor")).to eq("rgba(0, 0, 0, 0)")
+    it "css is not applied" do
+      expect(page.execute_script("return window.getComputedStyle(document.body).backgroundColor")).to eq("rgba(0, 0, 0, 0)")
     end
   end
 

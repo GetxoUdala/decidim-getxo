@@ -224,4 +224,40 @@ describe CensusActionAuthorizer do
       it_behaves_like "unauthorized"
     end
   end
+
+  describe CensusAuthorizationHandler do
+    subject(:handler) { described_class.new(document_number:, date_of_birth:, user:) }
+
+    let(:organization) { create(:organization) }
+    let(:user) { create(:user, organization:) }
+    let(:document_number) { "X1234567Z" }
+    let(:date_of_birth) { nil }
+
+    describe "#date_of_birth" do
+      context "when a date is explicitly provided" do
+        let(:date_of_birth) { Date.new(1990, 5, 15) }
+
+        it "returns the provided date" do
+          expect(handler.date_of_birth).to eq(Date.new(1990, 5, 15))
+        end
+      end
+
+      context "when no date is provided but the user has extended_data" do
+        before do
+          user.extended_data = { "date_of_birth" => "1992-11-25" }
+          user.save!
+        end
+
+        it "falls back to the user date of birth" do
+          expect(handler.date_of_birth).to eq(Date.new(1992, 11, 25))
+        end
+      end
+
+      context "when no date is provided and the user has no extended_data date" do
+        it "returns nil" do
+          expect(handler.date_of_birth).to be_nil
+        end
+      end
+    end
+  end
 end

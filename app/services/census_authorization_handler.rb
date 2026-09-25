@@ -17,7 +17,7 @@ class CensusAuthorizationHandler < Decidim::AuthorizationHandler
   validate :document_number_valid
 
   def date_of_birth
-    return super if user.blank?
+    return super if super.present? || user.blank?
 
     Date.parse(user.extended_data["date_of_birth"]) if user.extended_data["date_of_birth"].present?
   end
