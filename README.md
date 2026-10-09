@@ -113,3 +113,56 @@ user.save!
 6. Fill the rest of the form and submit it.
 
 You're good to go!
+
+## Maintenance tasks
+
+### Sync user date of birth from authorizations
+
+Use this rake task to synchronize `Decidim::User.extended_data["date_of_birth"]` from `Decidim::Authorization.metadata["date_of_birth"]`.
+
+Task name:
+
+```bash
+bin/rails getxo:sync_users_date_of_birth
+```
+
+The task:
+
+- Only considers granted authorizations (`granted_at` present)
+- Uses the latest granted authorization per user
+- Accepts only valid ISO dates
+- Skips users whose current value already matches
+
+By default, it runs in dry-run mode (`DRY_RUN=true`) and only prints what would be changed.
+
+#### Examples
+
+Dry run (default):
+
+```bash
+bin/rails getxo:sync_users_date_of_birth
+```
+
+Apply changes:
+
+```bash
+DRY_RUN=false bin/rails getxo:sync_users_date_of_birth
+```
+
+Filter by authorization workflow name:
+
+```bash
+AUTHORIZATION_NAME=census_authorization_handler bin/rails getxo:sync_users_date_of_birth
+```
+
+Filter by organization:
+
+```bash
+ORGANIZATION_ID=1 bin/rails getxo:sync_users_date_of_birth
+```
+
+Combine filters and apply changes:
+
+```bash
+DRY_RUN=false AUTHORIZATION_NAME=census_authorization_handler ORGANIZATION_ID=1 bin/rails getxo:sync_users_date_of_birth
+```
